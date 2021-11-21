@@ -1,0 +1,17 @@
+{
+  "name": "syloper-backend",
+  "version": "1.0.0",
+  "description": "Syloper Backend",
+  "scripts": {
+    "start": "node src/server.js",
+    "dev": "nodemon --watch src --exec npm run start"
+  },
+  "author": "A. Maldonado - J. López - J. Sánchez - Y. Bao",
+  "dependencies": {
+    "dotenv": "^10.0.0",
+    "js-yaml": "^4.1.0",
+    "koa": "^2.13.4",
+    "nconf": "^0.11.3",
+    "nodemon": "^2.0.15"
+  }
+}
