@@ -26,6 +26,4 @@ nconf.defaults({ APP: { NODE_ENV: ENV } });
 nconf.file(ENV, envFile);
 nconf.file('base', baseFile);
 
-console.log(nconf.get('APP'))
-
 module.exports = nconf.get('APP');
