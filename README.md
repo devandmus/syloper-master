@@ -20,3 +20,7 @@ npm run clean
 ```
 
 
+Dotenv config
+```javascript
+const dotenv = require('dotenv').config();
+```
