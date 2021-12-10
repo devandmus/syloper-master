@@ -2,21 +2,46 @@
 
 Para este proyecto, el entorno de desarollo funciona como una aplicación monolítica.
 
-Para correr Syloper sin preocuparse de las instancias de manera automática, desde la raíz (syloper-master) puedes utilizar:
+Para correr Syloper sin preocuparse de las instancias de manera automática, debes controlarlo desde la raíz con npm.
 
-Para instalar todas las dependecias de todos los proyectos
-```
-npm run install
+---
+
+__Dependecias globales antes de empezar__
+
+## Node
+Descarga la versión LTS en\
+https://nodejs.org/es/
+
+## Gatsby CLI
+Una vez instalado Node y NPM:
+```bash
+npm install -g gatsby-cli
 ```
 
-Para levantar todas las instancias de desarrollo
-```.
+# Comandos
+Todos los comandos a continuación se deben ejecutar desde la raíz para controlar ambos entornos.
+
+Para instalar todas las dependencias:
+```bash
+npm install
+```
+
+Para levantar el monolítico en una consola:
+```bash
 npm start
 ```
 
-Para purgar las dependecias de todas las instancias y volver a instalarlas
-```.
-npm run clean
+Para levantar únicamente el front
+```bash
+npm start:f
 ```
 
+Para levantar únicamente el backend
+```bash
+npm start:b
+```
 
+Para limpiar todas las dependencias y caché
+```bash
+npm clean
+```
