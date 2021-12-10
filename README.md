@@ -2,25 +2,21 @@
 
 Para este proyecto, el entorno de desarollo funciona como una aplicación monolítica.
 
-Para correr Syloper sin preocuparse de las instancias de manera automática, desde la raíz (syloper-master) puedes utilizar:
+Para correr Syloper sin preocuparse de las instancias de manera automática, desde la raíz (syloper-master) debes utilizar docker.
 
-Para instalar todas las dependecias de todos los proyectos
-```
-npm run install
-```
+# Docker
+Instala el Docker en tu máquina.\
+https://www.docker.com
 
-Para levantar todas las instancias de desarrollo
-```.
-npm start
-```
+Dirígete a la raíz, donde se encuentra el fichero `docker-compose.yml` y en consola ejecuta los siguientes comandos:
 
-Para purgar las dependecias de todas las instancias y volver a instalarlas
-```.
-npm run clean
-```
+Para crear la base del proyecto Gatsby: esto se corre una sola vez para crear las depencias del docker-compose.
+````bash
+docker build -t gastby_image .
+````
 
+## Levantar las instancias
+````bash
+docker-compose up
+````
 
-Dotenv config
-```javascript
-const dotenv = require('dotenv').config();
-```

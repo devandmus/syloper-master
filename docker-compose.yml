@@ -2,27 +2,32 @@ version: "3"
 
 services:
 
-  backend:
-    container_name: syloper_backend
-    image: node:16-alpine
+#  backend:
+#    container_name: syloper_backend
+#    image: node:16-alpine
+#    restart: always
+#    volumes:
+#      - ./backend-syloper:/app
+#    ports:
+#      - 4080:4080
+#    command: sh -c "./src npm install && ./src npm run dev"
+#    tty: true
+
+  frontend:
+    container_name: syloper_frontend
+    build:
+      context: ./front-syloper
+      dockerfile: Dockerfile
     restart: always
     volumes:
-      - ./backend-syloper:/app
+      - ./front-syloper/src:/frontend/src
+      - ./front-syloper/storybook-static:/frontend/storybook-static
+      - ./front-syloper/package.json:/frontend/package.json
     ports:
-      - 4080:4080
-    command: sh -c "npm install && npm run dev"
+      - 0.0.0.0:8000:8000
+    command: >
+      sh -c "
+        echo 'Init frontend'
+        npm start
+      "
     tty: true
-#
-#  frontend:
-#    container_name: Syloper Frontend
-#  image: node:16
-#  restart: always
-#  build: ./frontend-syloper
-#  ports:
-#    - 8000:8000
-#
-#
-#    working_dir: /app/backend
-#    expose:
-#      - "4080:4080 "
-#    command: "npm run dev"

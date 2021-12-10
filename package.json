@@ -3,10 +3,11 @@
   "version": "1.0.0",
   "description": "Para este proyecto, el entorno de desarollo funciona como una aplicación monolítica.",
   "scripts": {
-    "start": "npm run --prefix ./backend-syloper dev",
-    "i": "npm run install",
-    "install": "npm --prefix ./backend-syloper i & npm --prefix ./front-syloper i",
-    "clean": "(rm -rf ./backend-syloper/node_modules & rm -rf ./front-syloper/node_modules)"
+    "clean": "(rm -rf ./backend-syloper/node_modules & rm -rf ./front-syloper/node_modules & rm -rf ./front-syloper/.cache & rm -rf ./front-syloper/public)",
+    "install":"npm i --prefix ./front-syloper",
+    "start:f": "npm start --prefix ./front-syloper",
+    "start:b": "npm run dev --prefix ./backend-syloper",
+    "start:all": "npm run start:f & npm run start:b"
   },
   "repository": {
     "type": "git",
