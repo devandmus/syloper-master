@@ -14,6 +14,10 @@ const InputComp = styled.input`
     font-family: ${({ theme }) => theme.font.family};
     border-radius: 7px;
     outline-color: ${({ theme }) => theme.color.primaryGreen };
+    @media only screen and (max-width: 768px){
+        font-size: 1.1rem;
+    }
+    
 `;
 
 const Input = ({ type, placeholder, onChange, value, name, className, margin }) => {

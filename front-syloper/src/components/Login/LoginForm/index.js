@@ -1,8 +1,8 @@
 import { Link } from 'gatsby';
 import React from 'react';
 import styled from 'styled-components';
-import Button from '../ui/Button';
-import Input from '../ui/Input';
+import Button from '../../ui/Button';
+import Input from '../../ui/Input';
 
 
 const Form = styled.form`
@@ -10,6 +10,16 @@ const Form = styled.form`
     display: flex;
     flex-flow: column;
     align-items: center;
+
+    .btn{
+        width: 80%;
+    }
+
+    @media only screen and (max-width: 768px){
+        .btn{
+            width: 100%;
+        }
+    }
 `;
 
 const Text = styled.p`
@@ -36,12 +46,22 @@ const Sign = styled(Text)`
 const LoginForm = () => {
     return ( 
         <Form>
-            <Input placeholder="Email Address" margin="0 0 20px 0"/>
-            <Input placeholder="Password" margin="0 0 20px 0"/>
+            <Input 
+                placeholder="Email Address" 
+                margin="0 0 20px 0"
+            />
+            <Input 
+                placeholder="Password" 
+                margin="0 0 20px 0"
+                type="password"
+            />
             <Forgot>
                 <Link>Forgot Password?</Link>
             </Forgot>
-            <Button btnWidth="80%" text="Login"/>
+            <Button 
+                className="btn"
+                text="Login"
+            />
             <Sign>
                 Don't have an account? <Link>Sign In</Link>
             </Sign>

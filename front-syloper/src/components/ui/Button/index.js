@@ -3,7 +3,6 @@ import styled, { css } from 'styled-components';
 
 const ButtonA = styled.button`
     ${({ theme }) => css`
-        width: ${props => props.btnWidth || "100%"};
         border-radius: 25px;
         background-color: ${theme.color.primaryGreen};
         text-align: center;
@@ -20,13 +19,20 @@ const ButtonA = styled.button`
             color: ${theme.color.primaryGreen};
             transition: ${theme.transition}
         }
+        @media only screen and (max-width: 768px){
+            font-size: 1.2rem;
+        }
     `}
 `;
 
 
-const Button = ({text, btnWidth}) => {
+const Button = ({text, btnWidth, className}) => {
     return ( 
-        <ButtonA btnWidth={btnWidth}>{text}</ButtonA>       
+        <ButtonA
+            className={className}
+        >
+            {text}
+        </ButtonA>       
      );
 }
  

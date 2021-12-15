@@ -1,8 +1,8 @@
 import React from 'React';
 
-const SyloperLogo = ({widthSize}) => {
+const SyloperLogo = () => {
     return(
-        <svg x="0px" y="0px" viewBox="0 0 487.5 119.3" width={widthSize}>
+        <svg x="0px" y="0px" viewBox="0 0 487.5 119.3" width="100%">
             <g>
                 <g>
                     <path fill="#2A3235" className="st0" d="M183.1,70.3c-0.1-1.3,0.7-2,1.9-2h8.3c1.1,0,1.7,0.6,2,1.8c0.6,2.7,2.9,4.1,7.3,4.1c4.9,0,6.5-1.9,6.5-4.1
