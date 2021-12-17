@@ -1,7 +1,10 @@
 module.exports = {
   siteMetadata: {
     siteUrl: "https://www.yourdomain.tld",
-    title: "syloper",
+    title: "Syloper",
   },
-  plugins: [],
+  plugins: [
+    'gatsby-plugin-styled-components',
+    'gatsby-plugin-svgr',
+  ],
 };

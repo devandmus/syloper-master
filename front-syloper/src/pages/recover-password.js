@@ -1,7 +1,7 @@
 import React from "react"
 import Layout from "../components/layout";
-import LoginMain from "../components/Login/LoginMain"
 import styled from "styled-components"
+import RecoverPassword from "../components/Login/RecoverPassword";
 
 // REFACTORIZAR
 
@@ -20,7 +20,7 @@ const IndexPage = () => {
   return (
     <Layout>
       <MainLogin>
-        <LoginMain />
+        <RecoverPassword />
       </MainLogin>
     </Layout>
      

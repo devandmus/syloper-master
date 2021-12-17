@@ -1,3 +1,32 @@
 node_modules/
 .cache/
 public
+
+  "devDependencies": {
+    "@testing-library/jest-dom": "^5.1.1",
+    "@testing-library/react": "^10.0.4",
+    "babel-jest": "^25.1.0",
+    "babel-preset-gatsby": "^0.2.31",
+    "cypress": "^6.8.0",
+    "eslint": "^6.8.0",
+    "eslint-config-airbnb": "^18.0.1",
+    "eslint-config-prettier": "^6.10.0",
+    "eslint-plugin-cypress": "^2.11.2",
+    "eslint-plugin-import": "^2.20.1",
+    "eslint-plugin-jest": "^23.8.2",
+    "eslint-plugin-jest-dom": "^2.0.1",
+    "eslint-plugin-jsx-a11y": "^6.2.3",
+    "eslint-plugin-prettier": "^3.1.2",
+    "eslint-plugin-react": "^7.18.3",
+    "eslint-plugin-react-hooks": "^1.7.0",
+    "husky": "^7.0.0",
+    "identity-obj-proxy": "^3.0.0",
+    "jest": "^25.1.0",
+    "jest-sonar-reporter": "^2.0.0",
+    "jest-styled-components": "^7.0.2",
+    "lint-staged": "^11.0.1",
+    "mockdate": "^3.0.2",
+    "prettier": "^1.19.1",
+    "react-test-renderer": "^16.13.0",
+    "start-server-and-test": "^1.12.1"
+  },
