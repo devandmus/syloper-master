@@ -1,72 +1,30 @@
 import { Link } from 'gatsby';
 import React from 'react';
-import styled from 'styled-components';
-import Button from '../../ui/Button';
-import Input from '../../ui/Input';
-
-
-const Form = styled.form`
-    width: 100%;
-    display: flex;
-    flex-flow: column;
-    align-items: center;
-
-    .btn{
-        width: 80%;
-    }
-
-    @media only screen and (max-width: 768px){
-        .btn{
-            width: 100%;
-        }
-    }
-`;
-
-const Text = styled.p`
-    width: auto;
-    text-align: center;
-    font-weight: 500;
-    font-size: 1.05rem;
-`;
-
-const Forgot = styled(Text)`
-    color: ${({ theme }) => theme.color.primaryGreen };
-    margin: 15px 0 50px;
-    cursor: pointer;
-`;
-
-const Sign = styled(Text)`
-    margin: 45px 0;
-    a{
-        cursor: pointer;
-        color: ${({ theme }) => theme.color.primaryGreen };
-    }
-`;
+import Button from '../../UI/Button';
+import Input from '../../UI/Input';
+import {
+  Form,
+  Forgot,
+  Sign,
+} from './styles/LoginFormStyled';
 
 const LoginForm = () => {
-    return ( 
-        <Form>
-            <Input 
-                placeholder="Email Address" 
-                margin="0 0 20px 0"
-            />
-            <Input 
-                placeholder="Password" 
-                margin="0 0 20px 0"
-                type="password"
-            />
-            <Forgot>
-                <Link>Forgot Password?</Link>
-            </Forgot>
-            <Button 
-                className="btn"
-                text="Login"
-            />
-            <Sign>
-                Don't have an account? <Link>Sign In</Link>
-            </Sign>
-        </Form>
-     );
-}
- 
+  return (
+    <Form>
+      <Input placeholder="Email Address" type="text" />
+      <Input placeholder="Password" type="password" />
+      <Forgot>
+        <Link to="/">Forgot Password?</Link>
+      </Forgot>
+      <Button>
+        Logic
+      </Button>
+      <Sign>
+        Don't have an account?
+        <Link to="/">Sign In</Link>
+      </Sign>
+    </Form>
+  );
+};
+
 export default LoginForm;

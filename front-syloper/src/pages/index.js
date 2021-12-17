@@ -3,6 +3,7 @@ import Layout from "../components/layout";
 import LoginMain from "../components/Login/LoginMain"
 import styled from "styled-components"
 
+// REFACTORIZAR
 
 const MainLogin = styled.div`
   width: 100%;

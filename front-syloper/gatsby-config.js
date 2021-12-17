@@ -4,7 +4,7 @@ module.exports = {
     title: "Syloper",
   },
   plugins: [
-    `gatsby-plugin-sass`, 
-    `gatsby-plugin-styled-components`,
+    'gatsby-plugin-styled-components',
+    'gatsby-plugin-svgr',
   ],
 };
