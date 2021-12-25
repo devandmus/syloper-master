@@ -14,14 +14,14 @@ const LoginForm = () => {
       <Input placeholder="Email Address" type="text" />
       <Input placeholder="Password" type="password" />
       <Forgot>
-        <Link to="/">Forgot Password?</Link>
+        <Link to="/recover-password">Forgot Password?</Link>
       </Forgot>
       <Button>
         Logic
       </Button>
       <Sign>
-        Don't have an account?
-        <Link to="/">Sign In</Link>
+        Don't have an account? 
+        <Link to="/"> Sign In</Link>
       </Sign>
     </Form>
   );

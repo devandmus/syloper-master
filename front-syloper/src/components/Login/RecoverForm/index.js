@@ -2,6 +2,7 @@ import React from 'react';
 import Button from '../../UI/Button';
 import Input from '../../UI/Input';
 import RecoverFormStyled from './styles/RecoverFormStyled';
+import { Link } from 'gatsby';
 
 const RecoverForm = () => {
   return (
@@ -15,6 +16,7 @@ const RecoverForm = () => {
         margin="35px 0 35px 0"
       />
       <Button>Send</Button>
+      <Link to="/"><Button>Back</Button></Link>
     </RecoverFormStyled>
   );
 };
