@@ -18,6 +18,9 @@
   },
   "dependencies": {
     "@fontsource/work-sans": "^4.5.2",
+    "@fortawesome/fontawesome-svg-core": "^1.2.36",
+    "@fortawesome/free-solid-svg-icons": "^5.15.4",
+    "@fortawesome/react-fontawesome": "^0.1.16",
     "@svgr/webpack": "^6.1.2",
     "babel-plugin-styled-components": "^2.0.2",
     "eslint-plugin-flowtype": "^8.0.3",
