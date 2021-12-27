@@ -1,3 +1,5 @@
+require('dotenv').config();
+require('./config/db_config');
 const config = require('./config');
 const app = require('./app');
 const logger = require('./config/logger');
