@@ -13,7 +13,7 @@ module.exports.login = async ctx => {
             if(match){
                 const datos = {
                     sub: user.id,
-                    exp: Math.floor(Date.now() / 1000) + (60 * 2)
+                    exp: Math.floor(Date.now() / 1000) + (60 * 30)
                 };
                 const token = jwt.sign(datos,process.env.JWT_SECRET);
                 const {status, ...body} = { status: 200, accessToken: token };
