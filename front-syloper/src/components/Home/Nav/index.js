@@ -1,36 +1,15 @@
 import React from "react";
-import { SyloperLogo } from '../../../images';
-import { NavStyled, MenuIcon, Typography, MenuStyled, MenuItemStyled, userStyled } from './styles/NavStyled'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faCoffee, faUserCircle } from '@fortawesome/free-solid-svg-icons'
-
-const pages = [' Home', 'Projects', 'Tasks', 'Porfolios', 'Responsibles']
-const settings = ['Profile', 'Account', 'Dashboard', 'Logout']
-
+import Logo from "../../ui/Logo";
+import Menu from "./Menu";
+import { NavContainer } from './styles'
 
 const Nav = () => {
     return (
-        <NavStyled>
-            <MenuIcon>
-
-                <SyloperLogo/>
-            </MenuIcon>
-
-            <MenuStyled>
-              {pages.map((page) => (
-                <MenuItemStyled>
-                  <Typography> {page}</Typography>
-                </MenuItemStyled>
-              ))}
-            </MenuStyled>
-
-            <userStyled>
-                <FontAwesomeIcon icon={faUserCircle} size="2x" color="green"/>
-            </userStyled>
-
-        </NavStyled>
-
+      <NavContainer>
+        <Logo width="170px" height="50px"/>
+        <Menu />
+      </NavContainer>
     )
 }
 
-export default Nav
+export default Nav;
