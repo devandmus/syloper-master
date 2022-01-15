@@ -1,5 +1,6 @@
 const mongoose = require('mongoose');
-const uri = `mongodb+srv://aplicacion:jMIrkT9ZnIsCaspD@gestionproyectos.hdjsg.mongodb.net/SSP_DB?retryWrites=true&w=majority`
+const config = require('./settings');
+const uri = `mongodb+srv://${config.USER}:${config.PASSWORD}@${config.CLUSTER}.hdjsg.mongodb.net/${config.DATABASE}?retryWrites=true&w=majority`
 //console.log("URI: "+ uri);
 mongoose
   .connect(uri, { useNewUrlParser: true, useUnifiedTopology: true })
