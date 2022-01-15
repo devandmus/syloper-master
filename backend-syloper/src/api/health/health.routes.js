@@ -1,8 +1,40 @@
 const controller = require('./health.controller');
 const Router = require('koa-router');
+const koaBody = require('koa-body');
+const ctrlUsers = require('./user_controller');
+const ctrlCustomers = require('./customer_controller');
+const ctrlProjects = require('./project_controller');
+const ctrlTasks = require('./task_controller');
+const ctrlProjStas = require('./project_status_controller');
+const ctrlCosts = require('./cost_controller');
+const ctrlResponsibles = require('./responsibles_controller');
+const ctrlPayments = require('./payment_controller');
+const ctrlCostTypes = require('./cost_type_controller');
+const ctrlRespTypes = require('./responsible_type_controller');
 
 const healthRouter = new Router({ prefix: '/health' });
 
 healthRouter.get('/', controller);
+healthRouter.post('/register', koaBody(), ctrlUsers.register);
+healthRouter.post('/login', koaBody(), ctrlUsers.login);
+healthRouter.get('/listar', ctrlUsers.listar);
+healthRouter.post('/createcustomer', koaBody(), ctrlCustomers.register);
+healthRouter.get('/listcustomer', ctrlCustomers.listar);
+healthRouter.post('/createproject', koaBody(), ctrlProjects.register);
+healthRouter.get('/listproject', ctrlProjects.listar);
+healthRouter.post('/createtask', koaBody(), ctrlTasks.register);
+healthRouter.get('/listtask', ctrlTasks.listar);
+healthRouter.post('/createprst', koaBody(), ctrlProjStas.register);
+healthRouter.get('/listprst', ctrlProjStas.listar);
+healthRouter.post('/createcost', koaBody(), ctrlCosts.register);
+healthRouter.get('/listcost', ctrlCosts.listar);
+healthRouter.post('/createrespon', koaBody(), ctrlResponsibles.register);
+healthRouter.get('/listrespon', ctrlResponsibles.listar);
+healthRouter.post('/createpaym', koaBody(), ctrlPayments.register);
+healthRouter.get('/listpaym', ctrlPayments.listar);
+healthRouter.post('/createcosttype', koaBody(), ctrlCostTypes.register);
+healthRouter.get('/listcosttype', ctrlCostTypes.listar);
+healthRouter.post('/createresptype', koaBody(), ctrlRespTypes.register);
+healthRouter.get('/listresptype', ctrlRespTypes.listar);
 
 module.exports = healthRouter;
