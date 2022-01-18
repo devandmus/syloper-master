@@ -1,6 +1,7 @@
 const Users = require("../modelos/user_models");
 const jwt = require('jsonwebtoken');
 const auth = require('../../middleware/validToken');
+const config = require('../../config/settings');
 
 module.exports.login = async ctx => {
     try
@@ -15,7 +16,7 @@ module.exports.login = async ctx => {
                     sub: user.id,
                     exp: Math.floor(Date.now() / 1000) + (60 * 120)
                 };
-                const token = jwt.sign(datos,"0PKRQLVSdXyn9fa0vdB51B2pnHknYWGnwnOKAZve0umO46vVRWsWIn35GSvY");
+                const token = jwt.sign(datos,config.JWT_SECRET);
                 const {status, ...body} = { status: 200, accessToken: token };
                 ctx.status = status;
                 ctx.body = body;
