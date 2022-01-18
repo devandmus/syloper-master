@@ -6,10 +6,23 @@ const MenuContainer = styled.nav `
     display: flex;
     flex-direction: column;
     height: 90vh;
-    div:last-child{
+
+    div:last-child {
         margin-top: auto;
         opacity: 1;
         margin-bottom: 0;
+    }
+
+    @media only screen and (max-width: 1000px){
+        flex-direction: row;
+        height: auto;
+        margin-top: 0;
+
+        div:last-child {
+            margin-top: initial;
+            opacity: ;
+            margin-bottom: 0;
+        }
     }
 `;
 
@@ -35,6 +48,31 @@ const MenuItem = styled.div `
     &:hover {
         transform: scale(1.01);
         opacity: 1;
+    }
+
+    @media only screen and (max-width: 1000px){
+        flex-direction: column;
+        margin-bottom: 0;
+
+        i{
+            margin: 0 0 4px 0;
+        }
+
+        p{
+            font-size: 1.06rem;
+            font-weight: 500;
+            color: #000;
+        }
+    }
+
+    @media only screen and (max-width: 650px){
+        i{
+            margin: 0;
+        }
+
+        p{
+            display: none;
+        }
     }
 `;
 

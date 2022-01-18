@@ -2,12 +2,22 @@ import React from 'react';
 import { MenuContainer, MenuItem } from './styles';
 import { AiOutlineFolderOpen, GoDashboard, BiTask, BsFiles, IoPeopleOutline, RiLogoutCircleLine } from 'react-icons/all'
 import { useTheme } from 'styled-components';
+import { useViewport } from '../../../../contexts/viewportSize';
 
 
 
 const Menu = () => {
     const theme = useTheme();
-    const iconProps = {
+    const { width } = useViewport();
+    const breakpoint = 651;
+    let iconProps;
+
+    width < breakpoint 
+    ? iconProps = {
+        size: "1.8em",
+        color: "#000"
+    } 
+    : iconProps = {
         size: "1.6em",
         color: "#000"
     }

@@ -9,6 +9,12 @@ const StatusMain = styled.div`
     display: flex;
     justify-content: space-between;
     align-items: center;
+
+    @media only screen and (max-width: 768px){
+        width: 100%;
+        flex-direction: column;
+        margin: 0 auto;
+    }
 `;
 
 const StatusTxt = styled.p`
@@ -21,11 +27,30 @@ const ProgressBar = styled.div `
     align-items: center;
     justify-content: space-between;
 
+    @media only screen and (max-width: 1150px) and (min-width: 768px){
+        width: 85%;
+    }
+
+    @media only screen and (max-width: 768px){
+        flex-direction: column;
+        width: 100%;
+        margin-top: 6px;
+    }
+
+    
     .bar-container {
         width: 87%;
         height: 5px;
         border-radius: 10px;
         background-color: ${({theme}) => theme.color.gray200};
+
+        @media only screen and (max-width: 1150px){
+            width: 90%;
+        }
+
+        @media only screen and (max-width: 768px){
+            margin-bottom: 6px;
+        }
 
         span {
             display: block;

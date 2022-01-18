@@ -29,7 +29,9 @@ const Theme = {
 
   boxShadow: "0px 0px 20px 0px rgba(0,0,0,0.02)",
 
-  boxShadowLeft: "-10px 1px 20px -15px rgba(0,0,0,0.4);"
+  boxShadowLeft: "-10px 1px 20px -15px rgba(0,0,0,0.4)",
+
+  boxShadowB: "0px 0px 7px 0px rgb(0 0 0 / 50%)"
 }
 
 export {

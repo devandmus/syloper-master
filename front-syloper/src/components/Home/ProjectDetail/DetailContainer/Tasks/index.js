@@ -16,6 +16,8 @@ const Tasks = () => {
                     <h5>Ready to Start</h5>
                     <Task />
                     <Task />
+                    <Task />
+                    <Task />
                 </TaskColumn>
                 <TaskColumn>
                     <h5>In Progress</h5>
@@ -23,6 +25,8 @@ const Tasks = () => {
                 </TaskColumn>
                 <TaskColumn>
                     <h5>Completed</h5>
+                    <Task />
+                    <Task />
                     <Task />
                 </TaskColumn>
             </TaskContainer>

@@ -12,6 +12,17 @@ const ProjectsGrid = styled.section`
     padding-right: 15px;
     box-sizing: border-box;
     grid-auto-rows: minmax(320px, 330px);
+
+    @media only screen and (max-width: 1270px){
+        grid-template-columns: 48% 48%;
+        height: calc(100% - 260px);
+    }
+
+    @media only screen and (max-width: 650px){
+        grid-template-columns: 100%;
+        padding: 0;
+        height: calc(100% - 214px);
+    }
 `;
 
 export {

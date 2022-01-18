@@ -6,6 +6,10 @@ const HeaderContainer = styled.header`
     align-items: center;    
     justify-content: space-between;
     margin-bottom: 55px;
+
+    @media only screen and (max-width: 650px){
+        margin-bottom: 35px;
+    }
 `;
 
 const Title = styled.h2`

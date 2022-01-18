@@ -1,8 +1,13 @@
 import React from 'react';
 import Button from '../../../ui/Button';
 import { Count, CountItem, ProjectsHeaderContainer } from './styles';
+import { FaPlus  } from 'react-icons/all'
+import { useViewport } from '../../../../contexts/viewportSize';
 
 const ProjectsHeader = () => {
+    const { width } = useViewport();
+    const breakpoint = 769;
+
     return ( 
         <ProjectsHeaderContainer>
             <Count>
@@ -23,7 +28,7 @@ const ProjectsHeader = () => {
                     <p>Total Projects</p>
                 </CountItem>
             </Count>
-            <Button>Add Project</Button>
+            <Button>{width < breakpoint ? <FaPlus color="#fff" size="19"/> : "Add Project"}</Button>
         </ProjectsHeaderContainer>
      );
 }
