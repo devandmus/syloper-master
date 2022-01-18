@@ -6,8 +6,9 @@ const Button = styled.button`
         background-color: ${theme.color.primaryGreen};
         text-align: center;
         color: #fff;
+        width: 80%;
         border: 2px solid ${theme.color.primaryGreen};
-        padding: 12px 0;
+        padding: 12px;
         font-size: 1.24rem;
         font-weight: 600;
         font-family: ${theme.font.family};

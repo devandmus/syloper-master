@@ -14,19 +14,28 @@ const Theme = {
     text: "rgb(21, 21, 21)",
     primaryGreen: "#34AD66",
     darkGreen: '#327C51',
-    lightGreen: '#CAF1C4',
+    lightGreen: '#34AD66',
     gray100: '#f8f9fa',
     gray200: '#e9ecef',
     gray300: '#dee2e6',
     gray400: '#ced4da',
-    gray500:'#adb5bd',
-    redStatus: '#DC3545'
+    gray500: '#adb5bd',
+    gray600: '#6c757d',
+    border: '#f2f2f2',
+    redStatus: '#DC3545',
   },
 
-  transition: "all .25s linear",
+  transition: "all .2s linear",
+
+  boxShadow: "0px 0px 20px 0px rgba(0,0,0,0.02)",
+
+  boxShadowLeft: "-10px 1px 20px -15px rgba(0,0,0,0.4)",
+
+  boxShadowB: "0px 0px 7px 0px rgb(0 0 0 / 50%)"
 }
 
 export {
-  Theme as default,
+  Theme as
+  default,
   GlobalStyle,
 }
