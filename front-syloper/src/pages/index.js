@@ -1,12 +1,17 @@
-import React from 'react';
+import React from "react"
+import Layout from "../components/layout";
+import LoginMain from "../components/Login/LoginMain"
+import { MainLoginStyled } from "./styles/MainLoginStyled"
 
-const Index = () => {
+
+const IndexPage = () => {
   return (
-    <main>
-      Index
-    </main>
-  );
-};
-
-export default Index;
+    <Layout>
+      <MainLoginStyled>
+        <LoginMain />
+      </MainLoginStyled>
+    </Layout>
+     
+  )
+}
 
