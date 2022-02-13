@@ -1,47 +1,28 @@
-# syloper-master
+# Syloper
 
-Para este proyecto, el entorno de desarollo funciona como una aplicación monolítica.
+## Para correr el backend:
 
-Para correr Syloper sin preocuparse de las instancias de manera automática, debes controlarlo desde la raíz con npm.
+Desde la raíz del proyecto, donde se encuentra el archivo "docker-compose.
+  yml" correr:
 
----
+- `docker-compose build` para construir la imagen
+- `docker-compose up` para levantarla
 
-__Dependecias globales antes de empezar__
+Dado que el backend corre en una instancia de Docker, no necesitas instalar las dependecias ni levantar MongoDB porque se instalan en la imagen de forma automática.
 
-## Node
-Descarga la versión LTS en\
-https://nodejs.org/es/
+### Database
 
-## Gatsby CLI
-Una vez instalado Node y NPM:
-```bash
-npm install -g gatsby-cli
-```
+El contenedor instanciará datos dummy en la aplicación. A medida que se 
+agrege lógica, se pueden complementar los datos en url:
 
-# Comandos
-Todos los comandos a continuación se deben ejecutar desde la raíz para controlar ambos entornos.
+`backend-syloper/database/data`
 
-Para instalar todas las dependencias:
-```bash
-npm install
-```
+## Para correr el front, por ahora:
 
-Para levantar el monolítico en una consola:
-```bash
-npm start
-```
+- Dirígete a la carpeta `front-syloper` y corre `npm start` (recuerda instalar las dependencias antes)
 
-Para levantar únicamente el front
-```bash
-npm start:f
-```
 
-Para levantar únicamente el backend
-```bash
-npm start:b
-```
+## Postman
 
-Para limpiar todas las dependencias y caché
-```bash
-npm clean
-```
+Entrego un Postman que deberá ser completado cada vez que se libere un nuevo 
+endpoint desde el backend, ya que servirá como ejemplo para el equipo de front.

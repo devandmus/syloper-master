@@ -1,8 +1,0 @@
-APP:
-  HOST: http://localhost
-  PORT: 4080
-  USER: aplicacion
-  PASSWORD: jMIrkT9ZnIsCaspD
-  DATABASE: SSP_DB
-  CLUSTER: gestionproyectos
-  JWT_SECRET: 0PKRQLVSdXyn9fa0vdB51B2pnHknYWGnwnOKAZve0umO46vVRWsWIn35GSvY

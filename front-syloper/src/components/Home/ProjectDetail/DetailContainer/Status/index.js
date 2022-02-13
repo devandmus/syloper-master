@@ -1,6 +1,6 @@
 import React from 'react';
 import { SectionTitle } from '../styles';
-import { MdAutoGraph } from 'react-icons/all'
+import { MdAutoGraph } from 'react-icons/md'
 import { ProgressBar, StatusContainer, StatusMain, StatusTxt } from './styles';
 
 const Status = () => {

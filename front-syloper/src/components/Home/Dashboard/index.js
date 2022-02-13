@@ -1,13 +1,12 @@
-import React from "react";
-import dashboardStyled from "./styles/dashboardStyled"
+import React from 'react';
+import { DashboardStyled } from './styles/DashboardStyled';
 
 const Dashboard = () => {
-return (
-    <dashboardStyled>
+  return (
+    <DashboardStyled>
+      <div>hola</div>
+    </DashboardStyled>
+  );
+};
 
-        <div>hola</div>
-    </dashboardStyled>
-)
-}
-
-export default Dashboard
+export default Dashboard;

@@ -1,6 +1,6 @@
 import React from 'react';
 import { SectionTitle } from '../styles';
-import { MdDateRange } from 'react-icons/all'
+import { MdDateRange } from 'react-icons/md'
 import { DateInfo } from './styles';
 
 const DueDate = () => {

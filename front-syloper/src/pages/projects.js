@@ -1,14 +1,6 @@
-import React from "react"
-import Layout from "../components/layout";
-import Projects from "../components/Home/Projects";
+import React from 'react';
+import Projects from '../components/Home/Projects';
 
-const HomePage = () => {
-  return (
-    <Layout>
-      <Projects />
-    </Layout>
-     
-  )
-}
+const HomePage = () => <Projects />;
 
-export default HomePage
+export default HomePage;
