@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-const DetailTitle = styled.section`
+const DetailTitle = styled.section `
     width: 100%;
     display: flex;
     margin-bottom: 40px;
@@ -36,38 +36,42 @@ const DetailTitle = styled.section`
     }
 `;
 
-const DetailMain = styled.section`
+const DetailMain = styled.section `
     width: 100%;
+    height: calc(100% - 160px);
+    overflow-y: scroll;
+
+    > div {
+        &:nth-child(-n+2) {
+            margin-bottom: 40px;
+        }
+    }
+`;
+
+const FirstInfoContainer = styled.div `
     display: flex;
     justify-content: space-between;
     flex-wrap: wrap;
-    height: calc(100% - 160px);
-    overflow-y: scroll;
-    max-height: 750px;
 
-    > div {
-        margin-bottom: 40px;
-
-        &:nth-last-child(-n + 2) {
-            flex-basis: 100%;
-        }
-
+   > div {
         @media only screen and (max-width: 1150px){
-            width: 45%;
-
-            &:nth-last-child(-n + 3) {
+            &:nth-last-child(-n + 1) {
                 flex-basis: 100%;
             }
         }
 
         @media only screen and (max-width: 768px){
-            width: 100%
+            flex-basis: 100%;
+            margin-bottom: 40px;
+
+            &:nth-last-child(-n + 1) {
+                margin-bottom: 0;
+            }
         }
     }
-
 `;
 
-const SectionTitle = styled.div`
+const SectionTitle = styled.div `
     width: 100%;
     display: flex;
     align-items: center;
@@ -90,5 +94,6 @@ const SectionTitle = styled.div`
 export {
     DetailTitle,
     DetailMain,
-    SectionTitle
+    SectionTitle,
+    FirstInfoContainer
 }

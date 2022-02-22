@@ -3,7 +3,7 @@ import Description from './Description';
 import DueDate from './DueDate';
 import Participants from './Participants';
 import Status from './Status';
-import { DetailTitle, DetailMain } from './styles';
+import { DetailTitle, DetailMain, FirstInfoContainer } from './styles';
 import Tasks from './Tasks';
 
 const projectData =  
@@ -37,12 +37,14 @@ const DetailContainer = () => {
             <DetailMain>
                 <Participants />
                 <DueDate 
-                due_date={due_date}
+                    due_date={due_date}
                 />
                 <Status />
-                <Description description={project_description}/>
+                <Description 
+                    description={project_description}
+                />
                 <Tasks 
-                project_id={project_id}
+                    project_id={project_id}
                 />
             </DetailMain>
         </>
