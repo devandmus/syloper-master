@@ -3,7 +3,7 @@ import Description from './Description';
 import DueDate from './DueDate';
 import Participants from './Participants';
 import Status from './Status';
-import { DetailTitle, DetailMain } from './styles';
+import { DetailTitle, DetailMain, FirstInfoContainer } from './styles';
 import Tasks from './Tasks';
 
 const DetailContainer = () => {
@@ -14,9 +14,11 @@ const DetailContainer = () => {
                 <h4>Client Name</h4>
             </DetailTitle>
             <DetailMain>
-                <Participants />
-                <DueDate />
-                <Status />
+                <FirstInfoContainer>
+                    <Participants />
+                    <DueDate />
+                    <Status />
+                </FirstInfoContainer>
                 <Description />
                 <Tasks />
             </DetailMain>

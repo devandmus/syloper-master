@@ -54,7 +54,7 @@ const Count = styled.div`
 
 const CountItem = styled.div`
     @media only screen and (max-width: 500px){
-        width: 115px;
+        width: 120px;
         margin-bottom: 10px;
     }
 
