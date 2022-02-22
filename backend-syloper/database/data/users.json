@@ -1,0 +1,12 @@
+[
+  {
+    "name": "Admin",
+    "email": "admin@syloper.com",
+    "password": "password"
+  },
+  {
+    "name": "Subadmin",
+    "email": "subadmin@syloper.com",
+    "password": "password"
+  }
+]

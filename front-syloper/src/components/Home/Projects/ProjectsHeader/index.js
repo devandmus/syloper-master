@@ -1,7 +1,7 @@
 import React from 'react';
-import Button from '../../../ui/Button';
+import Button from '../../../UI/Button';
 import { Count, CountItem, ProjectsHeaderContainer } from './styles';
-import { FaPlus  } from 'react-icons/all'
+import { FaPlus  } from 'react-icons/fa'
 import { useViewport } from '../../../../contexts/viewportSize';
 
 const ProjectsHeader = () => {

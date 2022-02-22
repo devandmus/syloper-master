@@ -1,16 +1,18 @@
 import React from 'react';
 import { SectionTitle } from '../styles';
-import { MdDateRange } from 'react-icons/all'
+import { MdDateRange } from 'react-icons/md'
 import { DateInfo } from './styles';
+import { dateFormatter } from '../../../../../utils/date'
 
-const DueDate = () => {
+const DueDate = ({due_date}) => {
+
     return ( 
         <div>
             <SectionTitle>
                 <i><MdDateRange /></i>
                 <h5>Due Date</h5>
             </SectionTitle>
-            <DateInfo>Fri, October 4, 2021</DateInfo>
+            <DateInfo>{dateFormatter(due_date)}</DateInfo>
         </div>
      );
 }

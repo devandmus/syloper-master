@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import Button from "../../../../ui/Button";
+import Button from "../../../../UI/Button";
 
 const ProjectsHeaderContainer = styled.section`
     width: 100%;

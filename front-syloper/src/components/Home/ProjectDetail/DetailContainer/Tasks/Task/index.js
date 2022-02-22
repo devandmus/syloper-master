@@ -1,23 +1,38 @@
 import React from 'react';
-import { AssignImg, TaskCard, TDescription, TFooter, TTitle, TMenuIcon, TMenu } from './styles';
-import { HiMenuAlt3, IoCloseSharp } from 'react-icons/all'
 import { useTheme } from 'styled-components';
+import { dateFormatter } from '../../../../../../utils/date'
+import { HiMenuAlt3 } from 'react-icons/hi';
+import { IoCloseSharp } from 'react-icons/io5';
+import {
+  AssignImg,
+  TaskCard,
+  TDescription,
+  TFooter,
+  TTitle,
+  TMenuIcon,
+  TMenu,
+} from './styles';
 
 
 
-const Task = () => {
+const Task = (props) => {
 
-    const theme = useTheme();
+
+  const {key, task_id, date, title, due_date, description, responsable_id, createdAt, updatedAt, id} = props
+
+  const theme = useTheme();
+
+
 
     return ( 
         <TaskCard>
             <TMenuIcon><HiMenuAlt3 size="20"color={theme.color.primaryGreen}/></TMenuIcon>
-            <TTitle>Develop frontend login</TTitle>
-            <TDescription>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla lorem odio, dapibus non nisi id, volutpat egestas diam</TDescription>
+            <TTitle>{title}</TTitle>
+            <TDescription>{description}</TDescription>
             <TFooter>
                 <div className='due-date'>
                     <p>Due Date:</p>
-                    <p>Fri, October 4, 2021</p>
+                    <p>{dateFormatter(due_date)}</p>
                 </div>
                 <AssignImg />
             </TFooter>

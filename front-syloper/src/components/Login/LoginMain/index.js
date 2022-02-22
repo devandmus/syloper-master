@@ -13,6 +13,6 @@ const LoginMain = () => {
       <LoginForm />
     </LoginMainStyled>
   );
-}
+};
 
 export default LoginMain;

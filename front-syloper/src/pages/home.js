@@ -1,16 +1,12 @@
-import React from "react"
-import Layout from "../components/layout";
-import Nav from "../components/Home/Nav"
-import Dashboard from "../components/Home/Dashboard"
+import React from 'react';
+import Nav from '../components/Home/Nav';
+import Dashboard from '../components/Home/Dashboard';
 
-const HomePage = () => {
-  return (
-    <Layout>
-        <Nav/>
-        <Dashboard/>
-    </Layout>
-     
-  )
-}
+const HomePage = () => (
+  <>
+    <Nav />
+    <Dashboard />
+  </>
+);
 
-export default HomePage
+export default HomePage;
