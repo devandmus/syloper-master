@@ -73,56 +73,56 @@ const Tasks = ({ project_id }) => {
         <>
             <TaskColumn>
                 <h5>Ready to Start</h5>
-                {tasksData.map((task, index) => task.status === 0 ?
-                <Task
-                    key={index}
-                    task_id={task.task_id}
-                    date={task.task_date}
-                    due_date={task.task_due_date}
-                    description={task.task_description}
-                    responsable_id={task.task_responsable_id}
-                    createdAt={task.createdAt}
-                    updatedAt={task.updatedAt}
-                    id={task.id}
-                    title={task.title}
-                />
-                : null )}
+                {tasksData.map((task, index) => task.status === 0 &&
+                    <Task
+                        key={index}
+                        task_id={task.task_id}
+                        date={task.task_date}
+                        due_date={task.task_due_date}
+                        description={task.task_description}
+                        responsable_id={task.task_responsable_id}
+                        createdAt={task.createdAt}
+                        updatedAt={task.updatedAt}
+                        id={task.id}
+                        title={task.title}
+                    />
+                )}
             </TaskColumn>
 
             <TaskColumn>
                 <h5>In Progress</h5>
-                {tasksData.map((task, index) => task.status === 1 ?
-                <Task
-                    key={index}
-                    task_id={task.task_id}
-                    date={task.task_date}
-                    due_date={task.task_due_date}
-                    description={task.task_description}
-                    responsable_id={task.task_responsable_id}
-                    createdAt={task.createdAt}
-                    updatedAt={task.updatedAt}
-                    id={task.id}
-                    title={task.title}
-                />
-                : null )}
+                {tasksData.map((task, index) => task.status === 1 &&
+                    <Task
+                        key={index}
+                        task_id={task.task_id}
+                        date={task.task_date}
+                        due_date={task.task_due_date}
+                        description={task.task_description}
+                        responsable_id={task.task_responsable_id}
+                        createdAt={task.createdAt}
+                        updatedAt={task.updatedAt}
+                        id={task.id}
+                        title={task.title}
+                    />
+                )}
             </TaskColumn>
 
             <TaskColumn>
                 <h5>Completed</h5>
-                {tasksData.map((task, index) => task.status === 2 ?
-                <Task
-                    key={index}
-                    task_id={task.task_id}
-                    date={task.task_date}
-                    due_date={task.task_due_date}
-                    description={task.task_description}
-                    responsable_id={task.task_responsable_id}
-                    createdAt={task.createdAt}
-                    updatedAt={task.updatedAt}
-                    id={task.id}
-                    title={task.title}
-                />
-                : null )}
+                {tasksData.map((task, index) => task.status === 2 &&
+                    <Task
+                        key={index}
+                        task_id={task.task_id}
+                        date={task.task_date}
+                        due_date={task.task_due_date}
+                        description={task.task_description}
+                        responsable_id={task.task_responsable_id}
+                        createdAt={task.createdAt}
+                        updatedAt={task.updatedAt}
+                        id={task.id}
+                        title={task.title}
+                    />
+                )}
             </TaskColumn>
         </>
 
@@ -131,7 +131,7 @@ const Tasks = ({ project_id }) => {
             <h5>{title}</h5>
             <TaskScroll>
                 {
-                    tasks.map(task => {
+                    tasks.map((task, index) => (
                         task.status === status &&
                         <Task
                             key={index}
@@ -145,7 +145,7 @@ const Tasks = ({ project_id }) => {
                             id={task.id}
                             title={task.title}
                         />
-                    })
+                    ))
                 }
                 <Task />
             </TaskScroll>
@@ -154,13 +154,13 @@ const Tasks = ({ project_id }) => {
     const renderColumn = (selectedStatus) => {
         switch (selectedStatus) {
             case 'status1':
-                return <ColumnMobile title="Pending" status="0" tasks={tasksData}/>
+                return <ColumnMobile title="Pending" status={0} tasks={tasksData}/>
 
             case 'status2':
-                return <ColumnMobile title="To Do" status="1" tasks={tasksData}/>
+                return <ColumnMobile title="To Do" status={1} tasks={tasksData}/>
 
             case 'status3': 
-                return <ColumnMobile title="Done" status="2" tasks={tasksData}/>
+                return <ColumnMobile title="Done" status={2} tasks={tasksData}/>
         
             default:
                 return 'no status'

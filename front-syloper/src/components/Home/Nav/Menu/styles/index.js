@@ -7,7 +7,7 @@ const MenuContainer = styled.nav `
     flex-direction: column;
     height: 90vh;
 
-    div:last-child {
+    > div:last-child {
         margin-top: auto;
         opacity: 1;
         margin-bottom: 0;
@@ -18,7 +18,7 @@ const MenuContainer = styled.nav `
         height: auto;
         margin-top: 0;
 
-        div:last-child {
+        > div:last-child {
             margin-top: initial;
             opacity: ;
             margin-bottom: 0;
