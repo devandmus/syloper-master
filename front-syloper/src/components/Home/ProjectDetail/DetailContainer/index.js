@@ -35,17 +35,13 @@ const DetailContainer = () => {
                 <h4>{customer_name}</h4>
             </DetailTitle>
             <DetailMain>
-                <Participants />
-                <DueDate 
-                    due_date={due_date}
-                />
-                <Status />
-                <Description 
-                    description={project_description}
-                />
-                <Tasks 
-                    project_id={project_id}
-                />
+                <FirstInfoContainer>
+                    <Participants />
+                    <DueDate due_date={due_date}/>
+                    <Status />
+                </FirstInfoContainer>
+                <Description description={project_description}/>
+                <Tasks project_id={project_id}/>
             </DetailMain>
         </>
      );

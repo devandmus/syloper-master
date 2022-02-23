@@ -3,14 +3,9 @@ import { DueDate, Progress, ProjectContainer, TasksTxt, Title, Users, UserImg } 
 import { Link } from 'gatsby'
 import { dateFormatter } from '../../../../../utils/date'
 
-const Project = (props) => {
+const Project = ({key, customer_id, customer_name, date, due_date, description, cost, responsable, status_id, status_name, createdAt, updatedAt, id, title}) => {
     const users = [ "user1", "user2", "user3", "user4" ];
-
-    const {key, customer_id, customer_name, date, due_date, description, cost, responsable, status_id, status_name, createdAt, updatedAt, id, title} = props
-
-    const calcTranslate = (index) => {
-        return `-${index * 2 * 10}`
-    }
+    const calcTranslate = (index) => `-${index * 2 * 10}`
 
     return ( 
         <ProjectContainer>
@@ -25,7 +20,7 @@ const Project = (props) => {
             <DueDate>Due date: {dateFormatter(due_date)}</DueDate>
             <Progress>
                 <div className='bar-container'>
-                    <span></span>
+                    <span />
                 </div>
                 <div className='info-container'>
                     <p>{status_name}</p>
@@ -35,9 +30,7 @@ const Project = (props) => {
             <TasksTxt>10 Tasks left</TasksTxt>
             <Users>
                 {
-                    users.map((user, i) => {
-                        return <UserImg key={i} translatex={calcTranslate(i)}></UserImg>
-                    })
+                    users.map((user, i) => <UserImg key={i} translatex={calcTranslate(i)} />)
                 }
             </Users>
         </ProjectContainer>

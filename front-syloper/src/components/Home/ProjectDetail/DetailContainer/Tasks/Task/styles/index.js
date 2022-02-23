@@ -9,6 +9,7 @@ const TaskCard = styled.div`
     box-sizing: border-box;
     margin-top: 20px;
     position: relative;
+    overflow: hidden;
 `;
 
 const TTitle= styled.h5`
@@ -66,7 +67,6 @@ const TMenuIcon = styled.i`
 const TMenu = styled.div`
     position: absolute;
     background-color: ${({theme}) => theme.color.lightGreen};
-    display: flex;
     border-radius: 0 15px 15px 0;
     top: 0;
     right: 0;
@@ -76,6 +76,16 @@ const TMenu = styled.div`
     justify-content: center;
     align-items: center;
     box-shadow: ${({theme}) => theme.boxShadowLeft};
+    display: none;
+    opacity: 1;
+    transition: all .2s linear;
+    display: flex;
+    transform: translateX(170px);
+
+    &.active { 
+        opacity: 1;
+        transform: translateX(0);
+    }
 
     i {
         position: absolute;

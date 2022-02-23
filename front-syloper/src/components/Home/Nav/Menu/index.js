@@ -9,6 +9,7 @@ import { useTheme } from 'styled-components';
 import { useViewport } from '../../../../contexts/viewportSize';
 import { MenuContainer, MenuItem } from './styles';
 import Auth from '../../../../services/Auth';
+import { Link } from 'gatsby';
 
 const Menu = () => {
   const theme = useTheme();
@@ -27,18 +28,25 @@ const Menu = () => {
         </i>
         <p>Dashboard</p>
       </MenuItem>
-      <MenuItem>
-        <i>
-          <AiOutlineFolderOpen {...iconProps} />
-        </i>
-        <p>Projects</p>
-      </MenuItem>
-      <MenuItem>
-        <i>
-          <BiTask {...iconProps} />
-        </i>
-        <p>Tasks</p>
-      </MenuItem>
+
+      <Link to="/projects">
+        <MenuItem>
+            <i>
+              <AiOutlineFolderOpen {...iconProps} />
+            </i>
+            <p>Projects</p>
+        </MenuItem>
+      </Link>
+
+      <Link to="/tasks">
+        <MenuItem>
+          <i>
+            <BiTask {...iconProps} />
+          </i>
+          <p>Tasks</p>
+        </MenuItem>
+      </Link>
+
       <MenuItem>
         <i>
           <BsFiles {...iconProps} />

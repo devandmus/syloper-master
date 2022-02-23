@@ -1,6 +1,6 @@
 import React from 'react';
 import Projects from '../components/Home/Projects';
 
-const HomePage = () => <Projects />;
+const ProjectsPage = () => <Projects />;
 
-export default HomePage;
+export default ProjectsPage;

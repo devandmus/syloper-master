@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useTheme } from 'styled-components';
 import { dateFormatter } from '../../../../../../utils/date'
 import { HiMenuAlt3 } from 'react-icons/hi';
@@ -12,21 +12,24 @@ import {
   TMenuIcon,
   TMenu,
 } from './styles';
+import classNames from 'classnames';
 
 
 
-const Task = (props) => {
+const Task = ({key, task_id, date, title, due_date, description, responsable_id, createdAt, updatedAt, id}) => {
 
+    const [isOpenMenu, setIsOpenMenu] = useState(false);
+    const theme = useTheme();
 
-  const {key, task_id, date, title, due_date, description, responsable_id, createdAt, updatedAt, id} = props
-
-  const theme = useTheme();
-
-
+    const handleClickMenu = () => {
+        setIsOpenMenu(!isOpenMenu);
+    }
 
     return ( 
         <TaskCard>
-            <TMenuIcon><HiMenuAlt3 size="20"color={theme.color.primaryGreen}/></TMenuIcon>
+            <TMenuIcon onClick={handleClickMenu}>
+                <HiMenuAlt3 size="20"color={theme.color.primaryGreen}/>
+            </TMenuIcon>
             <TTitle>{title}</TTitle>
             <TDescription>{description}</TDescription>
             <TFooter>
@@ -36,8 +39,8 @@ const Task = (props) => {
                 </div>
                 <AssignImg />
             </TFooter>
-            <TMenu>
-                <i><IoCloseSharp color='#fff' size='20px'/></i>
+            <TMenu className={classNames({ active: isOpenMenu })}>
+                <i onClick={handleClickMenu}><IoCloseSharp color='#fff' size='20px'/></i>
                 <div>
                     <p>Start Task</p>
                     <p>Complete Task</p>
