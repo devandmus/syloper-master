@@ -37,6 +37,7 @@ const DetailContainer = () => {
     dueDate,
     customerName,
   } = projectData;
+  
   return (
     <>
       <DetailTitle>

@@ -6,6 +6,12 @@ const GlobalStyle = createGlobalStyle`
     * {
         letter-spacing: -.1px;
     }
+    
+    a{
+        text-decoration: none;
+        color: inherit;
+    }
+
     body, html, #___gatsby, #gatsby-focus-wrapper {
         width: 100%;
         height: 100%;

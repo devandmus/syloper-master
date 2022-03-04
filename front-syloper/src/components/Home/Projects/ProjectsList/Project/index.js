@@ -11,29 +11,9 @@ import {
 } from './styles';
 import { dateFormatter } from '../../../../../utils/date';
 
-const Project = (props) => {
-  const users = ['user1', 'user2', 'user3', 'user4'];
-
-  const {
-    key,
-    customerId,
-    customerName,
-    date,
-    dueDate,
-    description,
-    cost,
-    responsable,
-    statusId,
-    statusName,
-    createdAt,
-    updatedAt,
-    id,
-    title,
-  } = props;
-
-  const calcTranslate = (index) => {
-    return `-${index * 2 * 10}`;
-  };
+const Project = ({key, customer_id, customer_name, date, due_date, description, cost, responsable, status_id, status_name, createdAt, updatedAt, id, title}) => {
+    const users = [ "user1", "user2", "user3", "user4" ];
+    const calcTranslate = (index) => `-${index * 2 * 10}`
 
   return (
     <ProjectContainer>
@@ -65,3 +45,4 @@ const Project = (props) => {
 };
 
 export default Project;
+
