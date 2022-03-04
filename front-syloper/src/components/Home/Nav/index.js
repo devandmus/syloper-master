@@ -1,7 +1,7 @@
 import React from 'react';
 import Logo from '../../UI/Logo';
 import Menu from './Menu';
-import { NavContainer } from './styles'
+import { NavContainer } from './styles';
 
 const Nav = () => {
   return (

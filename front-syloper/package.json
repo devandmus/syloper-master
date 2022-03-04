@@ -29,6 +29,8 @@
     "react-dom": "^17.0.1",
     "react-icons": "^4.3.1",
     "react-jwt": "^1.1.4",
+    "react-rainbow-components": "^1.29.0",
+    "react-select": "^5.2.2",
     "styled-components": "^5.3.3",
     "styled-reset": "^4.3.4"
   },
