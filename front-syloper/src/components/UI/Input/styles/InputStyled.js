@@ -8,11 +8,11 @@ const InputStyled = styled.input`
   padding: 14px 16px;
   background-color: #fff;
   font-size: 1.15rem;
-  color: ${({theme}) => theme.color.text};
-  margin: ${props => props.margin};
-  font-family: ${({theme}) => theme.font.family};
+  color: ${({ theme }) => theme.color.text};
+  margin: ${(props) => props.margin};
+  font-family: ${({ theme }) => theme.font.family};
   border-radius: 7px;
-  outline-color: ${({theme}) => theme.color.primaryGreen};
+  outline-color: ${({ theme }) => theme.color.primaryGreen};
   @media only screen and (max-width: 768px) {
     font-size: 1.1rem;
   }
@@ -20,10 +20,10 @@ const InputStyled = styled.input`
 
 InputStyled.propTypes = {
   margin: PropTypes.string,
-}
+};
 
 InputStyled.defaultProps = {
   margin: '0 0 20px 0',
-}
+};
 
 export default InputStyled;

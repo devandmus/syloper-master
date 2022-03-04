@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import { useTheme } from 'styled-components';
-import { dateFormatter } from '../../../../../../utils/date'
 import { HiMenuAlt3 } from 'react-icons/hi';
 import { IoCloseSharp } from 'react-icons/io5';
+import { dateFormatter } from '../../../../../../utils/date';
 import {
   AssignImg,
   TaskCard,
@@ -13,8 +13,6 @@ import {
   TMenu,
 } from './styles';
 import classNames from 'classnames';
-
-
 
 const Task = ({key, task_id, date, title, due_date, description, responsable_id, createdAt, updatedAt, id}) => {
 

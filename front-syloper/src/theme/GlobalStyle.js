@@ -1,5 +1,5 @@
-import { createGlobalStyle } from 'styled-components'
-import reset from 'styled-reset'
+import { createGlobalStyle } from 'styled-components';
+import reset from 'styled-reset';
 
 const GlobalStyle = createGlobalStyle`
     ${reset}
@@ -20,7 +20,16 @@ const GlobalStyle = createGlobalStyle`
         font-size: 15px;
         color: ${({ theme }) => theme.color.text};
     }
+
+    @keyframes fadein {
+        0% { transform: translateY(200%);}
+        100% { transform: translateY(-50%);}
+    }
+        
+    @keyframes fadeout {
+        0% { transform: translateY(-50%);}
+        100% { transform: translateY(200%);}
+    }
 `;
 
 export default GlobalStyle;
-
