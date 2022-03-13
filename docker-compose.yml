@@ -1,20 +1,10 @@
 version: "3"
 
 services:
-  backend:
-    container_name: backend
-    restart: always
-    build: ./backend-syloper
-    links:
-      - mongo
-    ports:
-      - "8080:8080"
-    volumes:
-      - "./backend-syloper/src:/usr/backend-syloper/src"
-      - "./backend-syloper/database:/usr/backend-syloper/database"
-
   mongo:
     container_name: database
     image: mongo
     ports:
       - "27017:27017"
+    volumes:
+      - ./.persistent-database:/data/db

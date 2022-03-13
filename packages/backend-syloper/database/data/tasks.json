@@ -1,0 +1,46 @@
+[
+  {
+    "project_id": "622e7ca542f7a9690a0bffae",
+    "task_date": "2021-12-30T16:46:18.000Z",
+    "task_due_date": "2022-01-30T16:46:18.000Z",
+    "task_description": "Esta es una descripcion de ejemplo para esta tarea de ejemplo",
+    "task_responsable_id": "622e2f35e1f716a4bd1aade0",
+    "createdAt": "2021-12-30T16:54:41.377Z",
+    "updatedAt": "2021-12-30T16:54:41.377Z",
+    "title": "do something",
+    "status": 0
+  },
+  {
+    "project_id": "622e7ca542f7a9690a0bffae",
+    "task_date": "2021-12-30T16:49:00.000Z",
+    "task_due_date": "2022-01-30T21:00:00.000Z",
+    "task_description": "Esta es una descripcion de ejemplo para esta tarea de ejemplo",
+    "task_responsable_id": "622e2f35e1f716a4bd1aade0",
+    "createdAt": "2021-12-30T16:55:52.380Z",
+    "updatedAt": "2021-12-30T16:55:52.380Z",
+    "title": "do something",
+    "status": 0
+  },
+  {
+    "project_id": "622e7ca542f7a9690a0bffae",
+    "task_date": "2021-12-30T16:49:00.000Z",
+    "task_due_date": "2022-01-30T21:00:00.000Z",
+    "task_description": "Esta es una descripcion de ejemplo para esta tarea de ejemplo",
+    "task_responsable_id": "622e2f35e1f716a4bd1aade0",
+    "createdAt": "2021-12-30T16:55:52.380Z",
+    "updatedAt": "2021-12-30T16:55:52.380Z",
+    "title": "do something",
+    "status": 1
+  },
+  {
+    "project_id": "622e7ca542f7a9690a0bffae",
+    "task_date": "2021-12-30T16:49:00.000Z",
+    "task_due_date": "2022-01-30T21:00:00.000Z",
+    "task_description": "Esta es una descripcion de ejemplo para esta tarea completada",
+    "task_responsable_id": "622e2f35e1f716a4bd1aade0",
+    "createdAt": "2021-12-30T16:55:52.380Z",
+    "updatedAt": "2021-12-30T16:55:52.380Z",
+    "title": "do something",
+    "status": 2
+  }
+]

@@ -1,0 +1,12 @@
+{
+  "name": "root",
+  "private": true,
+  "scripts": {
+    "start": "docker-compose up -d && lerna run dev --stream",
+    "only:backend": "lerna run back --stream",
+    "hydrate": "npm run hydrate --prefix=./packages/backend-syloper/"
+  },
+  "devDependencies": {
+    "lerna": "^4.0.0"
+  }
+}
