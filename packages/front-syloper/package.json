@@ -1,0 +1,53 @@
+{
+  "name": "syloper-front",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Syloper frontend",
+  "author": "A. Maldonado - J. López - J. Sánchez - Y. Bao",
+  "keywords": [
+    "gatsby"
+  ],
+  "scripts": {
+    "dev": "gatsby develop",
+    "build": "gatsby build",
+    "serve": "gatsby serve",
+    "clean": "gatsby clean"
+  },
+  "dependencies": {
+    "@fontsource/work-sans": "^4.5.5",
+    "@svgr/webpack": "^6.2.1",
+    "axios": "^0.26.0",
+    "babel-plugin-styled-components": "^2.0.2",
+    "classnames": "^2.3.1",
+    "fs-extra": "^10.0.1",
+    "gatsby": "^4.7.1",
+    "gatsby-plugin-layout": "^3.7.0",
+    "gatsby-plugin-styled-components": "^5.3.0",
+    "gatsby-plugin-svgr": "^3.0.0-beta.0",
+    "react": "^17.0.1",
+    "react-dom": "^17.0.1",
+    "react-icons": "^4.3.1",
+    "react-jwt": "^1.1.4",
+    "react-rainbow-components": "^1.29.0",
+    "react-select": "^5.2.2",
+    "styled-components": "^5.3.3",
+    "styled-reset": "^4.3.4"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.16.0",
+    "@babel/eslint-parser": "^7.17.0",
+    "acorn": "^8",
+    "babel-eslint": "^10.0.0",
+    "babel-loader": "^8.2.3",
+    "eslint": "^8.1.0",
+    "eslint-config-airbnb": "^19.0.4",
+    "eslint-config-prettier": "^8.3.0",
+    "eslint-plugin-flowtype": "^8.0.3",
+    "eslint-plugin-jsx-a11y": "^6.5.1",
+    "eslint-plugin-prettier": "^4.0.0",
+    "eslint-plugin-react": "^7.28.0",
+    "eslint-plugin-react-hooks": "^4.3.0",
+    "prettier": "^2.5.1",
+    "typescript": "^3.2.0"
+  }
+}
