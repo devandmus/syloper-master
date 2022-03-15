@@ -14,6 +14,17 @@ Proyecto unificado: para correr todas las instancias
 npm start
 ````
 
+## Limpiar instancia
+
+CONTROL + C para únciamente la ejecución de lerna. Para bajar el docker, 
+utilizar:
+
+```bash
+docker-compose down
+```
+
+## Postman
+
 Postman endpoints:\
 https://www.postman.com/planetary-rocket-631449/workspace/1989630f-d66e-4ee6-855b-e013196aa1a9/overview
 
