@@ -5,7 +5,7 @@
 - Instala lerna & dependencias de paquetes:
 
 ```bash
-npm i && npx lerna bootsrap
+npm i && npx lerna bootstrap --hoist
 ```
 
 Proyecto unificado: para correr todas las instancias
