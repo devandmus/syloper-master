@@ -7,6 +7,7 @@ import InputStyled from '../Input';
 import { ModalContainer, ModalForm, Veil } from './styles';
 import AppContext from '../../../contexts/App';
 import Select from 'react-select';
+import ServiceProjects from '../../../services/ServicesProjects';
 
 const Modal = ({ title, description, section, modalOnSubmit }) => {
   const [date, setDate] = useState();
@@ -24,6 +25,17 @@ const Modal = ({ title, description, section, modalOnSubmit }) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    const project = {
+      date,
+      name,
+      client,
+      projectDescription
+    }
+    ServiceProjects.createProject(project).then(() => {
+      console.log(project);
+    })
+
+
   };
 
   const handleCloseClick = () => {
@@ -42,18 +54,26 @@ const Modal = ({ title, description, section, modalOnSubmit }) => {
           <div>
             <label>{`${section} Name`}</label>
             <InputStyled
+              value={name}
+              onChange={(value) => setName(value)}
               placeholder={`Enter ${section} Name`}
             />
           </div>
           {section === 'Project' && (
             <div>
               <label>Client Name</label>
-              <InputStyled placeholder="Enter Client Name" />
+              <InputStyled 
+              value={client}
+              onChange={(value) => setClient(value)}
+              placeholder="Enter Client Name" />
             </div>
           )}
           <div>
             <label>Description</label>
-            <InputStyled placeholder="Enter Project's Description" />
+            <InputStyled
+            value={projectDescription}
+            onChange={(value) => setProjectDescription(value)}
+            placeholder="Enter Project's Description" />
           </div>
           <div>
             <DatePicker
