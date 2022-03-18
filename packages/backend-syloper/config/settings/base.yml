@@ -2,3 +2,5 @@ APP:
   HOST: http://localhost
   PORT: 8080
   JWT_SECRET: 0PKRQLVSdXyn9fa0vdB51B2pnHknYWGnwnOKAZve0umO46vVRWsWIn35GSvY
+  EMAIL_ACCOUNT: syloper@gmail.com
+  EMAIL_PASSWORD: password

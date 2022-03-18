@@ -33,10 +33,6 @@ const LoginForm = () => {
         <Link to="/recover-password">Forgot Password?</Link>
       </Forgot>
       <Button>Login</Button>
-      <Sign>
-        Don't have an account?
-        <Link to="/"> Sign In</Link>
-      </Sign>
     </Form>
   );
 };

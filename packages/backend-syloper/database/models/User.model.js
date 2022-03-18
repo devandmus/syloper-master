@@ -7,6 +7,10 @@ const {
 
 const schema = new mongoose.Schema(
   {
+    id: {
+      type: Number,
+      required: true
+    },
     name: {
       type: String,
       required: true
@@ -21,6 +25,39 @@ const schema = new mongoose.Schema(
       type: String,
       required: true,
       match: PASSWORD_PATTERN
+    },
+    firstName: {
+      type: String,
+      required: true,
+      max: 100
+    },
+
+    lastName: {
+        type: String,
+        required: true,
+        max: 100
+    },
+
+    bio: {
+        type: String,
+        required: false,
+        max: 255
+    },
+
+    profileImage: {
+        type: String,
+        required: false,
+        max: 255
+    },
+  
+    resetPasswordToken: {
+        type: String,
+        required: false
+    },
+
+    resetPasswordExpires: {
+        type: Date,
+        required: false
     },
     active: {
       type: Boolean,
@@ -65,6 +102,11 @@ schema.pre('save', function (next) {
 
 schema.methods.checkPassword = function (password) {
   return bcrypt.compare(password, this.password);
+};
+
+schema.methods.generatePasswordReset = function() {
+  this.resetPasswordToken = crypto.randomBytes(20).toString('hex');
+  this.resetPasswordExpires = Date.now() + 3600000; //expires in an hour
 };
 
 module.exports = mongoose.model('User', schema);
