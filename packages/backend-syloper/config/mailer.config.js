@@ -1,12 +1,18 @@
+require('dotenv').config();
+const config = require('./');
+
 const nodemailer = require('nodemailer');
 
 const email = config.EMAIL_ACCOUNT;
+const password = config.EMAIL_PASSWORD;
+const host = config.HOST;
+const port = config.PORT;
 
 const transporter = nodemailer.createTransport({
   service: 'Gmail',
   auth: {
     user: email,
-    pass: config.EMAIL_PASSWORD,
+    pass: password,
   },
 });
 
@@ -17,9 +23,9 @@ module.exports.sendEmail = (user) => {
       to: user.email, // list of receivers
       subject: 'Recover Password', // Subject line
       html: `
-                <h1>Recover Password</h1>
-                <a href="http://localhost:8080/api/users/${user.id}/activate">Click here</a>
-              `,
+            <h1>Recover Password</h1>
+            <a href="${host}:${port}/api/auth/reset/${user.resetPasswordToken}">Click here</a>
+          `,
     })
     .then(() => {
       console.log(`email sent to ${user.id}`);
