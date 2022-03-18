@@ -12,5 +12,6 @@ module.exports = {
     },
     'gatsby-plugin-styled-components',
     'gatsby-plugin-svgr',
+    'gatsby-plugin-use-query-params',
   ],
 };

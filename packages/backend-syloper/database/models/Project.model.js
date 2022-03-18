@@ -10,6 +10,10 @@ const schema = new mongoose.Schema(
       type: Date,
       required: true
     },
+    project_due_date: {
+      type: Date,
+      required: false
+    },
     project_description:{
       type: String,
       required: true

@@ -1,43 +1,36 @@
 import React, { useEffect, useState } from 'react';
 import { ProjectsGrid } from './styles';
-import Project from './Project'
-import projectsData from './projectsData.json';
+import Project from './Project';
 import ServicesProjects from '../../../../services/ServicesProjects';
 
-
 const ProjectsList = () => {
-    const [projectsData, setProjectsData] = useState([]);
-    
-    useEffect(() => {
-        ServicesProjects.getProjects().then((data) => {
-            console.log(data);
-            setProjectsData(data);
-        })
-    }, [])
+  const [projectsData, setProjectsData] = useState([]);
 
-    return ( 
-        <ProjectsGrid>
-                {projectsData.map((project, index) => 
-                    <Project
-                        key={index}
-                        customer_id={project.customer_id}
-                        customer_name={project.customer_name}
-                        description={project.project_description}
-                        cost={project.project_cost}
-                        responsable={project.project_responsable}
-                        status_id={project.project_status_id}
-                        status_name={project.project_status_name}
-                        due_date={project.due_date}
-                        createdAt={project.createdAt}
-                        updatedAt={project.updatedAt}
-                        id={project.id}
-                        title={project.title}
-                    />
-                )}
-        </ProjectsGrid>
-     )
-}
+  useEffect(() => {
+    ServicesProjects.getProjects().then((data) => {
+      setProjectsData(data);
+    });
+  }, [projectsData]);
+  return (
+    <ProjectsGrid>
+      {projectsData.map((project, index) => (
+        <Project
+          key={index}
+          customerId={project.customer_id}
+          customerName={project.customer_name}
+          description={project.project_description}
+          cost={project.project_cost}
+          responsable={project.project_responsable}
+          statusId={project.project_status_id}
+          statusName={project.project_status_name}
+          createdAt={project.createdAt}
+          updatedAt={project.updatedAt}
+          id={project.id}
+          title={project.title}
+        />
+      ))}
+    </ProjectsGrid>
+  );
+};
 
- 
 export default ProjectsList;
-

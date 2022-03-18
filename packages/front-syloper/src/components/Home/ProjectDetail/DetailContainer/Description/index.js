@@ -1,6 +1,6 @@
 import React from 'react';
-import { SectionTitle } from '../styles';
 import { BsCardText } from 'react-icons/bs';
+import { SectionTitle } from '../styles';
 import { DescriptionTxt } from './styles';
 
 const Description = ({ description }) => (

@@ -22,7 +22,6 @@ const Project = (props) => {
       responsable,
       statusId,
       statusName,
-      dueDate,
       createdAt,
       updatedAt,
       id,
@@ -34,13 +33,13 @@ const Project = (props) => {
   return (
     <ProjectContainer>
       <Title>
-        {/* <Link to={`/project-detail/${id}`}> */}
-        <Link to="/project-detail/">
-          <h4>{title}</h4>
+        <Link to={`/project-detail/?id=${id}`}>
+        {/* <Link to="/project-detail/"> */}
+          <h4>{description}</h4>
         </Link>
         <p>{customerName}</p>
       </Title>
-      <DueDate>Due date: {dateFormatter(dueDate)}</DueDate>
+      <DueDate>Created at: {dateFormatter(createdAt)}</DueDate>
       <Progress>
         <div className="bar-container">
           <span />
