@@ -14,9 +14,13 @@ const schema = new mongoose.Schema(
       type: Date,
       required: false
     },
-    project_description:{
+    project_title:{
       type: String,
       required: true
+    },
+    project_description:{
+      type: String,
+      required: false
     },
     project_cost:{
       type: Number,

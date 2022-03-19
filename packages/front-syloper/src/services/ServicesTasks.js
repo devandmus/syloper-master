@@ -5,29 +5,20 @@ const getTasks = () => Request('/api/tasks').then((res) => res.data);
 const getTasksByProject = (id) =>
   Request(`/api/tasks/${id}`).then((res) => res.data);
 
-const createTask = () =>
-  Request({
-    url: '/api/tasks/create',
+const createTask = (data) =>
+  Request('/api/tasks/create', {
     method: 'POST',
-  }).then((response) => response.data);
-
-const putTask = (data) =>
-  Request({
-    url: '/api/tasks/put',
     data,
-    method: 'PUT',
   }).then((response) => response.data);
 
 const updateTask = (data) =>
-  Request({
-    url: '/api/tasks/put',
+  Request('/api/tasks/put', {
     data,
     method: 'PUT',
   }).then((response) => response.data);
 
 const deleteTask = (data) =>
-  Request({
-    url: '/api/tasks/put',
+  Request('/api/tasks/delete', {
     data,
     method: 'DELETE',
   }).then((response) => response.data);
@@ -36,7 +27,6 @@ export default {
   getTasks,
   getTasksByProject,
   createTask,
-  putTask,
   updateTask,
   deleteTask,
 };

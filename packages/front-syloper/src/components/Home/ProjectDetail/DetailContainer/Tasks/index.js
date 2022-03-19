@@ -11,7 +11,6 @@ import {
 } from './styles';
 
 import Task from './Task';
-// import tasksData from './tasksData.json';
 import { useViewport } from '../../../../../contexts/viewportSize';
 import Button from '../../../../UI/Button';
 import AppContext from '../../../../../contexts/App';

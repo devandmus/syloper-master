@@ -11,23 +11,14 @@ const createProject = (data) =>
     data,
   }).then((response) => response.data);
 
-const putProject = (data) =>
-  Request({
-    url: '/api/projects/put',
-    data,
-    method: 'PUT',
-  }).then((response) => response.data);
-
 const updateProject = (data) =>
-  Request({
-    url: '/api/projects/put',
+  Request('/api/projects/put', {
     data,
     method: 'PUT',
   }).then((response) => response.data);
 
 const deleteProject = (data) =>
-  Request({
-    url: '/api/projects/put',
+  Request('/api/projects/put', {
     data,
     method: 'DELETE',
   }).then((response) => response.data);
@@ -36,7 +27,6 @@ export default {
   getProjects,
   getProjectDetail,
   createProject,
-  putProject,
   updateProject,
   deleteProject,
 };

@@ -7,13 +7,19 @@ import { DetailTitle, DetailMain, FirstInfoContainer } from './styles';
 import Tasks from './Tasks';
 
 const DetailContainer = (props) => {
-  const { customerId, projectDescription, cost, projectDueDate, projectId } =
-    props;
+  const {
+    customerId,
+    projectTitle,
+    projectDescription,
+    cost,
+    projectDueDate,
+    projectId,
+  } = props;
 
   return (
     <>
       <DetailTitle>
-        <h3>{projectDescription}</h3>
+        <h3>{projectTitle}</h3>
         <h4>{customerId}</h4>
       </DetailTitle>
       <DetailMain>

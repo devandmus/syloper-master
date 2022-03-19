@@ -35,7 +35,7 @@ const Project = (props) => {
       <Title>
         <Link to={`/project-detail/?id=${id}`}>
           {/* <Link to="/project-detail/"> */}
-          <h4>{description}</h4>
+          <h4>{title}</h4>
         </Link>
         <p>{customerName}</p>
       </Title>

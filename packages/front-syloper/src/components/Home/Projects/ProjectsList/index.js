@@ -17,6 +17,7 @@ const ProjectsList = () => {
         <Project
           customerId={project.customer_id}
           customerName={project.customer_name}
+          title={project.project_title}
           description={project.project_description}
           cost={project.project_cost}
           responsable={project.project_responsable}
@@ -26,7 +27,6 @@ const ProjectsList = () => {
           createdAt={project.createdAt}
           updatedAt={project.updatedAt}
           id={project.id}
-          title={project.title}
         />
       ))}
     </ProjectsGrid>

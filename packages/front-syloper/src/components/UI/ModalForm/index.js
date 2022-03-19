@@ -10,7 +10,7 @@ import AppContext from '../../../contexts/App';
 import ServiceProjects from '../../../services/ServicesProjects';
 
 const Modal = ({ title, description, section, modalOnSubmit }) => {
-  const [name, setName] = useState('');
+  const [projectTitle, setProjectTitle] = useState('');
   const [date, setDate] = useState();
   const [client, setClient] = useState('');
   const [projectDescription, setProjectDescription] = useState('');
@@ -23,18 +23,12 @@ const Modal = ({ title, description, section, modalOnSubmit }) => {
     { value: 'Joel', label: 'Joel' },
   ];
 
-  function generateUUID() {
-    return Math.floor((1 + Math.random()) * 0x100000000000)
-      .toString(16)
-      .substring(1);
-  }
-
   function onChangeAnyInput() {
     setErrorMsg('');
   }
 
-  function onChangeName(e) {
-    setName(e.target.value);
+  function onChangeProjectTitle(e) {
+    setProjectTitle(e.target.value);
     onChangeAnyInput();
   }
 
@@ -49,6 +43,7 @@ const Modal = ({ title, description, section, modalOnSubmit }) => {
   }
 
   function onChangeDueDate(e) {
+    console.log(e.target.value);
     setDate(e.target.value);
     onChangeAnyInput();
   }
@@ -59,14 +54,14 @@ const Modal = ({ title, description, section, modalOnSubmit }) => {
     const project = {
       customer_id: '622e7b309c6a98bb6282bc1b',
       project_due_date: '2022-03-13T23:21:36.075Z',
-      project_description: 'projectDescription',
+      project_title: projectTitle,
+      project_description: projectDescription,
       project_date: '2022-03-13T23:21:36.075Z',
       project_cost: 49792,
       project_responsable: 'Jesus',
       project_status_id: '622e7a9d6b3414b67e211b79',
     };
 
-    console.log(project);
     ServiceProjects.createProject(project).then(() => {
       console.log(project);
     });
@@ -88,8 +83,8 @@ const Modal = ({ title, description, section, modalOnSubmit }) => {
           <div>
             <label>{`${section} Name`}</label>
             <InputStyled
-              value={name}
-              onChange={onChangeName}
+              value={projectTitle}
+              onChange={onChangeProjectTitle}
               placeholder={`Enter ${section} Name`}
             />
           </div>
@@ -113,7 +108,7 @@ const Modal = ({ title, description, section, modalOnSubmit }) => {
           </div>
           <div>
             <DatePicker
-              value={new Date().getTime()}
+              value={date}
               onChange={onChangeDueDate}
               label="Due Date"
               formatStyle="large"

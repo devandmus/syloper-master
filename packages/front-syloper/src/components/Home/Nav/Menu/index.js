@@ -6,10 +6,10 @@ import { BsFiles } from 'react-icons/bs';
 import { IoPeopleOutline } from 'react-icons/io5';
 import { RiLogoutCircleLine } from 'react-icons/ri';
 import { useTheme } from 'styled-components';
+import { Link } from 'gatsby';
 import { useViewport } from '../../../../contexts/viewportSize';
 import { MenuContainer, MenuItem } from './styles';
 import Auth from '../../../../services/ServicesAuth';
-import { Link } from 'gatsby';
 
 const Menu = () => {
   const theme = useTheme();
@@ -31,10 +31,10 @@ const Menu = () => {
 
       <Link to="/projects">
         <MenuItem>
-            <i>
-              <AiOutlineFolderOpen {...iconProps} />
-            </i>
-            <p>Projects</p>
+          <i>
+            <AiOutlineFolderOpen {...iconProps} />
+          </i>
+          <p>Projects</p>
         </MenuItem>
       </Link>
 
@@ -43,7 +43,7 @@ const Menu = () => {
           <i>
             <BiTask {...iconProps} />
           </i>
-          <p>Tasks</p>
+          <p>My Tasks</p>
         </MenuItem>
       </Link>
 

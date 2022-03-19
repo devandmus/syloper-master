@@ -18,6 +18,7 @@ const ProjectDetail = () => {
     <Home title="Project Detail">
       <DetailContainer
         customerId={projectData.customer_id}
+        projectTitle={projectData.project_title}
         projectDescription={projectData.project_description}
         cost={projectData.project_cost}
         projectDate={projectData.project_date}
