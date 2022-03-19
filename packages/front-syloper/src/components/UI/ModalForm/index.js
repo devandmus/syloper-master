@@ -55,14 +55,15 @@ const Modal = ({ title, description, section, modalOnSubmit }) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+
     const project = {
-      id: generateUUID(),
       customer_id: '622e7b309c6a98bb6282bc1b',
       project_due_date: '2022-03-13T23:21:36.075Z',
-      project_description: projectDescription,
+      project_description: 'projectDescription',
       project_date: '2022-03-13T23:21:36.075Z',
       project_cost: 49792,
       project_responsable: 'Jesus',
+      project_status_id: '622e7a9d6b3414b67e211b79',
     };
 
     console.log(project);
