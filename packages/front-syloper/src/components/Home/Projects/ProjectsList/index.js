@@ -22,6 +22,7 @@ const ProjectsList = () => {
           responsable={project.project_responsable}
           statusId={project.project_status_id}
           statusName={project.project_status_name}
+          dueDate={project.project_due_date}
           createdAt={project.createdAt}
           updatedAt={project.updatedAt}
           id={project.id}

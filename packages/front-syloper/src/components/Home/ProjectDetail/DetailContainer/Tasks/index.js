@@ -11,14 +11,17 @@ import {
 } from './styles';
 
 import Task from './Task';
+// import tasksData from './tasksData.json';
 import { useViewport } from '../../../../../contexts/viewportSize';
 import Button from '../../../../UI/Button';
 import AppContext from '../../../../../contexts/App';
 import ServicesTasks from '../../../../../services/ServicesTasks';
+import ServicesTaskStatus from '../../../../../services/ServicesTaskStatus';
 
 const Tasks = ({ projectId }) => {
   const [activeStatus, setActiveStatus] = useState('status1');
   const [tasksData, setTasksData] = useState({});
+  const [taskStatusData, setTaskStatusData] = useState([]);
   const { setModalIsOpen } = useContext(AppContext);
   const { width } = useViewport();
   const breakpoint = 767;
@@ -29,74 +32,48 @@ const Tasks = ({ projectId }) => {
   };
 
   useEffect(() => {
-    console.log(projectId);
-    ServicesTasks.getTasksByProject(projectId).then((data) => {
+    ServicesTasks.getTasks().then((data) => {
       console.log(data);
       setTasksData(data);
+    });
+  }, []);
+  useEffect(() => {
+    ServicesTaskStatus.getTasksStatus().then((data) => {
+      console.log(data);
+      setTaskStatusData(data);
     });
   }, []);
 
   const ColumnsDesktop = () => (
     <>
-      <TaskColumn>
-        <h5>Ready to Start</h5>
-        {tasksData.map((task, index) =>
-          task.status === 0 ? (
-            <Task
-              key={index}
-              task_id={task.task_id}
-              date={task.task_date}
-              due_date={task.task_due_date}
-              description={task.task_description}
-              responsable_id={task.task_responsable_id}
-              createdAt={task.createdAt}
-              updatedAt={task.updatedAt}
-              id={task.id}
-              title={task.title}
-            />
-          ) : null
-        )}
-      </TaskColumn>
-
-      <TaskColumn>
-        <h5>In Progress</h5>
-        {tasksData.map((task, index) =>
-          task.status === 1 ? (
-            <Task
-              key={index}
-              task_id={task.task_id}
-              date={task.task_date}
-              due_date={task.task_due_date}
-              description={task.task_description}
-              responsable_id={task.task_responsable_id}
-              createdAt={task.createdAt}
-              updatedAt={task.updatedAt}
-              id={task.id}
-              title={task.title}
-            />
-          ) : null
-        )}
-      </TaskColumn>
-
-      <TaskColumn>
-        <h5>Completed</h5>
-        {tasksData.map((task, index) =>
-          task.status === 2 ? (
-            <Task
-              key={index}
-              task_id={task.task_id}
-              date={task.task_date}
-              due_date={task.task_due_date}
-              description={task.task_description}
-              responsable_id={task.task_responsable_id}
-              createdAt={task.createdAt}
-              updatedAt={task.updatedAt}
-              id={task.id}
-              title={task.title}
-            />
-          ) : null
-        )}
-      </TaskColumn>
+      {taskStatusData.map((taskStatus) => {
+        return (
+          <TaskColumn>
+            <h5>{taskStatus.task_status_description}</h5>
+            {tasksData
+              .filter(
+                (task) =>
+                  task.status === taskStatus.id && task.project_id === projectId
+              )
+              .map((task, index) => {
+                return (
+                  <Task
+                    key={index}
+                    task_id={task.task_id}
+                    date={task.task_date}
+                    due_date={task.task_due_date}
+                    description={task.task_description}
+                    responsable_id={task.task_responsable_id}
+                    createdAt={task.createdAt}
+                    updatedAt={task.updatedAt}
+                    id={task.id}
+                    title={task.title}
+                  />
+                );
+              })}
+          </TaskColumn>
+        );
+      })}
     </>
   );
 

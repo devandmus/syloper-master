@@ -6,6 +6,7 @@ const Models = {
   users: require('../../database/models/User.model'),
   projects: require('../../database/models/Project.model'),
   'project-status': require('../../database/models/ProjectStatus.model'),
+  'task-status': require('../../database/models/TaskStatus.model'),
 }
 
 const list = async (ctx) => {

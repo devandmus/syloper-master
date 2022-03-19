@@ -4,7 +4,7 @@ import { SectionTitle } from '../styles';
 import { DateInfo } from './styles';
 import { dateFormatter } from '../../../../../utils/date';
 
-const DueDate = ({ dueDate }) => (
+const DueDate = ({ projectDueDate }) => (
   <div>
     <SectionTitle>
       <i>
@@ -12,7 +12,7 @@ const DueDate = ({ dueDate }) => (
       </i>
       <h5>Due Date</h5>
     </SectionTitle>
-    <DateInfo>{dateFormatter(dueDate)}</DateInfo>
+    <DateInfo>{dateFormatter(projectDueDate)}</DateInfo>
   </div>
 );
 

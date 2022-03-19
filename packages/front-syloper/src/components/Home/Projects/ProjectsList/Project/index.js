@@ -12,34 +12,34 @@ import {
 import { dateFormatter } from '../../../../../utils/date';
 
 const Project = (props) => {
-    const users = [ "user1", "user2", "user3", "user4" ];
-    const {
-      index,
-      customerId,
-      customerName,
-      description,
-      cost,
-      responsable,
-      statusId,
-      statusName,
-      createdAt,
-      updatedAt,
-      id,
-      title,
-    } = props;
-  
-    const calcTranslate = (index) => `-${index * 2 * 10}`
+  const users = ['user1', 'user2', 'user3', 'user4'];
+  const {
+    index,
+    customerId,
+    customerName,
+    description,
+    cost,
+    responsable,
+    statusId,
+    statusName,
+    createdAt,
+    dueDate,
+    id,
+    title,
+  } = props;
+
+  const calcTranslate = (index) => `-${index * 2 * 10}`;
 
   return (
     <ProjectContainer>
       <Title>
         <Link to={`/project-detail/?id=${id}`}>
-        {/* <Link to="/project-detail/"> */}
+          {/* <Link to="/project-detail/"> */}
           <h4>{description}</h4>
         </Link>
         <p>{customerName}</p>
       </Title>
-      <DueDate>Created at: {dateFormatter(createdAt)}</DueDate>
+      <DueDate>Due Date: {dateFormatter(dueDate)}</DueDate>
       <Progress>
         <div className="bar-container">
           <span />
@@ -60,4 +60,3 @@ const Project = (props) => {
 };
 
 export default Project;
-

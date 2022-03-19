@@ -15,8 +15,8 @@ const schema = new mongoose.Schema(
       type: String
     },
     status: {
-      type: Number,
-      default: 0,
+      type: mongoose.ObjectId,
+      required: true
     },
     task_due_date: {
       type: Date

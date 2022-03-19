@@ -6,6 +6,7 @@ const TaskModel = require('../models/Task.model');
 const CustomerModel = require('../models/Customer.model');
 const ProjectModel = require('../models/Project.model');
 const ProjectStatusModel = require('../models/ProjectStatus.model');
+const TaskStatusModel = require('../models/TaskStatus.model');
 
 // DATA
 const UserData = require('./users.json');
@@ -13,6 +14,7 @@ const TaskData = require('./tasks.json');
 const CustomerData = require('./customers.json');
 const ProjectData = require('./projects.json');
 const ProjectStatusData = require('./project-status.json');
+const TasksStatusData = require('./tasks-status.json');
 
 
 const hydrateFromData = async (model, data) => {
@@ -34,6 +36,7 @@ const hydrate = async () => {
   await hydrateFromData(CustomerModel, CustomerData);
   await hydrateFromData(ProjectModel, ProjectData);
   await hydrateFromData(ProjectStatusModel, ProjectStatusData);
+  await hydrateFromData(TaskStatusModel, TasksStatusData);
   await process.exit();
 };
 

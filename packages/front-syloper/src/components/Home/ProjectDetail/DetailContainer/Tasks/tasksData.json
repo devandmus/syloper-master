@@ -1,50 +1,51 @@
-[    
+[
     {
-        "project_id": "61ca2304422d3f1042b6f34a",
-        "task_date": "2021-12-30T16:46:18.000Z",
-        "task_due_date": "2022-01-30T16:46:18.000Z",
-        "task_description": "Esta es una descripcion de ejemplo para esta tarea de ejemplo",
-        "task_responsable_id": "91ca2304732d3f1542b6f3a4",
-        "createdAt": "2021-12-30T16:54:41.377Z",
-        "updatedAt": "2021-12-30T16:54:41.377Z",
-        "id": "61cde451c9973bbc0ce7de9f",
-        "title": "do something",
-        "status": 0
+      "_id": "6235b2f830dde9e6ddf8a856",
+      "project_id": "622e7cc6bd97c3cc70352534",
+      "task_date": "2021-12-30T16:46:18.000Z",
+      "task_due_date": "2022-01-30T16:46:18.000Z",
+      "task_description": "Esta es una descripcion de ejemplo para esta tarea de ejemplo",
+      "task_responsable_id": "622e2f35e1f716a4bd1aade0",
+      "createdAt": "2021-12-30T16:54:41.377Z",
+      "updatedAt": "2021-12-30T16:54:41.377Z",
+      "title": "do something",
+      "status": "6235b08b4a11c82ac30baa02"
     },
     {
-        "project_id": "61ca2304422d3f1042b6f34a",
-        "task_date": "2021-12-30T16:49:00.000Z",
-        "task_due_date": "2022-01-30T21:00:00.000Z",
-        "task_description": "Esta es una descripcion de ejemplo para esta tarea de ejemplo",
-        "task_responsable_id": "91ca2302832d3f1542b6f3a4",
-        "createdAt": "2021-12-30T16:55:52.380Z",
-        "updatedAt": "2021-12-30T16:55:52.380Z",
-        "id": "61cde498c9973bbc0ce7dea1",
-        "title": "do something",
-        "status": 0
+      "_id": "6235b300b629c1600b71534a",
+      "project_id": "622e7cc6bd97c3cc70352534",
+      "task_date": "2021-12-30T16:49:00.000Z",
+      "task_due_date": "2022-01-30T21:00:00.000Z",
+      "task_description": "Esta es una descripcion de ejemplo para esta tarea de ejemplo",
+      "task_responsable_id": "622e2f35e1f716a4bd1aade0",
+      "createdAt": "2021-12-30T16:55:52.380Z",
+      "updatedAt": "2021-12-30T16:55:52.380Z",
+      "title": "do something",
+      "status": "6235b08b4a11c82ac30baa02"
     },
     {
-        "project_id": "61ca2304422d3f1042b6f34a",
-        "task_date": "2021-12-30T16:49:00.000Z",
-        "task_due_date": "2022-01-30T21:00:00.000Z",
-        "task_description": "Esta es una descripcion de ejemplo para esta tarea de ejemplo",
-        "task_responsable_id": "91ca2302832d3f1542b6f3a4",
-        "createdAt": "2021-12-30T16:55:52.380Z",
-        "updatedAt": "2021-12-30T16:55:52.380Z",
-        "id": "61cde498c9973bbc0ce7dea1",
-        "title": "do something",
-        "status": 1
+      "_id": "6235b30637d15c6dba9a4bbd",
+      "project_id": "622e7ca542f7a9690a0bffa7",
+      "task_date": "2021-12-30T16:49:00.000Z",
+      "task_due_date": "2022-01-30T21:00:00.000Z",
+      "task_description": "Esta es una descripcion de ejemplo para esta tarea de ejemplo",
+      "task_responsable_id": "622e2f35e1f716a4bd1aade0",
+      "createdAt": "2021-12-30T16:55:52.380Z",
+      "updatedAt": "2021-12-30T16:55:52.380Z",
+      "title": "do something",
+      "status": "6235b092a6fe130cdf53ac7c"
     },
     {
-        "project_id": "61ca2304422d3f1042b6f34a",
-        "task_date": "2021-12-30T16:49:00.000Z",
-        "task_due_date": "2022-01-30T21:00:00.000Z",
-        "task_description": "Esta es una descripcion de ejemplo para esta tarea completada",
-        "task_responsable_id": "91ca2302832d3f1542b6f3a4",
-        "createdAt": "2021-12-30T16:55:52.380Z",
-        "updatedAt": "2021-12-30T16:55:52.380Z",
-        "id": "61cde498c9973bbc0ce7dea1",
-        "title": "do something",
-        "status": 2
+      "_id": "6235b30d2cdfd6b744fc9ff8",
+      "project_id": "622e7cc6bd97c3cc70352535",
+      "task_date": "2021-12-30T16:49:00.000Z",
+      "task_due_date": "2022-01-30T21:00:00.000Z",
+      "task_description": "Esta es una descripcion de ejemplo para esta tarea completada",
+      "task_responsable_id": "622e2f35e1f716a4bd1aade0",
+      "createdAt": "2021-12-30T16:55:52.380Z",
+      "updatedAt": "2021-12-30T16:55:52.380Z",
+      "title": "do something",
+      "status": "6235b098ebf465d1cfd3d7e2"
     }
-]
+  ]
+  
