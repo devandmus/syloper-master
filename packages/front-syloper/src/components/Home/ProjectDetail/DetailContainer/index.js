@@ -7,8 +7,14 @@ import { DetailTitle, DetailMain, FirstInfoContainer } from './styles';
 import Tasks from './Tasks';
 
 const DetailContainer = (props) => {
-  const { customerId, projectDescription, cost, projectDate, projectId } =
-    props;
+  const {
+    customerId,
+    projectDescription,
+    cost,
+    projectDueDate,
+    projectDate,
+    projectId,
+  } = props;
 
   return (
     <>
@@ -19,7 +25,7 @@ const DetailContainer = (props) => {
       <DetailMain>
         <FirstInfoContainer>
           <Participants />
-          <DueDate due_date={projectDate} />
+          <DueDate due_date={projectDueDate} />
           <Status />
         </FirstInfoContainer>
         <Description description={projectDescription} />

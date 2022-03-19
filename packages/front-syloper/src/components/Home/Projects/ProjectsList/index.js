@@ -10,12 +10,11 @@ const ProjectsList = () => {
     ServicesProjects.getProjects().then((data) => {
       setProjectsData(data);
     });
-  }, [projectsData]);
+  }, []);
   return (
     <ProjectsGrid>
-      {projectsData.map((project, index) => (
+      {projectsData.map((project) => (
         <Project
-          key={index}
           customerId={project.customer_id}
           customerName={project.customer_name}
           description={project.project_description}

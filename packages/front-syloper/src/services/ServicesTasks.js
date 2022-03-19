@@ -2,6 +2,9 @@ import Request from './request';
 
 const getTasks = () => Request('/api/tasks').then((res) => res.data);
 
+const getTasksByProject = (id) =>
+  Request(`/api/tasks/${id}`).then((res) => res.data);
+
 const createTask = () =>
   Request({
     url: '/api/tasks/create',
@@ -31,6 +34,7 @@ const deleteTask = (data) =>
 
 export default {
   getTasks,
+  getTasksByProject,
   createTask,
   putTask,
   updateTask,

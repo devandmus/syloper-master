@@ -15,13 +15,14 @@ const ProjectDetail = () => {
     });
   }, [projectIdUrl]);
   return (
-    <Home title="Projects">
+    <Home title="Project Detail">
       <DetailContainer
         customerId={projectData.customer_id}
         projectDescription={projectData.project_description}
         cost={projectData.project_cost}
         projectDate={projectData.project_date}
-        projectId={projectData.id}
+        projectDueDate={projectData.project_due_date}
+        projectId={projectIdUrl}
       />
     </Home>
   );

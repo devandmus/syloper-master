@@ -12,14 +12,13 @@ import {
 
 import Task from './Task';
 import { useViewport } from '../../../../../contexts/viewportSize';
-import tasksData from './tasksData.json';
 import Button from '../../../../UI/Button';
 import AppContext from '../../../../../contexts/App';
 import ServicesTasks from '../../../../../services/ServicesTasks';
 
-const Tasks = ({ project_id }) => {
+const Tasks = ({ projectId }) => {
   const [activeStatus, setActiveStatus] = useState('status1');
-  const [tasksData, setTasksData] = useState([]);
+  const [tasksData, setTasksData] = useState({});
   const { setModalIsOpen } = useContext(AppContext);
   const { width } = useViewport();
   const breakpoint = 767;
@@ -30,7 +29,9 @@ const Tasks = ({ project_id }) => {
   };
 
   useEffect(() => {
-    ServicesTasks.getTasks().then((data) => {
+    console.log(projectId);
+    ServicesTasks.getTasksByProject(projectId).then((data) => {
+      console.log(data);
       setTasksData(data);
     });
   }, []);

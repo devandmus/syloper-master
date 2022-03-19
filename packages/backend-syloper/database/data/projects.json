@@ -2,19 +2,21 @@
   {
     "customer_id": "622e7b309c6a98bb6282bc1b",
     "project_date": "2022-03-13T23:21:36.075Z",
+    "project_due_date": "2022-03-13T23:21:36.075Z",
     "project_description": "Create Earth",
     "project_cost": 387292,
     "project_responsable": "God",
     "project_status_id": "622e7a9d6b3414b67e211b79",
-    "_id": "622e7ca542f7a9690a0bffae"
+    "_id": "622e7ca542f7a9690a0bffa7"
   },
   {
     "customer_id": "622e7b309c6a98bb6282bc1b",
     "project_date": "2022-03-13T23:21:36.075Z",
+    "project_due_date": "2022-03-13T23:21:36.075Z",
     "project_description": "Save Earth",
     "project_cost": 49792,
     "project_responsable": "Jesus",
     "project_status_id": "622e7a9d6b3414b67e211b79",
-    "_id": "622e7cc6bd97c3cc70352534"
+    "_id": "622e7cc6bd97c3cc70352535"
   }
 ]
