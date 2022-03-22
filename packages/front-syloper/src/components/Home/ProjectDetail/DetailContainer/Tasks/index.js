@@ -2,7 +2,7 @@ import React, { useContext, useEffect, useState } from 'react';
 import classNames from 'classnames';
 import { BiTask } from 'react-icons/all';
 import { HTML5Backend } from 'react-dnd-html5-backend';
-import { DndProvider } from 'react-dnd';
+import { DndProvider, useDrop } from 'react-dnd';
 import { SectionTitle } from '../styles';
 import {
   SelectStatus,
@@ -18,7 +18,6 @@ import Button from '../../../../UI/Button';
 import AppContext from '../../../../../contexts/App';
 import ServicesTasks from '../../../../../services/ServicesTasks';
 import ServicesTaskStatus from '../../../../../services/ServicesTaskStatus';
-import { useDrop } from 'react-dnd';
 
 const Tasks = ({ projectId }) => {
   const [activeStatus, setActiveStatus] = useState('status1');
@@ -47,25 +46,25 @@ const Tasks = ({ projectId }) => {
   }, []);
 
   const ColumnsDesktop = () => {
-
-    const [basket, setBasket] = useState([])
+    const [basket, setBasket] = useState([]);
     const [{ isOver }, dropRef] = useDrop({
-        accept: 'pet',
-        drop: (item) => setBasket((basket) => 
-                            !basket.includes(item) ? [...basket, item] : basket),
-        collect: (monitor) => ({
-            isOver: monitor.isOver()
-        })
-    })
+      accept: 'pet',
+      drop: (item) =>
+        setBasket((basket) =>
+          !basket.includes(item) ? [...basket, item] : basket
+        ),
+      collect: (monitor) => ({
+        isOver: monitor.isOver(),
+      }),
+    });
 
     return (
-      
       <>
         {taskStatusData.map((taskStatus) => {
           return (
-            <h5>{taskStatus.task_status_description}</h5>
-              <DndProvider backend={HTML5Backend}>
-                <TaskColumn ref={dropRef} >
+            <DndProvider backend={HTML5Backend}>
+              <h5>{taskStatus.task_status_description}</h5>
+              <TaskColumn ref={dropRef}>
                 {tasksData
                   .filter(
                     (task) =>
@@ -88,14 +87,13 @@ const Tasks = ({ projectId }) => {
                       />
                     );
                   })}
-                </TaskColumn>
-              </DndProvider>
+              </TaskColumn>
+            </DndProvider>
           );
         })}
       </>
     );
-
-  }
+  };
 
   const ColumnMobile = ({ title, status, tasks }) => (
     <TaskColumn>
