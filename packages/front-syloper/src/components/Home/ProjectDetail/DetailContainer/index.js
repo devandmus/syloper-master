@@ -5,6 +5,7 @@ import Participants from './Participants';
 import Status from './Status';
 import { DetailTitle, DetailMain, FirstInfoContainer } from './styles';
 import Tasks from './Tasks';
+import 'react-edit-text/dist/index.css';
 
 const DetailContainer = (props) => {
   const {
