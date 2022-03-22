@@ -2,7 +2,7 @@ import React, { useContext, useEffect, useState } from 'react';
 import classNames from 'classnames';
 import { BiTask } from 'react-icons/all';
 import { HTML5Backend } from 'react-dnd-html5-backend';
-import { DndProvider, useDrop } from 'react-dnd';
+import { DndProvider } from 'react-dnd';
 import { SectionTitle } from '../styles';
 import {
   SelectStatus,
@@ -45,55 +45,41 @@ const Tasks = ({ projectId }) => {
     });
   }, []);
 
-  const ColumnsDesktop = () => {
-    const [basket, setBasket] = useState([]);
-    const [{ isOver }, dropRef] = useDrop({
-      accept: 'pet',
-      drop: (item) =>
-        setBasket((basket) =>
-          !basket.includes(item) ? [...basket, item] : basket
-        ),
-      collect: (monitor) => ({
-        isOver: monitor.isOver(),
-      }),
-    });
-
-    return (
+  const ColumnsDesktop = () => (
+    <DndProvider backend={HTML5Backend}>
       <>
         {taskStatusData.map((taskStatus) => {
           return (
-            <DndProvider backend={HTML5Backend}>
+            <TaskColumn>
               <h5>{taskStatus.task_status_description}</h5>
-              <TaskColumn ref={dropRef}>
-                {tasksData
-                  .filter(
-                    (task) =>
-                      task.status === taskStatus.id &&
-                      task.project_id === projectId
-                  )
-                  .map((task, index) => {
-                    return (
-                      <Task
-                        key={index}
-                        task_id={task.task_id}
-                        date={task.task_date}
-                        due_date={task.task_due_date}
-                        description={task.task_description}
-                        responsable_id={task.task_responsable_id}
-                        createdAt={task.createdAt}
-                        updatedAt={task.updatedAt}
-                        id={task.id}
-                        title={task.title}
-                      />
-                    );
-                  })}
-              </TaskColumn>
-            </DndProvider>
+              {tasksData
+                .filter(
+                  (task) =>
+                    task.status === taskStatus.id &&
+                    task.project_id === projectId
+                )
+                .map((task, index) => {
+                  return (
+                    <Task
+                      key={index}
+                      task_id={task.task_id}
+                      date={task.task_date}
+                      due_date={task.task_due_date}
+                      description={task.task_description}
+                      responsable_id={task.task_responsable_id}
+                      createdAt={task.createdAt}
+                      updatedAt={task.updatedAt}
+                      id={task.id}
+                      title={task.title}
+                    />
+                  );
+                })}
+            </TaskColumn>
           );
         })}
       </>
-    );
-  };
+    </DndProvider>
+  );
 
   const ColumnMobile = ({ title, status, tasks }) => (
     <TaskColumn>
