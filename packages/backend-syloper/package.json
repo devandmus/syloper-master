@@ -20,7 +20,8 @@
     "koa-logger": "^3.2.1",
     "koa-router": "^10.1.1",
     "mongoose": "^6.1.2",
-    "nconf": "^0.11.3"
+    "nconf": "^0.11.3",
+    "nodemailer": "^6.7.2"
   },
   "devDependencies": {
     "nodemon": "^2.0.15"
