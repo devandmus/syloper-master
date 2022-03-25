@@ -34,16 +34,22 @@ const Tasks = ({ projectId }) => {
 
   useEffect(() => {
     ServicesTasks.getTasks().then((data) => {
-      console.log(data);
       setTasksData(data);
     });
   }, []);
   useEffect(() => {
     ServicesTaskStatus.getTasksStatus().then((data) => {
-      console.log(data);
       setTaskStatusData(data);
     });
   }, []);
+
+  const updateTask = (id, task) => {
+    const updatedTask = {
+      ...tasksData,
+      ...task,
+    };
+    ServicesTasks.updateTask(id, updatedTask);
+  };
 
   const ColumnsDesktop = () => (
     <DndProvider backend={HTML5Backend}>
@@ -62,15 +68,16 @@ const Tasks = ({ projectId }) => {
                   return (
                     <Task
                       key={index}
-                      task_id={task.task_id}
+                      taskId={task.task_id}
                       date={task.task_date}
-                      due_date={task.task_due_date}
+                      dueDate={task.task_due_date}
                       description={task.task_description}
-                      responsable_id={task.task_responsable_id}
+                      responsableId={task.task_responsable_id}
                       createdAt={task.createdAt}
                       updatedAt={task.updatedAt}
                       id={task.id}
                       title={task.title}
+                      updateTask={updateTask}
                     />
                   );
                 })}
@@ -98,6 +105,7 @@ const Tasks = ({ projectId }) => {
               updatedAt={task.updatedAt}
               id={task.id}
               title={task.title}
+              updateTask={updateTask}
             />
           );
         })}

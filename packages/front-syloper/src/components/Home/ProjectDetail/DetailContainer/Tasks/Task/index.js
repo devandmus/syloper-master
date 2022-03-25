@@ -4,6 +4,7 @@ import { HiMenuAlt3 } from 'react-icons/hi';
 import { IoCloseSharp } from 'react-icons/io5';
 import classNames from 'classnames';
 import { useDrag } from 'react-dnd';
+import { EditText } from 'react-edit-text';
 import { dateFormatter } from '../../../../../../utils/date';
 import {
   AssignImg,
@@ -15,17 +16,20 @@ import {
   TMenu,
 } from './styles';
 
+import 'react-edit-text/dist/index.css';
+
 const Task = ({
   key,
-  task_id,
+  taskId,
   date,
   title,
-  due_date,
+  dueDate,
   description,
-  responsable_id,
+  responsableId,
   createdAt,
   updatedAt,
   id,
+  updateTask,
 }) => {
   const [isOpenMenu, setIsOpenMenu] = useState(false);
   const theme = useTheme();
@@ -42,17 +46,37 @@ const Task = ({
     }),
   });
 
+  const [taskTitle, setTaskTitle] = useState(title);
+  const handleSave = ({ value, previousValue }) => {
+    if (value !== previousValue) {
+      updateTask(id, { title: value });
+    }
+  };
+
   return (
-    <TaskCard ref={dragRef}>
+    <TaskCard ref={dragRef} style={{ opacity: isDragging ? 0.5 : 1 }}>
       <TMenuIcon onClick={handleClickMenu}>
         <HiMenuAlt3 size="20" />
       </TMenuIcon>
-      <TTitle>{title}</TTitle>
+      <TTitle>
+        <EditText
+          type="text"
+          value={taskTitle}
+          onSave={handleSave}
+          onChange={setTaskTitle}
+          style={{
+            width: '100%',
+            fontWeight: 500,
+            fontSize: '1.1rem',
+            marginBottom: '15px',
+          }}
+        />
+      </TTitle>
       <TDescription>{description}</TDescription>
       <TFooter>
         <div className="due-date">
           <p>Due Date:</p>
-          <p>{dateFormatter(due_date)}</p>
+          <p>{dateFormatter(dueDate)}</p>
         </div>
         <AssignImg />
       </TFooter>

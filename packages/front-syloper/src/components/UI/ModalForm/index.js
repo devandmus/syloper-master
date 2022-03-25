@@ -53,7 +53,7 @@ const Modal = ({ title, description, section, modalOnSubmit }) => {
 
     const project = {
       customer_id: '622e7b309c6a98bb6282bc1b',
-      project_due_date: '2022-03-13T23:21:36.075Z',
+      project_due_date: date,
       project_title: projectTitle,
       project_description: projectDescription,
       project_date: '2022-03-13T23:21:36.075Z',
@@ -63,6 +63,7 @@ const Modal = ({ title, description, section, modalOnSubmit }) => {
     };
 
     ServiceProjects.createProject(project).then(() => {
+      setModalIsOpen(false);
       console.log(project);
     });
   };
@@ -109,7 +110,7 @@ const Modal = ({ title, description, section, modalOnSubmit }) => {
           <div>
             <DatePicker
               value={date}
-              onChange={onChangeDueDate}
+              onChange={setDate}
               label="Due Date"
               formatStyle="large"
               className="datepicker"

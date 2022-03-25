@@ -11,14 +11,14 @@ const createProject = (data) =>
     data,
   }).then((response) => response.data);
 
-const updateProject = (data) =>
-  Request('/api/projects/put', {
-    data,
+const updateProject = (id, data) =>
+  Request(`/api/projects/update/${id}`, {
     method: 'PUT',
+    data,
   }).then((response) => response.data);
 
-const deleteProject = (data) =>
-  Request('/api/projects/put', {
+const deleteProject = (id, data) =>
+  Request(`/api/projects/delete/${id}`, {
     data,
     method: 'DELETE',
   }).then((response) => response.data);

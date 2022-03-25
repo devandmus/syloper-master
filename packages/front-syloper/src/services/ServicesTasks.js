@@ -11,8 +11,8 @@ const createTask = (data) =>
     data,
   }).then((response) => response.data);
 
-const updateTask = (data) =>
-  Request('/api/tasks/put', {
+const updateTask = (id, data) =>
+  Request(`/api/tasks/update/${id}`, {
     data,
     method: 'PUT',
   }).then((response) => response.data);

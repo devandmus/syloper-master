@@ -7,24 +7,39 @@ import ServicesProjects from '../../../services/ServicesProjects';
 const ProjectDetail = () => {
   const [projectIdUrl] = useQueryParam('id', StringParam);
   const [projectData, setprojectData] = useState({});
+  const [isLoading, setIsLoading] = useState(true);
+
+  const updateProject = (project) => {
+    const updatedProject = {
+      ...projectData,
+      ...project,
+    };
+
+    ServicesProjects.updateProject(projectIdUrl, updatedProject);
+  };
 
   useEffect(() => {
     ServicesProjects.getProjectDetail(projectIdUrl).then((data) => {
-      console.log(data);
       setprojectData(data);
+      setIsLoading(false);
     });
   }, [projectIdUrl]);
   return (
     <Home title="Project Detail">
-      <DetailContainer
-        customerId={projectData.customer_id}
-        projectTitle={projectData.project_title}
-        projectDescription={projectData.project_description}
-        cost={projectData.project_cost}
-        projectDate={projectData.project_date}
-        projectDueDate={projectData.project_due_date}
-        projectId={projectIdUrl}
-      />
+      {isLoading ? (
+        <div>Loading...</div>
+      ) : (
+        <DetailContainer
+          customerId={projectData.customer_id}
+          projectTitle={projectData.project_title}
+          projectDescription={projectData.project_description}
+          cost={projectData.project_cost}
+          projectDate={projectData.project_date}
+          projectDueDate={projectData.project_due_date}
+          projectId={projectIdUrl}
+          updateProject={updateProject}
+        />
+      )}
     </Home>
   );
 };

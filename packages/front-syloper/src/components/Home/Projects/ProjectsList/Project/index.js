@@ -32,29 +32,29 @@ const Project = (props) => {
 
   return (
     <ProjectContainer>
-      <Title>
-        <Link to={`/project-detail/?id=${id}`}>
+      <Link to={`/project-detail/?id=${id}`}>
+        <Title>
           {/* <Link to="/project-detail/"> */}
           <h4>{title}</h4>
-        </Link>
-        <p>{customerName}</p>
-      </Title>
-      <DueDate>Due Date: {dateFormatter(dueDate)}</DueDate>
-      <Progress>
-        <div className="bar-container">
-          <span />
-        </div>
-        <div className="info-container">
-          <p>{statusName}</p>
-          <p>30%</p>
-        </div>
-      </Progress>
-      <TasksTxt>10 Tasks left</TasksTxt>
-      <Users>
-        {users.map((user, i) => (
-          <UserImg key={i} translatex={calcTranslate(i)} />
-        ))}
-      </Users>
+          <p>{description}</p>
+        </Title>
+        <DueDate>Due Date: {dateFormatter(dueDate)}</DueDate>
+        <Progress>
+          <div className="bar-container">
+            <span />
+          </div>
+          <div className="info-container">
+            <p>{statusName}</p>
+            <p>30%</p>
+          </div>
+        </Progress>
+        <TasksTxt>10 Tasks left</TasksTxt>
+        <Users>
+          {users.map((user, i) => (
+            <UserImg key={i} translatex={calcTranslate(i)} />
+          ))}
+        </Users>
+      </Link>
     </ProjectContainer>
   );
 };
