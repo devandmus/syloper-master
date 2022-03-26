@@ -4,7 +4,7 @@ import { HiMenuAlt3 } from 'react-icons/hi';
 import { IoCloseSharp } from 'react-icons/io5';
 import classNames from 'classnames';
 import { useDrag } from 'react-dnd';
-import { EditText } from 'react-edit-text';
+import { EditText, EditTextarea } from 'react-edit-text';
 import { dateFormatter } from '../../../../../../utils/date';
 import {
   AssignImg,
@@ -38,8 +38,8 @@ const Task = ({
     setIsOpenMenu(!isOpenMenu);
   };
 
-  const [{ isDragging }, dragRef] = useDrag({
-    type: 'pet',
+  const [{ isDragging }, drag] = useDrag({
+    type: 'drag',
     item: { id, title },
     collect: (monitor) => ({
       isDragging: monitor.isDragging(),
@@ -47,14 +47,29 @@ const Task = ({
   });
 
   const [taskTitle, setTaskTitle] = useState(title);
-  const handleSave = ({ value, previousValue }) => {
+  const [taskDescription, setTaskDescription] = useState(description);
+  const [taskDueDate, setTaskDueDate] = useState(dueDate);
+
+  const handleSaveTitle = ({ value, previousValue }) => {
     if (value !== previousValue) {
       updateTask(id, { title: value });
     }
   };
 
+  const handleSaveDescription = ({ value, previousValue }) => {
+    if (value !== previousValue) {
+      updateTask(id, { task_description: value });
+    }
+  };
+
+  const handleSaveDuedate = ({ value, previousValue }) => {
+    if (value !== previousValue) {
+      updateTask(id, { task_due_date: value });
+    }
+  };
+
   return (
-    <TaskCard ref={dragRef} style={{ opacity: isDragging ? 0.5 : 1 }}>
+    <TaskCard ref={drag} style={{ opacity: isDragging ? 0.5 : 1 }}>
       <TMenuIcon onClick={handleClickMenu}>
         <HiMenuAlt3 size="20" />
       </TMenuIcon>
@@ -62,7 +77,7 @@ const Task = ({
         <EditText
           type="text"
           value={taskTitle}
-          onSave={handleSave}
+          onSave={handleSaveTitle}
           onChange={setTaskTitle}
           style={{
             width: '100%',
@@ -72,11 +87,34 @@ const Task = ({
           }}
         />
       </TTitle>
-      <TDescription>{description}</TDescription>
+      <TDescription>
+        <EditTextarea
+          onChange={setTaskDescription}
+          onSave={handleSaveDescription}
+          value={taskDescription}
+          style={{
+            width: '100%',
+            fontSize: '0.9rem',
+            fontWeight: 300,
+            lineHeight: 1.3,
+            marginBottom: '20px',
+          }}
+        />
+      </TDescription>
       <TFooter>
         <div className="due-date">
           <p>Due Date:</p>
-          <p>{dateFormatter(dueDate)}</p>
+          <EditText
+            onSave={handleSaveDuedate}
+            onChange={setTaskDueDate}
+            type="date"
+            value={taskDueDate}
+            formatDisplayText={dateFormatter}
+            style={{
+              fontSize: '.92rem',
+              fontWeight: 500,
+            }}
+          />
         </div>
         <AssignImg />
       </TFooter>

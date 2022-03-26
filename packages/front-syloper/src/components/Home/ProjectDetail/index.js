@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useQueryParam, StringParam } from 'use-query-params';
+import { DndProvider } from 'react-dnd';
+import { HTML5Backend } from 'react-dnd-html5-backend';
 import Home from '../Home';
 import DetailContainer from './DetailContainer';
 import ServicesProjects from '../../../services/ServicesProjects';
@@ -29,16 +31,18 @@ const ProjectDetail = () => {
       {isLoading ? (
         <div>Loading...</div>
       ) : (
-        <DetailContainer
-          customerId={projectData.customer_id}
-          projectTitle={projectData.project_title}
-          projectDescription={projectData.project_description}
-          cost={projectData.project_cost}
-          projectDate={projectData.project_date}
-          projectDueDate={projectData.project_due_date}
-          projectId={projectIdUrl}
-          updateProject={updateProject}
-        />
+        <DndProvider backend={HTML5Backend}>
+          <DetailContainer
+            customerId={projectData.customer_id}
+            projectTitle={projectData.project_title}
+            projectDescription={projectData.project_description}
+            cost={projectData.project_cost}
+            projectDate={projectData.project_date}
+            projectDueDate={projectData.project_due_date}
+            projectId={projectIdUrl}
+            updateProject={updateProject}
+          />
+        </DndProvider>
       )}
     </Home>
   );

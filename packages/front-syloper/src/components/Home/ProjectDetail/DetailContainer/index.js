@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import { EditText } from 'react-edit-text';
 import { useTheme } from 'styled-components';
 import Description from './Description';
@@ -9,6 +9,8 @@ import { DetailTitle, DetailMain, FirstInfoContainer } from './styles';
 import Tasks from './Tasks';
 import 'react-edit-text/dist/index.css';
 import Modal from '../../../UI/ModalForm';
+import ServiceTasks from '../../../../services/ServicesTasks';
+import AppContext from '../../../../contexts/App';
 
 const DetailContainer = (props) => {
   const theme = useTheme();
@@ -30,6 +32,22 @@ const DetailContainer = (props) => {
 
   const [title, setTitle] = useState(projectTitle);
 
+  const { setModalIsOpen } = useContext(AppContext);
+
+  const modalOnSubmit = (task) => {
+    const updatedValue = {
+      project_id: projectId,
+      title: task.title,
+      task_due_date: task.dueDate,
+      task_description: task.description,
+      task_responsable_id: '622e2f35e1f716a4bd1aade0',
+      status: '6235b08b4a11c82ac30baa02',
+    };
+    ServiceTasks.createTask(updatedValue).then(() => {
+      setModalIsOpen(false);
+    });
+  };
+
   return (
     <>
       <DetailTitle>
@@ -42,7 +60,7 @@ const DetailContainer = (props) => {
           style={{
             marginBottom: '10px',
             fontWeight: 600,
-            fontSize: '2.3rem',
+            fontSize: '1.5rem',
             lineHeight: 1.35,
             fontFamily: theme.font.family,
           }}
@@ -66,7 +84,7 @@ const DetailContainer = (props) => {
           title="New Task"
           description="Add task details"
           section="Task"
-          projectId={projectId}
+          modalOnSubmit={modalOnSubmit}
         />
 
         <Tasks projectId={projectId} />
