@@ -15,12 +15,10 @@ import Task from './Task';
 import { useViewport } from '../../../../../contexts/viewportSize';
 import Button from '../../../../UI/Button';
 import AppContext from '../../../../../contexts/App';
-import ServicesTasks from '../../../../../services/ServicesTasks';
 import ServicesTaskStatus from '../../../../../services/ServicesTaskStatus';
 
-const Tasks = ({ projectId }) => {
+const Tasks = ({ tasksData, projectId, updateTask, deleteTask }) => {
   const [activeStatus, setActiveStatus] = useState('status1');
-  const [tasksData, setTasksData] = useState({});
   const [taskStatusData, setTaskStatusData] = useState([]);
   const { setModalIsOpen } = useContext(AppContext);
   const { width } = useViewport();
@@ -32,23 +30,10 @@ const Tasks = ({ projectId }) => {
   };
 
   useEffect(() => {
-    ServicesTasks.getTasks().then((data) => {
-      setTasksData(data);
-    });
-  }, []);
-  useEffect(() => {
     ServicesTaskStatus.getTasksStatus().then((data) => {
       setTaskStatusData(data);
     });
   }, []);
-
-  const updateTask = (id, task) => {
-    const updatedTask = {
-      ...tasksData,
-      ...task,
-    };
-    ServicesTasks.updateTask(id, updatedTask);
-  };
 
   const [{ canDrop, isOver }, drop] = useDrop({
     accept: 'Our first type',
@@ -64,28 +49,32 @@ const Tasks = ({ projectId }) => {
         return (
           <TaskColumn ref={drop}>
             <h5>{taskStatus.task_status_description}</h5>
-            {tasksData
-              .filter(
-                (task) =>
-                  task.status === taskStatus.id && task.project_id === projectId
-              )
-              .map((task, index) => {
-                return (
-                  <Task
-                    key={index}
-                    taskId={task.task_id}
-                    date={task.task_date}
-                    dueDate={task.task_due_date}
-                    description={task.task_description}
-                    responsableId={task.task_responsable_id}
-                    createdAt={task.createdAt}
-                    updatedAt={task.updatedAt}
-                    id={task.id}
-                    title={task.title}
-                    updateTask={updateTask}
-                  />
-                );
-              })}
+            {projectId === null
+              ? tasksData.filter((task) => task.status === taskStatus.id)
+              : tasksData
+                  .filter(
+                    (task) =>
+                      task.status === taskStatus.id &&
+                      task.project_id === projectId
+                  )
+                  .map((task, index) => {
+                    return (
+                      <Task
+                        key={index}
+                        taskId={task.task_id}
+                        date={task.task_date}
+                        dueDate={task.task_due_date}
+                        description={task.task_description}
+                        responsableId={task.task_responsable_id}
+                        createdAt={task.createdAt}
+                        updatedAt={task.updatedAt}
+                        id={task.id}
+                        title={task.title}
+                        updateTask={() => updateTask(task.id)}
+                        deleteTask={() => deleteTask(task.id)}
+                      />
+                    );
+                  })}
           </TaskColumn>
         );
       })}

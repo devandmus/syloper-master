@@ -1,4 +1,4 @@
-import React, { useState, useContext } from 'react';
+import React, { useState, useContext, useEffect } from 'react';
 import { EditText } from 'react-edit-text';
 import { useTheme } from 'styled-components';
 import Description from './Description';
@@ -9,7 +9,7 @@ import { DetailTitle, DetailMain, FirstInfoContainer } from './styles';
 import Tasks from './Tasks';
 import 'react-edit-text/dist/index.css';
 import Modal from '../../../UI/ModalForm';
-import ServiceTasks from '../../../../services/ServicesTasks';
+import ServicesTasks from '../../../../services/ServicesTasks';
 import AppContext from '../../../../contexts/App';
 
 const DetailContainer = (props) => {
@@ -30,6 +30,28 @@ const DetailContainer = (props) => {
     }
   };
 
+  const [tasksData, setTasksData] = useState([]);
+
+  useEffect(() => {
+    ServicesTasks.getTasks().then((data) => {
+      setTasksData(data);
+    });
+  }, []);
+
+  const updateTask = (id, task) => {
+    const updatedTask = {
+      ...tasksData,
+      ...task,
+    };
+    ServicesTasks.updateTask(id, updatedTask);
+  };
+
+  const deleteTask = (id) => {
+    ServicesTasks.deleteTask(id).then(() => {
+      setTasksData(tasksData.filter((task) => task.id !== id));
+    });
+  };
+
   const [title, setTitle] = useState(projectTitle);
 
   const { setModalIsOpen } = useContext(AppContext);
@@ -43,7 +65,12 @@ const DetailContainer = (props) => {
       task_responsable_id: '622e2f35e1f716a4bd1aade0',
       status: '6235b08b4a11c82ac30baa02',
     };
-    ServiceTasks.createTask(updatedValue).then(() => {
+    ServicesTasks.createTask(updatedValue).then(() => {
+      const withNewTask = [];
+      withNewTask.push(...tasksData, updatedValue);
+      setTasksData(withNewTask);
+      setModalIsOpen(false);
+
       setModalIsOpen(false);
     });
   };
@@ -87,7 +114,12 @@ const DetailContainer = (props) => {
           modalOnSubmit={modalOnSubmit}
         />
 
-        <Tasks projectId={projectId} />
+        <Tasks
+          projectId={projectId}
+          updateTask={updateTask}
+          deleteTask={deleteTask}
+          tasksData={tasksData}
+        />
       </DetailMain>
     </>
   );

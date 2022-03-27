@@ -8,7 +8,7 @@ import Tasks from '../ProjectDetail/DetailContainer/Tasks';
 const TasksMain = () => (
   <Home title="Tasks">
     <DndProvider backend={HTML5Backend}>
-      <Tasks />
+      <Tasks projectId={null} />
     </DndProvider>
     <Modal title="New Task" description="Add task details" section="Task" />
   </Home>
