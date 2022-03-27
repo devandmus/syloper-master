@@ -17,9 +17,8 @@ const updateTask = (id, data) =>
     method: 'PUT',
   }).then((response) => response.data);
 
-const deleteTask = (data) =>
-  Request('/api/tasks/delete', {
-    data,
+const deleteTask = (id) =>
+  Request(`/api/tasks/delete/${id}`, {
     method: 'DELETE',
   }).then((response) => response.data);
 
