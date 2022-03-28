@@ -25,17 +25,21 @@ const schema = new mongoose.Schema(
     active: {
       type: Boolean,
       default: true
+    },
+    passwordTokenReset: {
+      type: String,
     }
   },
   {
     timestamps: true,
     toJSON: {
       transform: (doc, ret) => {
-        ret.id = doc._id,
-          delete ret._id,
-          delete ret.__v,
-          delete ret.password,
-          delete ret.active
+        ret.id = doc._id;
+          delete ret._id;
+          delete ret.__v;
+          delete ret.password;
+          delete ret.active;
+          delete ret.passwordTokenReset;
       }
     }
   }

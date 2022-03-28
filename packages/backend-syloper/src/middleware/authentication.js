@@ -5,7 +5,6 @@ const config = require('../../config');
 const publicPaths = [
   '/',
   '/health',
-  '/api/auth/login'
 ];
 
 const authentication = (ctx, next) => {
@@ -17,7 +16,7 @@ const authentication = (ctx, next) => {
       config.JWT_SECRET
     );
   }
-  if (publicPaths.includes(url) || ctx.user) {
+  if (publicPaths.includes(url) || url.includes('/api/auth/')|| ctx.user) {
     return next();
   }
   ctx.status = 403;

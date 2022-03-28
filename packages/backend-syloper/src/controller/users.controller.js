@@ -2,6 +2,7 @@ const Users = require("../../database/models/User.model");
 const jwt = require('jsonwebtoken');
 const config = require('../../config/settings');
 
+
 const getUser = async ({
   email,
   password,
@@ -23,8 +24,9 @@ const getUser = async ({
       return {status: 200, accessToken: token};
     }
   }
-  return {status: 401, error: "No Autorizado"};
+  return {status: 401, error: "No authorized"};
 };
+
 
 const getUsers = async () => {
   const users = await Users.find();
@@ -32,7 +34,37 @@ const getUsers = async () => {
   return {status: 200, users: data};
 }
 
+
+const createPasswordToken = async email => {
+  const data = {
+    email,
+    exp: Date.now() + (1000 * 60 * 15)
+  };
+  const token = jwt.sign(data, config.JWT_SECRET);
+  return await Users.findOneAndUpdate(
+    { email },
+    { passwordTokenReset: token},
+    {new: true}
+  );
+};
+
+
+const passwordTokenValidator = async token =>
+  jwt.verify(token, config.JWT_SECRET);
+
+
+const setNewPassword = async ({ email, password }) =>
+  await Users.findOneAndUpdate(
+    { email },
+    { password, passwordTokenReset: null },
+    { new: true }
+  );
+
+
 module.exports = {
   getUser,
   getUsers,
+  createPasswordToken,
+  passwordTokenValidator,
+  setNewPassword,
 }

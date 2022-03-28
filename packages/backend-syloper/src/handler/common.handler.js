@@ -1,4 +1,7 @@
+const emailTasks = require('../../email/tasks');
 const commonController = require('../controller/common.controller');
+const usersController = require('../controller/users.controller');
+
 
 const Models = {
   customers: require('../../database/models/Customer.model'),
@@ -9,6 +12,7 @@ const Models = {
   'task-status': require('../../database/models/TaskStatus.model'),
 }
 
+
 const list = async (ctx) => {
   const { model } = ctx.params;
   console.log(model)
@@ -17,13 +21,28 @@ const list = async (ctx) => {
   ctx.body = body;
 }
 
+
 const create = async (ctx) => {
   const { model } = ctx.params;
   const payload = ctx.request.body;
-  const { status, body } = await commonController.create(Models[model], payload);
+  const isUser = model === 'users';
+  const { status, body } = await commonController.create(Models[model], {
+    ...payload,
+    ...(isUser && { password: 'misc-password' }),
+  });
+  if (isUser) {
+    const email = payload.email;
+    const user =
+      await usersController.createPasswordToken(email);
+    emailTasks.WelcomeNewMember({
+      email,
+      passwordTokenReset: user.passwordTokenReset,
+    });
+  }
   ctx.status = status;
   ctx.body = body;
 }
+
 
 const get = async (ctx) => {
   const { id, model } = ctx.params;
@@ -32,14 +51,15 @@ const get = async (ctx) => {
   ctx.body = body;
 }
 
+
 const update = async (ctx) => {
   const { id, model } = ctx.params;
   const payload = ctx.request.body;
   const { status, body } = await commonController.putById(Models[model], id, payload);
-  console.log(status)
   ctx.status = status;
   ctx.body = body;
 }
+
 
 const remove = async (ctx) => {
   const { id, model } = ctx.params;
@@ -47,6 +67,7 @@ const remove = async (ctx) => {
   ctx.status = status;
   ctx.body = body;
 }
+
 
 module.exports = {
   list,
