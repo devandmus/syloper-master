@@ -1,25 +1,14 @@
 import React, { useState } from 'react';
 import { useTheme } from 'styled-components';
-import { HiMenuAlt3 } from 'react-icons/hi';
-import { IoCloseSharp } from 'react-icons/io5';
-import classNames from 'classnames';
 import { useDrag } from 'react-dnd';
 import { EditText, EditTextarea } from 'react-edit-text';
 import { dateFormatter } from '../../../../../../utils/date';
-import {
-  AssignImg,
-  TaskCard,
-  TDescription,
-  TFooter,
-  TTitle,
-  TMenuIcon,
-  TMenu,
-} from './styles';
-
+import { AssignImg, TaskCard, TDescription, TFooter, TTitle } from './styles';
+import BurgerIcon from '../../../../../UI/BurgerMenu/Icon';
+import BurgerMenu from '../../../../../UI/BurgerMenu/Menu';
 import 'react-edit-text/dist/index.css';
 
 const Task = ({
-  key,
   taskId,
   date,
   title,
@@ -30,9 +19,9 @@ const Task = ({
   updatedAt,
   id,
   updateTask,
+  deleteTask,
 }) => {
   const [isOpenMenu, setIsOpenMenu] = useState(false);
-  const theme = useTheme();
 
   const handleClickMenu = () => {
     setIsOpenMenu(!isOpenMenu);
@@ -70,9 +59,10 @@ const Task = ({
 
   return (
     <TaskCard ref={drag} style={{ opacity: isDragging ? 0.5 : 1 }}>
-      <TMenuIcon onClick={handleClickMenu}>
-        <HiMenuAlt3 size="20" />
-      </TMenuIcon>
+      <BurgerIcon
+        handleClickMenu={handleClickMenu}
+        setIsOpenMenu={setIsOpenMenu}
+      />
       <TTitle>
         <EditText
           type="text"
@@ -118,17 +108,11 @@ const Task = ({
         </div>
         <AssignImg />
       </TFooter>
-      <TMenu className={classNames({ active: isOpenMenu })}>
-        <i onClick={handleClickMenu}>
-          <IoCloseSharp color="#fff" size="20px" />
-        </i>
-        <div>
-          <p>Start Task</p>
-          <p>Complete Task</p>
-          <p>Edit</p>
-          <p>Erase</p>
-        </div>
-      </TMenu>
+      <BurgerMenu
+        handleClickMenu={handleClickMenu}
+        deleteCard={() => deleteTask(id)}
+        isOpenMenu={isOpenMenu}
+      />
     </TaskCard>
   );
 };

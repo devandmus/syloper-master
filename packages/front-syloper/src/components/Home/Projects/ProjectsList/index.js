@@ -1,20 +1,8 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { ProjectsGrid } from './styles';
 import Project from './Project';
-import ServicesProjects from '../../../../services/ServicesProjects';
 
-const ProjectsList = () => {
-  const [isLoading, setIsLoading] = useState(true);
-
-  const [projectsData, setProjectsData] = useState([]);
-
-  useEffect(() => {
-    ServicesProjects.getProjects().then((data) => {
-      setProjectsData(data);
-      setIsLoading(false);
-    });
-  }, []);
-
+const ProjectsList = ({ isLoading, projectsData, deleteProject }) => {
   return (
     <ProjectsGrid>
       {isLoading ? (
@@ -35,6 +23,7 @@ const ProjectsList = () => {
               createdAt={project.createdAt}
               updatedAt={project.updatedAt}
               id={project.id}
+              deleteProject={() => deleteProject(project.id)}
             />
           ))}
         </>

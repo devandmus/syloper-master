@@ -17,9 +17,8 @@ const updateProject = (id, data) =>
     data,
   }).then((response) => response.data);
 
-const deleteProject = (id, data) =>
+const deleteProject = (id) =>
   Request(`/api/projects/delete/${id}`, {
-    data,
     method: 'DELETE',
   }).then((response) => response.data);
 

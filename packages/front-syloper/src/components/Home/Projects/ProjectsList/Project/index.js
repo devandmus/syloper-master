@@ -1,15 +1,17 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link } from 'gatsby';
 import {
   DueDate,
   Progress,
-  ProjectContainer,
+  ProjectCard,
   TasksTxt,
   Title,
   Users,
   UserImg,
 } from './styles';
 import { dateFormatter } from '../../../../../utils/date';
+import BurgerIcon from '../../../../UI/BurgerMenu/Icon';
+import BurgerMenu from '../../../../UI/BurgerMenu/Menu';
 
 const Project = (props) => {
   const users = ['user1', 'user2', 'user3', 'user4'];
@@ -26,15 +28,25 @@ const Project = (props) => {
     dueDate,
     id,
     title,
+    deleteProject,
   } = props;
 
   const calcTranslate = (index) => `-${index * 2 * 10}`;
 
+  const [isOpenMenu, setIsOpenMenu] = useState(false);
+
+  const handleClickMenu = () => {
+    setIsOpenMenu(!isOpenMenu);
+  };
+
   return (
-    <ProjectContainer>
+    <ProjectCard>
+      <BurgerIcon
+        handleClickMenu={handleClickMenu}
+        setIsOpenMenu={setIsOpenMenu}
+      />
       <Link to={`/project-detail/?id=${id}`}>
         <Title>
-          {/* <Link to="/project-detail/"> */}
           <h4>{title}</h4>
           <p>{description}</p>
         </Title>
@@ -55,7 +67,12 @@ const Project = (props) => {
           ))}
         </Users>
       </Link>
-    </ProjectContainer>
+      <BurgerMenu
+        handleClickMenu={handleClickMenu}
+        deleteCard={() => deleteProject(id)}
+        isOpenMenu={isOpenMenu}
+      />
+    </ProjectCard>
   );
 };
 
