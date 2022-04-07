@@ -29,8 +29,8 @@ const create = async (model, data) =>
     }));
 
 
-const getAll = async model => {
-  const list = await model.find();
+const getAll = async (model, filter) => {
+  const list = await model.find(filter ? filter : {});
   const body = await JSON.parse(await JSON.stringify(list));
   return { status: 200, body };
 }

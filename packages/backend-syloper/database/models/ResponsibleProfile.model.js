@@ -2,10 +2,15 @@ const mongoose = require('mongoose');
 
 const schema = new mongoose.Schema(
   {
-    project_status_description: {
+    type: {
       type: String,
-      required: true
-    }
+      required: true,
+      unique: true,
+    },
+    hourly_cost: {
+      type: Number,
+      required: true,
+    },
   },
   {
     timestamps: true,
@@ -19,4 +24,4 @@ const schema = new mongoose.Schema(
   }
 );
 
-module.exports = mongoose.model('Project_Status', schema);
+module.exports = mongoose.model('ResponsibleProfile', schema);

@@ -2,11 +2,6 @@ const mongoose = require('mongoose');
 
 const schema = new mongoose.Schema(
   {
-    project_id: {
-      type: mongoose.ObjectId,
-      required: true,
-      ref: 'Project'
-    },
     title: {
       type: String,
       required: true,
@@ -14,21 +9,32 @@ const schema = new mongoose.Schema(
     task_description: {
       type: String
     },
-    status: {
-      type: mongoose.ObjectId,
-      required: true
-    },
     task_due_date: {
       type: Date
     },
-    task_responsable_id: {
+    estimated_hours: {
+      type: Number,
+      required: true,
+    },
+    status: {
+      type: Number,
+      default: 0,
+    },
+    project_id: {
+      type: mongoose.ObjectId,
+      required: true,
+      ref: 'Project'
+    },
+    task_responsible_id: {
       type: mongoose.ObjectId,
       required: true,
       ref: 'User'
     },
-    task_estimated_time: {
-      type: Date
-    }
+    responsible_profile_id: {
+      type: mongoose.ObjectId,
+      required: true,
+      ref: 'ResponsibleProfile'
+    },
   },
   {
     timestamps: true,

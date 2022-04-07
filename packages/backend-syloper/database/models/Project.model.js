@@ -12,7 +12,6 @@ const schema = new mongoose.Schema(
     },
     project_due_date: {
       type: Date,
-      required: false
     },
     project_title:{
       type: String,
@@ -20,19 +19,15 @@ const schema = new mongoose.Schema(
     },
     project_description:{
       type: String,
-      required: false
-    },
-    project_cost:{
-      type: Number,
-      required: true
     },
     project_responsable:{
-      type: String,
-      required: true
-    },
-    project_status_id: {
       type: mongoose.ObjectId,
-      required: true
+      required: true,
+      ref: 'User',
+    },
+    project_status: {
+      type: Array,
+      default: ['To Do', 'Doing', 'Done'],
     }
   },
   {

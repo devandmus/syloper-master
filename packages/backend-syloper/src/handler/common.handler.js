@@ -8,14 +8,13 @@ const Models = {
   tasks: require('../../database/models/Task.model'),
   users: require('../../database/models/User.model'),
   projects: require('../../database/models/Project.model'),
-  'project-status': require('../../database/models/ProjectStatus.model'),
+  'responsible-profile': require('../../database/models/ResponsibleProfile.model'),
   'task-status': require('../../database/models/TaskStatus.model'),
 }
 
 
 const list = async (ctx) => {
   const { model } = ctx.params;
-  console.log(model)
   const { status, body } = await commonController.getAll(Models[model]);
   ctx.status = status;
   ctx.body = body;

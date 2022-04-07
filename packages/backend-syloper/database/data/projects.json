@@ -1,24 +1,26 @@
 [
   {
     "customer_id": "622e7b309c6a98bb6282bc1b",
-    "project_date": "2022-03-13T23:21:36.075Z",
-    "project_due_date": "2022-03-13T23:21:36.075Z",
-    "project_title": "Create Earth",
-    "project_description": null,
-    "project_cost": 387292,
-    "project_responsable": "God",
-    "project_status_id": "622e7a9d6b3414b67e211b79",
-    "_id": "62361c5da35a3ca4f5539d0c"
+    "project_date": "2022-04-13T23:21:36.075Z",
+    "project_title": "Rock",
+    "project_description": "Save ears from Trap",
+    "project_responsable": "622e2f35e1f716a4bd1aade0",
+    "_id": "624f464470fa5bff7ba7ad82"
+  },
+  {
+    "customer_id": "622e7b309c6a98bb6282bc1b",
+    "project_date": "2022-05-13T23:21:36.075Z",
+    "project_title": "Classical Music",
+    "project_description": "Save ears from anything",
+    "project_responsable": "622e2f35e1f716a4bd1aade0",
+    "_id": "624f464470fa5bff7ba7ad84"
   },
   {
     "customer_id": "622e7b309c6a98bb6282bc1b",
     "project_date": "2022-03-13T23:21:36.075Z",
-    "project_due_date": "2022-03-13T23:21:36.075Z",
-    "project_title": "Save Earth",
-    "project_description": null,
-    "project_cost": 49792,
-    "project_responsable": "Jesus",
-    "project_status_id": "622e7a9d6b3414b67e211b79",
-    "_id": "62361c707a2b6ac150f83b96"
+    "project_title": "Main",
+    "project_description": "Save Earth",
+    "project_responsable": "622e2f35e1f716a4bd1aade0",
+    "_id": "624f53394aba5c90ea00d710"
   }
 ]
