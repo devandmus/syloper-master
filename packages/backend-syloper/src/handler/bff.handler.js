@@ -56,7 +56,7 @@ const userDashboard = async (ctx) => {
     })
 
   ctx.status = status;
-  ctx.body = { projects, ...globalStatus };
+  ctx.body = { ...globalStatus, projects };
 }
 
 
