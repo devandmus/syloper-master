@@ -6,7 +6,7 @@
     "estimated_hours": 10,
     "status": 0,
     "project_id": "624f464470fa5bff7ba7ad84",
-    "task_responsible_id": "622e2f35e1f716a4bd1aade0",
+    "task_responsible_user_id": "624f601783d6ec1bd221a83c",
     "responsible_profile_id": "624f3972c9566197db2071e4",
     "_id": "624f423f70127e25deb33a6f"
   },
@@ -17,7 +17,7 @@
     "estimated_hours": 20,
     "status": 0,
     "project_id": "624f464470fa5bff7ba7ad84",
-    "task_responsible_id": "622e2f35e1f716a4bd1aade0",
+    "task_responsible_user_id": "624f601783d6ec1bd221a83c",
     "responsible_profile_id": "624f3972c9566197db2071e4",
     "_id": "624f426e70127e25deb33a71"
   },
@@ -28,7 +28,7 @@
     "estimated_hours": 15,
     "status": 1,
     "project_id": "624f464470fa5bff7ba7ad84",
-    "task_responsible_id": "622e2f35e1f716a4bd1aade0",
+    "task_responsible_user_id": "624f601783d6ec1bd221a83c",
     "responsible_profile_id": "624f3972c9566197db2071e4",
     "_id": "624f602f47a898093120166a"
   }

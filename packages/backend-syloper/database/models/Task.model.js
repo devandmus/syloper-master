@@ -25,7 +25,7 @@ const schema = new mongoose.Schema(
       required: true,
       ref: 'Project'
     },
-    task_responsible_id: {
+    task_responsible_user_id: {
       type: mongoose.ObjectId,
       required: true,
       ref: 'User'

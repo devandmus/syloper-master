@@ -2,11 +2,13 @@
   {
     "name": "Admin",
     "email": "admin@syloper.com",
-    "password": "password"
+    "password": "password",
+    "_id": "624f601783d6ec1bd221a83c"
   },
   {
     "name": "Subadmin",
     "email": "subadmin@syloper.com",
-    "password": "password"
+    "password": "password",
+    "_id": "624f601783d6ec1bd221a83d"
   }
 ]
