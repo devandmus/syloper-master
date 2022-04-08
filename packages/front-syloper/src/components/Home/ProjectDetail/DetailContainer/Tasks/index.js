@@ -15,11 +15,23 @@ import Task from './Task';
 import { useViewport } from '../../../../../contexts/viewportSize';
 import Button from '../../../../UI/Button';
 import AppContext from '../../../../../contexts/App';
-import ServicesTaskStatus from '../../../../../services/ServicesTaskStatus';
 
 const Tasks = ({ tasksData, projectId, updateTask, deleteTask }) => {
   const [activeStatus, setActiveStatus] = useState('status1');
-  const [taskStatusData, setTaskStatusData] = useState([]);
+  const [taskStatusData, setTaskStatusData] = useState([
+    {
+      "task_status_description": "Ready to Start",
+      "id": 0
+    },
+    {
+      "task_status_description": "In Progress",
+      "id": 1
+    },
+    {
+      "task_status_description": "Completed",
+      "id": 2
+    }
+  ]);
   const { setModalIsOpen } = useContext(AppContext);
   const { width } = useViewport();
   const breakpoint = 767;
@@ -29,11 +41,6 @@ const Tasks = ({ tasksData, projectId, updateTask, deleteTask }) => {
     setActiveStatus(name);
   };
 
-  useEffect(() => {
-    ServicesTaskStatus.getTasksStatus().then((data) => {
-      setTaskStatusData(data);
-    });
-  }, []);
 
   const [{ canDrop, isOver }, drop] = useDrop({
     accept: 'Our first type',
