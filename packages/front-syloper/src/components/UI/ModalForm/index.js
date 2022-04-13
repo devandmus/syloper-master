@@ -8,7 +8,6 @@ import {InputStyled, TextAreaStyled} from '../Input';
 import { ModalContainer, ModalForm, Veil } from './styles';
 import AppContext from '../../../contexts/App';
 import ServicesCustomer from '../../../services/ServicesCustomer'
-import ServicesCustomer from '../../../services/ServicesCustomer'
 
 const Modal = ({ title, description, section, modalOnSubmit }) => {
   const { setModalIsOpen, modalIsOpen } = useContext(AppContext);
