@@ -1,3 +1,4 @@
 import InputStyled from './styles/InputStyled';
+import TextAreaStyled from './styles/TextAreaStyled';
 
-export default InputStyled;
+export {InputStyled, TextAreaStyled};

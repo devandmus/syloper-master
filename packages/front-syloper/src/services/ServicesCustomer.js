@@ -1,6 +1,6 @@
 import Request from './request';
 
-const getCustomers = () => Request('/api/customer').then((res) => res.data);
+const getCustomers = () => Request('/api/customers').then((res) => res.data);
 
 const getCustomerById = (id) =>
   Request(`/api/customers/detail/${id}`).then((res) => res.data);
