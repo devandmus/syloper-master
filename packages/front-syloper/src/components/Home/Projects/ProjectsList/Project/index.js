@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'gatsby';
 import {
   DueDate,
@@ -12,6 +12,8 @@ import {
 import { dateFormatter } from '../../../../../utils/date';
 import BurgerIcon from '../../../../UI/BurgerMenu/Icon';
 import BurgerMenu from '../../../../UI/BurgerMenu/Menu';
+import ServicesCustomer from '../../../../../services/ServicesCustomer';
+
 
 const Project = (props) => {
   const users = ['user1', 'user2', 'user3', 'user4'];
@@ -30,6 +32,14 @@ const Project = (props) => {
     title,
     deleteProject,
   } = props;
+  
+  const [customerData, setCustomerData] = useState({});
+  
+  useEffect(() => {
+    ServicesCustomer.getCustomerById(customerId).then((data) => {
+      setCustomerData(data);
+    });
+  }, []);
 
   const calcTranslate = (index) => `-${index * 2 * 10}`;
 
@@ -48,7 +58,7 @@ const Project = (props) => {
       <Link to={`/project-detail/?id=${id}`}>
         <Title>
           <h4>{title}</h4>
-          <p>{description}</p>
+          <p>Customer: {customerData.customer_full_name}</p>
         </Title>
         <DueDate>Due Date: {dateFormatter(dueDate)}</DueDate>
         <Progress>

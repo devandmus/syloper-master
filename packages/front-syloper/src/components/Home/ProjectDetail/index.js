@@ -39,6 +39,7 @@ const ProjectDetail = () => {
             cost={projectData.project_cost}
             projectDate={projectData.project_date}
             projectDueDate={projectData.project_due_date}
+            projectStatus={projectData.project_status}
             projectId={projectIdUrl}
             updateProject={updateProject}
           />

@@ -2,8 +2,7 @@ import styled from 'styled-components';
 
 const DetailTitle = styled.section`
   width: 100%;
-  display: flex;
-  margin-bottom: 40px;
+  margin-bottom: 25px;
   align-items: baseline;
 
   @media only screen and (max-width: 768px) {
@@ -25,7 +24,7 @@ const DetailTitle = styled.section`
   }
 
   h4 {
-    font-size: 1.7rem;
+    font-size: 1.5rem;
     color: ${({ theme }) => theme.color.gray500};
     font-weight: 500;
 

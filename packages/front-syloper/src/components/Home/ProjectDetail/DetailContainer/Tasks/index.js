@@ -16,22 +16,14 @@ import { useViewport } from '../../../../../contexts/viewportSize';
 import Button from '../../../../UI/Button';
 import AppContext from '../../../../../contexts/App';
 
-const Tasks = ({ tasksData, projectId, updateTask, deleteTask }) => {
+const Tasks = ({ tasksData, projectId, updateTask, deleteTask, projectStatus }) => {
   const [activeStatus, setActiveStatus] = useState('status1');
-  const [taskStatusData, setTaskStatusData] = useState([
-    {
-      "task_status_description": "Ready to Start",
-      "id": 0
-    },
-    {
-      "task_status_description": "In Progress",
-      "id": 1
-    },
-    {
-      "task_status_description": "Completed",
-      "id": 2
-    }
-  ]);
+ 
+
+  const acumulatedTasks = projectStatus.map( (_, idx) => { //[]
+    return tasksData.filter(task => task.status === idx && task.project_id === projectId) //[{}]
+  })
+
   const { setModalIsOpen } = useContext(AppContext);
   const { width } = useViewport();
   const breakpoint = 767;
@@ -52,31 +44,25 @@ const Tasks = ({ tasksData, projectId, updateTask, deleteTask }) => {
   });
   const ColumnsDesktop = () => (
     <>
-      {taskStatusData.map((taskStatus) => {
+
+      {acumulatedTasks.map((statusTasks, idx) => {
         return (
           <TaskColumn ref={drop}>
-            <h5>{taskStatus.task_status_description}</h5>
-            {projectId === null
-              ? tasksData.filter((task) => task.status === taskStatus.id)
-              : tasksData
-                  .filter(
-                    (task) =>
-                      task.status === taskStatus.id &&
-                      task.project_id === projectId
-                  )
+            <h5>{projectStatus[idx]}</h5>
+            {statusTasks
                   .map((task, index) => {
                     return (
                       <Task
+                      title={task.title}
+                      description={task.task_description}
+                      dueDate={task.task_due_date}
+                      estimatedHours={task.estimatedHours}
+                      status={task.status}
                         key={index}
-                        taskId={task.task_id}
-                        date={task.task_date}
-                        dueDate={task.task_due_date}
-                        description={task.task_description}
-                        responsableId={task.task_responsable_id}
+                        taskId={task.id}
+                        responsableId={task.task_responsable_user_id}
                         createdAt={task.createdAt}
                         updatedAt={task.updatedAt}
-                        id={task.id}
-                        title={task.title}
                         updateTask={() => updateTask(task.id)}
                         deleteTask={() => deleteTask(task.id)}
                       />

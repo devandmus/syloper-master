@@ -10,6 +10,7 @@ import Tasks from './Tasks';
 import 'react-edit-text/dist/index.css';
 import Modal from '../../../UI/ModalForm';
 import ServicesTasks from '../../../../services/ServicesTasks';
+import ServicesCustomer from '../../../../services/ServicesCustomer';
 import AppContext from '../../../../contexts/App';
 
 const DetailContainer = (props) => {
@@ -22,22 +23,31 @@ const DetailContainer = (props) => {
     updateProject,
     projectDueDate,
     projectId,
+    projectStatus,
   } = props;
 
-  const handleOnSave = ({ value, previousValue }) => {
-    if (value !== previousValue) {
-      updateProject({ project_title: value });
-    }
-  };
-
+  
   const [tasksData, setTasksData] = useState([]);
-
+  
+  const [customerData, setCustomerData] = useState({});
+  
+  useEffect(() => {
+    ServicesCustomer.getCustomerById(customerId).then((data) => {
+      setCustomerData(data);
+    });
+  }, []);
+  
   useEffect(() => {
     ServicesTasks.getTasks().then((data) => {
       setTasksData(data);
     });
   }, []);
-
+  
+  const handleOnSave = ({ value, previousValue }) => {
+    if (value !== previousValue) {
+      updateProject({ project_title: value });
+    }
+  };
   const updateTask = (id, task) => {
     const updatedTask = {
       ...tasksData,
@@ -85,6 +95,7 @@ const DetailContainer = (props) => {
           onChange={setTitle}
           onSave={handleOnSave}
           style={{
+            width: '100%',
             marginBottom: '10px',
             fontWeight: 600,
             fontSize: '1.5rem',
@@ -92,7 +103,7 @@ const DetailContainer = (props) => {
             fontFamily: theme.font.family,
           }}
         />
-        <h4>{customerId}</h4>
+        <h4>{customerData.customer_full_name}</h4>
       </DetailTitle>
       <DetailMain>
         <FirstInfoContainer>
@@ -116,6 +127,7 @@ const DetailContainer = (props) => {
 
         <Tasks
           projectId={projectId}
+          projectStatus={projectStatus}
           updateTask={updateTask}
           deleteTask={deleteTask}
           tasksData={tasksData}
