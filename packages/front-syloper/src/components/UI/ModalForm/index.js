@@ -4,29 +4,44 @@ import { DatePicker } from 'react-rainbow-components';
 import { IoCloseSharp } from 'react-icons/io5';
 import Select from 'react-select';
 import Button from '../Button';
-import {InputStyled, TextAreaStyled} from '../Input';
+import { InputStyled, TextAreaStyled } from '../Input';
 import { ModalContainer, ModalForm, Veil } from './styles';
 import AppContext from '../../../contexts/App';
 import ServicesCustomer from '../../../services/ServicesCustomer'
-import ServicesCustomer from '../../../services/ServicesCustomer'
+import ServicesUser from '../../../services/ServicesUser'
+import ServicesResponsible from '../../../services/ServicesResponsible'
 
 const Modal = ({ title, description, section, modalOnSubmit }) => {
   const { setModalIsOpen, modalIsOpen } = useContext(AppContext);
 
   const [clients, setClients] = useState([]);
+  const [responsibles, setResponsibles] = useState([]);
+  const [resProfile, setResProfile] = useState([]);
   const [errorMsg, setErrorMsg] = useState('');
   const [data, setData] = useState({
     title: '',
     description: '',
     dueDate: new Date(),
     customerId: '',
+    responsibleId: '',
+    responsibleProfileId: '',
+    responsibleProfileId: '',
+    estimatedHours: 0,
   });
 
   useEffect(()=>{
     ServicesCustomer.getCustomers().then((data) => {
       setClients(data);
-      console.log(clients);
     })
+    ServicesUser.getUsers().then((data) => {
+      setResponsibles(data);
+    })
+    if (section === 'Task') {
+      ServicesResponsible.getResponsibles().then(data => {
+        setResProfile(data);
+      })
+
+    }
   },[])
 
   const clienteOptions = []
@@ -37,11 +52,17 @@ const Modal = ({ title, description, section, modalOnSubmit }) => {
 
   } )
 
-  const options = [
-    { value: '624f601783d6ec1bd221a83c', label: 'Yessica' },
-    { value: '624f601783d6ec1bd221a83d', label: 'Andres' },
-    { value: 'Joel', label: 'Joel' },
-  ];
+  const responsiblesOptions = []
+
+  responsibles.map ((responsible) => {
+    responsiblesOptions.push({value: responsible.id, label: responsible.name})
+  })
+  const resProfileOptions = []
+
+  resProfile.map ((responsible) => {
+    responsiblesOptions.push({value: responsible.id, label: responsible.name})
+  })
+
 
   function onChangeAnyInput() {
     setErrorMsg('');
@@ -58,11 +79,38 @@ const Modal = ({ title, description, section, modalOnSubmit }) => {
   }
 
   function onChangeClientName(value) {
-    const updatedValue = { customerId: value };
+    const updatedValue = { customerId: value.value };
     setData(() => ({
       ...data,
       ...updatedValue,
     }));
+    onChangeAnyInput();
+  }
+  
+  const onChangeResponsible = (value) => {
+    const updatedValue = { responsibleId: value.value}
+    setData(()=> ({
+      ...data,
+      ...updatedValue
+    }))
+    onChangeAnyInput();
+  }
+  
+  const onChangeProfile = (value) => {
+    const updatedValue = { responsibleProfileId: value.value}
+    setData(()=> ({
+      ...data,
+      ...updatedValue
+    }))
+    onChangeAnyInput();
+  }
+
+  const onChangeEstimatedHour = (e) => {
+    const updatedValue = { estimatedHours: e.target.value}
+    setData(()=> ({
+      ...data,
+      ...updatedValue
+    }))
     onChangeAnyInput();
   }
 
@@ -137,12 +185,29 @@ const Modal = ({ title, description, section, modalOnSubmit }) => {
               placeholder="Select Due Date"
             />
           </div>
-          {section === 'Task' && (
-            <div>
-              <label>Assignee</label>
-              <Select options={options} className="modal-select" />
-            </div>
-          )}
+          {section === 'Task' ? 
+          <div>
+            <label>Estimated Hour</label>
+            <InputStyled
+            value={data.estimatedHours}
+            onChange={e => onChangeEstimatedHour(e)}/>
+          </div> 
+          : null }
+
+          <div>
+            <label>{section === 'Task' ? 
+              `Assignee` : `Project Responsible`}</label>
+            <Select options={responsiblesOptions} className="modal-select" 
+            onChange={value => onChangeResponsible(value)}/>
+          </div>
+          {section === 'Task' ? 
+          <div>
+            <label> Profile</label>
+            <Select options={resProfileOptions} className="modal-select" 
+            onChange={value => onChangeProfile(value)}/>
+          </div> 
+          : null }
+          
           <Button
             type="button"
             onClick={handleSubmit}
