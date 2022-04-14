@@ -72,7 +72,7 @@ const DetailContainer = (props) => {
       title: task.title,
       task_due_date: task.dueDate,
       task_description: task.description,
-      task_responsable_id: task.responsibleId,
+      task_responsible_user_id: task.responsibleId,
       responsible_profile_id: task.responsibleProfileId,
       estimated_hours: task.estimatedHours,
       status: 0,

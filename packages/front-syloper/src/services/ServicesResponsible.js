@@ -1,6 +1,6 @@
 import Request from './request';
 
-const getResponsibles = () => Request('/api/responsibleprofile').then((res) => res.data);
+const getResponsibles = () => Request('/api/responsible-profile').then((res) => res.data);
 
 export default {
     getResponsibles,

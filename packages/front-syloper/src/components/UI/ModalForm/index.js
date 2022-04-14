@@ -60,7 +60,7 @@ const Modal = ({ title, description, section, modalOnSubmit }) => {
   const resProfileOptions = []
 
   resProfile.map ((responsible) => {
-    responsiblesOptions.push({value: responsible.id, label: responsible.name})
+    resProfileOptions.push({value: responsible.id, label: responsible.type+' $'+responsible.hourly_cost})
   })
 
 
