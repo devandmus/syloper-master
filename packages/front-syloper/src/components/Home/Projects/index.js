@@ -26,10 +26,11 @@ const Projects = () => {
   };
   const modalOnSubmit = (project) => {
     const updatedProject = {
-      project_due_date: project.dueDate,
+      project_date: project.dueDate,
       project_title: project.title,
       project_description: project.description,
-      project_date: new Date(),
+      customer_id: project.customerId,
+      project_responsable: project.responsibleId,
     };
 
     ServicesProjects.createProject(updatedProject).then(() => {

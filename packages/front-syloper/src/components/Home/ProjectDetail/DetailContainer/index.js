@@ -72,8 +72,10 @@ const DetailContainer = (props) => {
       title: task.title,
       task_due_date: task.dueDate,
       task_description: task.description,
-      task_responsable_id: '622e2f35e1f716a4bd1aade0',
-      status: '6235b08b4a11c82ac30baa02',
+      task_responsible_user_id: task.responsibleId,
+      responsible_profile_id: task.responsibleProfileId,
+      estimated_hours: task.estimatedHours,
+      status: 0,
     };
     ServicesTasks.createTask(updatedValue).then(() => {
       const withNewTask = [];
