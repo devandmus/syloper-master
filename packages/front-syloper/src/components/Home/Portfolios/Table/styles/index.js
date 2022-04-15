@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 const TableBody = styled.table`
-  width: 100vw;
+  width: 100%;
   background-color: #fff;
   text-align: center;
   border-radius: 15px;

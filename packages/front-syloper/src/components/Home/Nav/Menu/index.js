@@ -47,18 +47,24 @@ const Menu = () => {
         </MenuItem>
       </Link>
 
-      <MenuItem>
-        <i>
-          <BsFiles {...iconProps} />
-        </i>
-        <p>Portfolios</p>
-      </MenuItem>
-      <MenuItem>
-        <i>
-          <IoPeopleOutline {...iconProps} />
-        </i>
-        <p>Responsibles</p>
-      </MenuItem>
+      <Link to="/portfolios">
+        <MenuItem>
+          <i>
+            <BsFiles {...iconProps} />
+          </i>
+          <p>Portfolios</p>
+        </MenuItem>
+      </Link>
+
+      <Link to="/responsibles">
+        <MenuItem>
+          <i>
+            <IoPeopleOutline {...iconProps} />
+          </i>
+          <p>Responsibles</p>
+        </MenuItem>
+      </Link>
+
       <MenuItem onClick={Auth.logout}>
         <i>
           <RiLogoutCircleLine size="1.6em" color={theme.color.primaryGreen} />
