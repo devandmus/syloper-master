@@ -2,10 +2,10 @@ import React, { useState } from 'react';
 import { useTheme } from 'styled-components';
 import { useDrag } from 'react-dnd';
 import { EditText, EditTextarea } from 'react-edit-text';
-import { dateFormatter } from '../../../../../../utils/date';
+import { dateFormatter } from '../../../../../utils/date';
 import { AssignImg, TaskCard, TDescription, TFooter, TTitle } from './styles';
-import BurgerIcon from '../../../../../UI/BurgerMenu/Icon';
-import BurgerMenu from '../../../../../UI/BurgerMenu/Menu';
+import BurgerIcon from '.././../../../UI/BurgerMenu/Icon';
+import BurgerMenu from '.././../../../UI/BurgerMenu/Menu';
 import 'react-edit-text/dist/index.css';
 
 const Task = ({

@@ -12,18 +12,22 @@ import {
 } from './styles';
 
 import Task from './Task';
-import { useViewport } from '../../../../../contexts/viewportSize';
-import Button from '../../../../UI/Button';
-import AppContext from '../../../../../contexts/App';
+import { useViewport } from '../../../../contexts/viewportSize';
+import Button from '../../../UI/Button';
+import AppContext from '../../../../contexts/App';
 
-const Tasks = ({ tasksData, projectId, updateTask, deleteTask, projectStatus }) => {
+const Tasks = ({ tasksData, updateTask, deleteTask, projectStatus, projectId }) => {
   const [activeStatus, setActiveStatus] = useState('status1');
  
 
   const acumulatedTasks = projectStatus.map( (_, idx) => { //[]
+    if (projectId === null)
+    {
+      return tasksData.filter(task => task.status === idx) //[{}]
+      
+    }
     return tasksData.filter(task => task.status === idx && task.project_id === projectId) //[{}]
   })
-
   const { setModalIsOpen } = useContext(AppContext);
   const { width } = useViewport();
   const breakpoint = 767;

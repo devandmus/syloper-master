@@ -6,7 +6,7 @@ import DueDate from './DueDate';
 import Participants from './Participants';
 import Status from './Status';
 import { DetailTitle, DetailMain, FirstInfoContainer } from './styles';
-import Tasks from './Tasks';
+import Tasks from '../../TasksMain/Tasks';
 import 'react-edit-text/dist/index.css';
 import Modal from '../../../UI/ModalForm';
 import ServicesTasks from '../../../../services/ServicesTasks';
