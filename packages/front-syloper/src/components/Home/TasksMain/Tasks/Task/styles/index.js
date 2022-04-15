@@ -48,12 +48,5 @@ const TFooter = styled.div`
     }
 `;
 
-const AssignImg = styled.span`
-  width: 45px;
-  height: 45px;
-  background-color: gray;
-  border: 1px solid #fff;
-  border-radius: 50%;
-`;
 
-export { TaskCard, TTitle, TDescription, TFooter, AssignImg };
+export { TaskCard, TTitle, TDescription, TFooter };

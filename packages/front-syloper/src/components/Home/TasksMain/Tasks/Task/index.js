@@ -1,15 +1,15 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useTheme } from 'styled-components';
 import { useDrag } from 'react-dnd';
 import { EditText, EditTextarea } from 'react-edit-text';
 import { dateFormatter } from '../../../../../utils/date';
-import { AssignImg, TaskCard, TDescription, TFooter, TTitle } from './styles';
+import { TaskCard, TDescription, TFooter, TTitle } from './styles';
 import BurgerIcon from '.././../../../UI/BurgerMenu/Icon';
 import BurgerMenu from '.././../../../UI/BurgerMenu/Menu';
 import 'react-edit-text/dist/index.css';
-
+import ServicesUser from '../../../../../services/ServicesUser';
+import Avatar from './avatar';
 const Task = ({
-  taskId,
   date,
   title,
   dueDate,
@@ -22,6 +22,14 @@ const Task = ({
   deleteTask,
 }) => {
   const [isOpenMenu, setIsOpenMenu] = useState(false);
+  const [responsible, setResponsible] = useState({});
+
+  useEffect(()=>{
+    ServicesUser.getUserById(responsableId).then((data)=>{
+      console.log(data);
+      setResponsible(data)
+    })
+  },[])
 
   const handleClickMenu = () => {
     setIsOpenMenu(!isOpenMenu);
@@ -106,7 +114,10 @@ const Task = ({
             }}
           />
         </div>
-        <AssignImg />
+        <Avatar
+        responsible={responsible}
+        
+        />
       </TFooter>
       <BurgerMenu
         handleClickMenu={handleClickMenu}

@@ -46,6 +46,24 @@ const Tasks = ({ tasksData, updateTask, deleteTask, projectStatus, projectId }) 
       canDrop: monitor.canDrop(),
     }),
   });
+
+  const MovableItem = () => {
+    const [{ isDragging }, drag] = useDrag({
+        item: { name: 'Any custom name', type: 'Irrelevant, for now' },
+        collect: (monitor) => ({
+            isDragging: monitor.isDragging(),
+        }),
+    });
+
+    const opacity = isDragging ? 0.4 : 1;
+
+    return (
+        <div ref={drag} className='movable-item' style={{  opacity }}>
+            We will move this item
+        </div>
+    )
+}
+
   const ColumnsDesktop = () => (
     <>
 
@@ -62,13 +80,13 @@ const Tasks = ({ tasksData, updateTask, deleteTask, projectStatus, projectId }) 
                       dueDate={task.task_due_date}
                       estimatedHours={task.estimatedHours}
                       status={task.status}
-                        key={index}
-                        taskId={task.id}
-                        responsableId={task.task_responsable_user_id}
-                        createdAt={task.createdAt}
-                        updatedAt={task.updatedAt}
-                        updateTask={() => updateTask(task.id)}
-                        deleteTask={() => deleteTask(task.id)}
+                      key={index}
+                      taskId={task.id}
+                      responsableId={task.task_responsible_user_id}
+                      createdAt={task.createdAt}
+                      updatedAt={task.updatedAt}
+                      updateTask={() => updateTask(task.id)}
+                      deleteTask={() => deleteTask(task.id)}
                       />
                     );
                   })}
