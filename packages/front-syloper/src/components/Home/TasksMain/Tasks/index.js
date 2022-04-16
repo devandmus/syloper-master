@@ -16,18 +16,24 @@ import { useViewport } from '../../../../contexts/viewportSize';
 import Button from '../../../UI/Button';
 import AppContext from '../../../../contexts/App';
 
-const Tasks = ({ tasksData, updateTask, deleteTask, projectStatus, projectId }) => {
+const Tasks = ({
+  tasksData,
+  updateTask,
+  deleteTask,
+  projectStatus,
+  projectId,
+}) => {
   const [activeStatus, setActiveStatus] = useState('status1');
- 
 
-  const acumulatedTasks = projectStatus.map( (_, idx) => { //[]
-    if (projectId === null)
-    {
-      return tasksData.filter(task => task.status === idx) //[{}]
-      
+  const acumulatedTasks = projectStatus.map((_, idx) => {
+    // []
+    if (projectId === null) {
+      return tasksData.filter((task) => task.status === idx); // [{}]
     }
-    return tasksData.filter(task => task.status === idx && task.project_id === projectId) //[{}]
-  })
+    return tasksData.filter(
+      (task) => task.status === idx && task.project_id === projectId
+    ); // [{}]
+  });
   const { setModalIsOpen } = useContext(AppContext);
   const { width } = useViewport();
   const breakpoint = 767;
@@ -37,59 +43,30 @@ const Tasks = ({ tasksData, updateTask, deleteTask, projectStatus, projectId }) 
     setActiveStatus(name);
   };
 
-
-  const [{ canDrop, isOver }, drop] = useDrop({
-    accept: 'Our first type',
-    drop: () => ({ name: 'Some name' }),
-    collect: (monitor) => ({
-      isOver: monitor.isOver(),
-      canDrop: monitor.canDrop(),
-    }),
-  });
-
-  const MovableItem = () => {
-    const [{ isDragging }, drag] = useDrag({
-        item: { name: 'Any custom name', type: 'Irrelevant, for now' },
-        collect: (monitor) => ({
-            isDragging: monitor.isDragging(),
-        }),
-    });
-
-    const opacity = isDragging ? 0.4 : 1;
-
-    return (
-        <div ref={drag} className='movable-item' style={{  opacity }}>
-            We will move this item
-        </div>
-    )
-}
-
   const ColumnsDesktop = () => (
     <>
-
       {acumulatedTasks.map((statusTasks, idx) => {
         return (
           <TaskColumn ref={drop}>
             <h5>{projectStatus[idx]}</h5>
-            {statusTasks
-                  .map((task, index) => {
-                    return (
-                      <Task
-                      title={task.title}
-                      description={task.task_description}
-                      dueDate={task.task_due_date}
-                      estimatedHours={task.estimatedHours}
-                      status={task.status}
-                      key={index}
-                      taskId={task.id}
-                      responsableId={task.task_responsible_user_id}
-                      createdAt={task.createdAt}
-                      updatedAt={task.updatedAt}
-                      updateTask={() => updateTask(task.id)}
-                      deleteTask={() => deleteTask(task.id)}
-                      />
-                    );
-                  })}
+            {statusTasks.map((task, index) => {
+              return (
+                <Task
+                  title={task.title}
+                  description={task.task_description}
+                  dueDate={task.task_due_date}
+                  estimatedHours={task.estimatedHours}
+                  status={task.status}
+                  key={index}
+                  taskId={task.id}
+                  responsableId={task.task_responsible_user_id}
+                  createdAt={task.createdAt}
+                  updatedAt={task.updatedAt}
+                  updateTask={() => updateTask(task.id)}
+                  deleteTask={() => deleteTask(task.id)}
+                />
+              );
+            })}
           </TaskColumn>
         );
       })}

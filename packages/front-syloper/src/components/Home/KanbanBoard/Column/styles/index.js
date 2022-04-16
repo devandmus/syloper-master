@@ -2,7 +2,7 @@ import styled from 'styled-components';
 
 const TaskColumn = styled.div`
   width: 31%;
-  height: 100%;
+  height: 500px;
 
   > h5 {
     width: 100%;

@@ -3,7 +3,7 @@ import { useDrop } from 'react-dnd';
 import TaskColumn from './styles';
 
 const Column = ({ children, title }) => {
-  const [{ canDrop, isOver }, drop] = useDrop({
+  const [, drop] = useDrop({
     accept: 'CARD',
     drop: () => ({ name: title }),
     collect: (monitor) => ({
@@ -11,8 +11,6 @@ const Column = ({ children, title }) => {
       canDrop: monitor.canDrop(),
     }),
   });
-
-  console.log('options', { canDrop, isOver });
 
   return (
     <TaskColumn ref={drop}>

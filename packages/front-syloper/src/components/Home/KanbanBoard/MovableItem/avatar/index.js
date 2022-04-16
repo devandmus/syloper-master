@@ -1,19 +1,13 @@
-import React from 'react'
-import { AssignImg, AvatarStyled, DisplayName, AvatarImg } from './styles';
- 
+import React from 'react';
+import { AssignImg, AvatarStyled, DisplayName } from './styles';
 
-const Avatar = ({responsible}) => { 
+const Avatar = ({ responsible }) => {
+  return (
+    <AvatarStyled>
+      <DisplayName>{responsible.name}</DisplayName>
+      <AssignImg />
+    </AvatarStyled>
+  );
+};
 
-    return (
-        <AvatarStyled>
-            <DisplayName>{responsible.name}</DisplayName>
-            <AvatarImg>
-                <AssignImg/>
-
-            </AvatarImg>
-        
-        </AvatarStyled>
-    )
- }
-
- export default Avatar
+export default Avatar;

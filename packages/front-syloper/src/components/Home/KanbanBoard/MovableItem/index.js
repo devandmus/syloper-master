@@ -1,17 +1,20 @@
-import React, {useRef} from 'react';
+import React, {useRef, useState, useEffect} from 'react';
 import { useDrag, useDrop } from 'react-dnd';
 import { EditText, EditTextarea } from 'react-edit-text';
-import { Movable, TaskCard, TDescription, TFooter, TTitle } from './styles';
+import { TaskCard, TDescription, TFooter, TTitle } from './styles';
 import BurgerIcon from '../../../UI/BurgerMenu/Icon';
 import BurgerMenu from '../../../UI/BurgerMenu/Menu';
+import { dateFormatter } from '../../../../utils/date';
+import ServicesUser from '../../../../services/ServicesUser';
+import Avatar from './avatar';
 
 import 'react-edit-text/dist/index.css';
 
 const MovableItem = ({
   key,
+  id,
   index,
   moveCardHandler,
-  name,
   setTasksData,
   title,
   dueDate,
@@ -21,11 +24,14 @@ const MovableItem = ({
   deleteTask,
 }) => {
   const changeItemColumn = (currentItem, columnName) => {
+    
+    updateTask(currentItem.id, {status: columnName })
+
     setTasksData((prevState) => {
       return prevState.map((e) => {
         return {
           ...e,
-          column: e.name === currentItem.name ? columnName : e.column,
+          status: e.id === currentItem.id ? columnName : e.status,
         };
       });
     });
@@ -76,15 +82,27 @@ const MovableItem = ({
 
   const [{ isDragging }, drag] = useDrag({
     type: 'CARD',
-    item: { index, name },
+    item: { index, id },
     end: (item, monitor) => {
       const dropResult = monitor.getDropResult();
-      
-      if (dropResult && dropResult.name === 'Column 1') {
-        changeItemColumn(item, 'Column 1');
-      } else {
-        changeItemColumn(item, 'Column 2');
+
+      if(dropResult) {
+        const { name } = dropResult;
+        console.log(name);
+        switch (name) {
+          case 0:
+            changeItemColumn(item, 0);
+            break;
+          case 1:
+            changeItemColumn(item, 1);
+            break;
+          case 2:
+            changeItemColumn(item, 2);
+            break;
+        }
+
       }
+      
     },
 
     collect: (monitor) => ({
@@ -96,10 +114,18 @@ const MovableItem = ({
 
   drag(drop(ref));
 
-  /*   const [taskTitle, setTaskTitle] = useState(title);
+  const [taskTitle, setTaskTitle] = useState(title);
   const [taskDescription, setTaskDescription] = useState(description);
   const [taskDueDate, setTaskDueDate] = useState(dueDate);
+  const [isOpenMenu, setIsOpenMenu] = useState(false);
+  const [responsible, setResponsible] = useState({});
+  useEffect(()=>{
+    ServicesUser.getUserById(responsableId).then((data)=>{
+      setResponsible(data)
+    })
+  },[])
 
+  
   const handleSaveTitle = ({ value, previousValue }) => {
     if (value !== previousValue) {
       updateTask(id, { title: value });
@@ -120,72 +146,70 @@ const MovableItem = ({
 
   const handleClickMenu = () => {
     setIsOpenMenu(!isOpenMenu);
-  }; */
+  };
 
   return (
     <TaskCard ref={ref} style={{ opacity }}>
-      {name}
-
       <BurgerIcon
-      /*         handleClickMenu={handleClickMenu}
-        setIsOpenMenu={setIsOpenMenu} */
+        handleClickMenu={handleClickMenu}
+        setIsOpenMenu={setIsOpenMenu}
       />
       <TTitle>
         <EditText
-        /*                 type="text"
-                value={taskTitle}
-                onSave={handleSaveTitle}
-                onChange={setTaskTitle}
-                style={{
-                    width: '100%',
-                    fontWeight: 500,
-                    fontSize: '1.1rem',
-                    marginBottom: '15px',
-                }}
- */
+          type="text"
+          value={taskTitle}
+          onSave={handleSaveTitle}
+          onChange={setTaskTitle}
+          style={{
+              width: '100%',
+              fontWeight: 500,
+              fontSize: '1.1rem',
+              marginBottom: '15px',
+          }}
+
         />
       </TTitle>
       <TDescription>
         <EditTextarea
-        /*                 onChange={setTaskDescription}
-                onSave={handleSaveDescription}
-                value={taskDescription}
-                style={{
-                    width: '100%',
-                    fontSize: '0.9rem',
-                    fontWeight: 300,
-                    lineHeight: 1.3,
-                    marginBottom: '20px',
-                }}
- */
+          onChange={setTaskDescription}
+          onSave={handleSaveDescription}
+          value={taskDescription}
+          style={{
+              width: '100%',
+              fontSize: '0.9rem',
+              fontWeight: 300,
+              lineHeight: 1.3,
+              marginBottom: '20px',
+          }}
+
         />
       </TDescription>
       <TFooter>
         <div className="due-date">
           <p>Due Date:</p>
           <EditText
-          /*                     onSave={handleSaveDuedate}
-                    onChange={setTaskDueDate}
-                    type="date"
-                    value={taskDueDate}
-                    formatDisplayText={dateFormatter}
-                    style={{
-                    fontSize: '.92rem',
-                    fontWeight: 500,
-                    }}
- */
+            onSave={handleSaveDuedate}
+            onChange={setTaskDueDate}
+            type="date"
+            value={taskDueDate}
+            formatDisplayText={dateFormatter}
+            style={{
+            fontSize: '.92rem',
+            fontWeight: 500,
+            }}
+
           />
         </div>
-        {/*                 <Avatar
-                 responsible={responsible}
+        <Avatar
+          responsible={responsible}
                 
-                /> */}
+        />
       </TFooter>
       <BurgerMenu
-      /*                 handleClickMenu={handleClickMenu}
-                deleteCard={() => deleteTask(id)}
-                isOpenMenu={isOpenMenu}
- */
+        handleClickMenu={handleClickMenu}
+        deleteCard={() => deleteTask(id)}
+        isOpenMenu={isOpenMenu}
+
       />
     </TaskCard>
   );
