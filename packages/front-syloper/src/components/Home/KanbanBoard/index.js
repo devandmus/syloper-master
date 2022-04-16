@@ -1,12 +1,8 @@
 import React, { useContext, useState, useEffect } from 'react';
-import { DndProvider } from 'react-dnd';
-import { HTML5Backend } from 'react-dnd-html5-backend';
-import { TouchBackend } from 'react-dnd-touch-backend';
 import { BiTask } from 'react-icons/all';
 import Column from './Column';
 import Button from '../../UI/Button';
 import Modal from '../../UI/ModalForm';
-import Home from '../Home';
 import AppContext from '../../../contexts/App';
 
 import {
@@ -20,16 +16,14 @@ import {
 import MovableItem from './MovableItem';
 import ServicesTasks from '../../../services/ServicesTasks';
 
-const KanbanBoard = () => {
+const KanbanBoard = ({ projectId }) => {
   const [tasksData, setTasksData] = useState([]);
 
   useEffect(() => {
-    ServicesTasks.getTasks().then((data) => {
-      setTasksData(data);
+    ServicesTasks.getTasks().then((tasks) => {
+      setTasksData(tasks);
     });
   }, []);
-
-  const isMobile = window.innerWidth < 600;
 
   const { setModalIsOpen } = useContext(AppContext);
 
@@ -62,11 +56,38 @@ const KanbanBoard = () => {
     });
   };
 
+  const modalOnSubmit = (task) => {
+    const updatedValue = {
+      project_id: projectId,
+      title: task.title,
+      task_due_date: task.dueDate,
+      task_description: task.description,
+      task_responsible_user_id: task.responsibleId,
+      responsible_profile_id: task.responsibleProfileId,
+      estimated_hours: task.estimatedHours,
+      status: 0,
+    };
+    ServicesTasks.createTask(updatedValue).then(() => {
+      const withNewTask = [];
+      withNewTask.push(...tasksData, updatedValue);
+      setTasksData(withNewTask);
+      setModalIsOpen(false);
+
+      setModalIsOpen(false);
+    });
+  };
+
   const returnItemsForColumn = (columnName) => {
     return tasksData
-      .filter((task) => task.status === columnName)
+      .filter((task) => {
+        if (projectId === null) {
+          return task.status === columnName;
+        }
+        return task.status === columnName && task.project_id === projectId;
+      })
       .map((task, index) => (
         <MovableItem
+          projectId={task.project_id}
           description={task.task_description}
           id={task.id}
           dueDate={task.task_due_date}
@@ -82,7 +103,7 @@ const KanbanBoard = () => {
   };
 
   return (
-    <Home title="Tasks">
+    <>
       <SectionTitle className="task-title">
         <div>
           <i>
@@ -92,16 +113,19 @@ const KanbanBoard = () => {
         </div>
         <Button onClick={() => setModalIsOpen(true)}>Add Task</Button>
       </SectionTitle>
-      <DndProvider backend={isMobile ? TouchBackend : HTML5Backend}>
-        <Board>
-          <Column title={0}>{returnItemsForColumn(0)}</Column>
+      <Board>
+        <Column title={0}>{returnItemsForColumn(0)}</Column>
 
-          <Column title={1}>{returnItemsForColumn(1)}</Column>
-          <Column title={2}>{returnItemsForColumn(2)}</Column>
-        </Board>
-      </DndProvider>
-      <Modal title="New Task" description="Add task details" section="Task" />
-    </Home>
+        <Column title={1}>{returnItemsForColumn(1)}</Column>
+        <Column title={2}>{returnItemsForColumn(2)}</Column>
+        <Modal
+          title="New Task"
+          description="Add task details"
+          section="Task"
+          modalOnSubmit={modalOnSubmit}
+        />
+      </Board>
+    </>
   );
 };
 

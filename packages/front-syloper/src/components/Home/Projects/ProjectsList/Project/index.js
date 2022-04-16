@@ -14,7 +14,6 @@ import BurgerIcon from '../../../../UI/BurgerMenu/Icon';
 import BurgerMenu from '../../../../UI/BurgerMenu/Menu';
 import ServicesCustomer from '../../../../../services/ServicesCustomer';
 
-
 const Project = (props) => {
   const users = ['user1', 'user2', 'user3', 'user4'];
   const {
@@ -32,9 +31,9 @@ const Project = (props) => {
     title,
     deleteProject,
   } = props;
-  
+
   const [customerData, setCustomerData] = useState({});
-  
+
   useEffect(() => {
     ServicesCustomer.getCustomerById(customerId).then((data) => {
       setCustomerData(data);

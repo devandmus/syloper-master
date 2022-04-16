@@ -7,9 +7,10 @@ import Button from '../Button';
 import { InputStyled, TextAreaStyled } from '../Input';
 import { ModalContainer, ModalForm, Veil } from './styles';
 import AppContext from '../../../contexts/App';
-import ServicesCustomer from '../../../services/ServicesCustomer'
-import ServicesUser from '../../../services/ServicesUser'
-import ServicesResponsible from '../../../services/ServicesResponsible'
+import ServicesCustomer from '../../../services/ServicesCustomer';
+import ServicesUser from '../../../services/ServicesUser';
+import ServicesResponsible from '../../../services/ServicesResponsible';
+import ServicesProjects from '../../../services/ServicesProjects';
 
 const Modal = ({ title, description, section, modalOnSubmit }) => {
   const { setModalIsOpen, modalIsOpen } = useContext(AppContext);
@@ -17,6 +18,7 @@ const Modal = ({ title, description, section, modalOnSubmit }) => {
   const [clients, setClients] = useState([]);
   const [responsibles, setResponsibles] = useState([]);
   const [resProfile, setResProfile] = useState([]);
+  const [projects, setProjects] = useState([]);
   const [errorMsg, setErrorMsg] = useState('');
   const [data, setData] = useState({
     title: '',
@@ -25,44 +27,59 @@ const Modal = ({ title, description, section, modalOnSubmit }) => {
     customerId: '',
     responsibleId: '',
     responsibleProfileId: '',
-    responsibleProfileId: '',
     estimatedHours: 0,
+    projectId: '',
   });
 
-  useEffect(()=>{
+  useEffect(() => {
     ServicesCustomer.getCustomers().then((data) => {
       setClients(data);
-    })
+    });
     ServicesUser.getUsers().then((data) => {
       setResponsibles(data);
-    })
+    });
     if (section === 'Task') {
-      ServicesResponsible.getResponsibles().then(data => {
+      ServicesResponsible.getResponsibles().then((data) => {
         setResProfile(data);
-      })
+      });
 
+      ServicesProjects.getProjects().then((data) => {
+        setProjects(data);
+      });
     }
-  },[])
+  }, []);
 
-  const clienteOptions = []
+  const clienteOptions = [];
 
-  clients.map ((client) => {
-    clienteOptions.push({value: client.id, label: client.customer_full_name})
+  clients.map((client) => {
+    clienteOptions.push({ value: client.id, label: client.customer_full_name });
+  });
 
+  const responsiblesOptions = [];
 
-  } )
+  responsibles.map((responsible) => {
+    responsiblesOptions.push({
+      value: responsible.id,
+      label: responsible.name,
+    });
+  });
 
-  const responsiblesOptions = []
+  const projectsOptions = [];
 
-  responsibles.map ((responsible) => {
-    responsiblesOptions.push({value: responsible.id, label: responsible.name})
-  })
-  const resProfileOptions = []
+  projects.map((project) => {
+    projectsOptions.push({
+      value: project.id,
+      label: project.project_title,
+    });
+  });
+  const resProfileOptions = [];
 
-  resProfile.map ((responsible) => {
-    resProfileOptions.push({value: responsible.id, label: responsible.type+' $'+responsible.hourly_cost})
-  })
-
+  resProfile.map((responsible) => {
+    resProfileOptions.push({
+      value: responsible.id,
+      label: `${responsible.type} $${responsible.hourly_cost}`,
+    });
+  });
 
   function onChangeAnyInput() {
     setErrorMsg('');
@@ -86,36 +103,45 @@ const Modal = ({ title, description, section, modalOnSubmit }) => {
     }));
     onChangeAnyInput();
   }
-  
+
   const onChangeResponsible = (value) => {
-    const updatedValue = { responsibleId: value.value}
-    setData(()=> ({
+    const updatedValue = { responsibleId: value.value };
+    setData(() => ({
       ...data,
-      ...updatedValue
-    }))
+      ...updatedValue,
+    }));
     onChangeAnyInput();
-  }
-  
+  };
+
   const onChangeProfile = (value) => {
-    const updatedValue = { responsibleProfileId: value.value}
-    setData(()=> ({
+    const updatedValue = { responsibleProfileId: value.value };
+    setData(() => ({
       ...data,
-      ...updatedValue
-    }))
+      ...updatedValue,
+    }));
     onChangeAnyInput();
-  }
+  };
 
   const onChangeEstimatedHour = (e) => {
-    const updatedValue = { estimatedHours: e.target.value}
-    setData(()=> ({
+    const updatedValue = { estimatedHours: e.target.value };
+    setData(() => ({
       ...data,
-      ...updatedValue
-    }))
+      ...updatedValue,
+    }));
     onChangeAnyInput();
-  }
+  };
 
   function onChangeDescripcion(e) {
     const updatedValue = { description: e.target.value };
+    setData(() => ({
+      ...data,
+      ...updatedValue,
+    }));
+    onChangeAnyInput();
+  }
+
+  function onChangeProject(value) {
+    const updatedValue = { projectId: value.value };
     setData(() => ({
       ...data,
       ...updatedValue,
@@ -162,11 +188,65 @@ const Modal = ({ title, description, section, modalOnSubmit }) => {
           {section === 'Project' && (
             <div>
               <label>Client Name</label>
-              <Select options={clienteOptions} className="modal-select" 
-               onChange={value => onChangeClientName(value)}/>
-
+              <Select
+                options={clienteOptions}
+                className="modal-select"
+                onChange={(value) => onChangeClientName(value)}
+              />
             </div>
           )}
+          <div>
+            <DatePicker
+              value={data.dueDate}
+              onChange={(value) => onChangeDueDate(value)}
+              label="Due Date"
+              formatStyle="large"
+              className="datepicker"
+              placeholder="Select Due Date"
+            />
+          </div>
+          {section === 'Task' ? (
+            <div>
+              <label>Estimated Hour</label>
+              <InputStyled
+                value={data.estimatedHours}
+                onChange={(e) => onChangeEstimatedHour(e)}
+              />
+            </div>
+          ) : null}
+
+          <div>
+            <label>
+              {section === 'Task' ? `Assignee` : `Project Responsible`}
+            </label>
+            <Select
+              options={responsiblesOptions}
+              className="modal-select"
+              onChange={(value) => onChangeResponsible(value)}
+            />
+          </div>
+          {section === 'Task' ? (
+            <div>
+              <label> Profile</label>
+              <Select
+                options={resProfileOptions}
+                className="modal-select"
+                onChange={(value) => onChangeProfile(value)}
+              />
+            </div>
+          ) : null}
+
+          {section === 'Task' ? (
+            <div>
+              <label> Project </label>
+              <Select
+                options={projectsOptions}
+                className="modal-select"
+                onChange={(value) => onChangeProject(value)}
+              />
+            </div>
+          ) : null}
+
           <div>
             <label>Description</label>
             <TextAreaStyled
@@ -175,39 +255,7 @@ const Modal = ({ title, description, section, modalOnSubmit }) => {
               placeholder="Enter Project's Description"
             />
           </div>
-          <div>
-            <DatePicker
-              value={data.dueDate}
-              onChange={value => onChangeDueDate(value)}
-              label="Due Date"
-              formatStyle="large"
-              className="datepicker"
-              placeholder="Select Due Date"
-            />
-          </div>
-          {section === 'Task' ? 
-          <div>
-            <label>Estimated Hour</label>
-            <InputStyled
-            value={data.estimatedHours}
-            onChange={e => onChangeEstimatedHour(e)}/>
-          </div> 
-          : null }
 
-          <div>
-            <label>{section === 'Task' ? 
-              `Assignee` : `Project Responsible`}</label>
-            <Select options={responsiblesOptions} className="modal-select" 
-            onChange={value => onChangeResponsible(value)}/>
-          </div>
-          {section === 'Task' ? 
-          <div>
-            <label> Profile</label>
-            <Select options={resProfileOptions} className="modal-select" 
-            onChange={value => onChangeProfile(value)}/>
-          </div> 
-          : null }
-          
           <Button
             type="button"
             onClick={handleSubmit}
