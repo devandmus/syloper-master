@@ -1,13 +1,52 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
-export const Movable = styled.div`
-    border-radius: 10px;
-    background-color: #fff3f3;
-    height: 100px;
-    width: 170px;
-    margin: 10px auto;
+const TaskCard = styled.div`
+  width: 100%;
+  border-radius: 15px;
+  background-color: #fff;
+  box-shadow: ${({ theme }) => theme.boxShadow};
+  padding: 25px 20px;
+  box-sizing: border-box;
+  margin-top: 20px;
+  position: relative;
+  overflow: hidden;
+`;
+
+const TTitle = styled.h5`
+  width: 100%;
+  font-weight: 500;
+  font-size: 1.1rem;
+  margin-bottom: 15px;
+`;
+
+const TDescription = styled.p`
+  width: 100%;
+  font-size: 0.9rem;
+  font-weight: 300;
+  line-height: 1.3;
+  margin-bottom: 20px;
+`;
+
+const TFooter = styled.div`
+    width: 100%;
     display: flex;
-    justify-content: center;
+    justify-content: space-between;
     align-items: center;
-    box-shadow: 0px 0px 3px rgba(0,0,0,0.5);
-`
+
+    .due-date {
+        font-size: .9rem;
+
+        p {
+            width: 100%:
+            font-weight: 400;
+
+            &:last-child {
+                font-weight: 300;
+                margin-top: 2px;
+            }
+        }
+    }
+`;
+
+
+export { TaskCard, TTitle, TDescription, TFooter };

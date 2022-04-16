@@ -1,29 +1,25 @@
-import React from 'react'
-import { ColumnStyled } from './styles'
-import { useDrop } from 'react-dnd'
+import React from 'react';
+import { useDrop } from 'react-dnd';
+import TaskColumn from './styles';
 
-const Column = ({children, title}) => { 
+const Column = ({ children, title }) => {
+  const [{ canDrop, isOver }, drop] = useDrop({
+    accept: 'CARD',
+    drop: () => ({ name: title }),
+    collect: (monitor) => ({
+      isOver: monitor.isOver(),
+      canDrop: monitor.canDrop(),
+    }),
+  });
 
-    const [{canDrop, isOver}, drop] = useDrop({
-        accept: 'CARD',
-        drop: () => ({name: title}),
-        collect: (monitor) => ({
-            isOver: monitor.isOver(),
-            canDrop: monitor.canDrop(),
-        }),
-    });
+  console.log('options', { canDrop, isOver });
 
-    console.log('options', {canDrop, isOver});
+  return (
+    <TaskColumn ref={drop}>
+      {title}
+      {children}
+    </TaskColumn>
+  );
+};
 
-
-    return (
-        <ColumnStyled ref={drop} >
-            {title}
-            {children}
-            
-        
-        </ColumnStyled>
-    )
- }
-
- export default Column;
+export default Column;

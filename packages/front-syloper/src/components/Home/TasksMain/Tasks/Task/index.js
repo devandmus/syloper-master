@@ -8,7 +8,7 @@ import BurgerIcon from '.././../../../UI/BurgerMenu/Icon';
 import BurgerMenu from '.././../../../UI/BurgerMenu/Menu';
 import 'react-edit-text/dist/index.css';
 import ServicesUser from '../../../../../services/ServicesUser';
-import Avatar from './avatar';
+import Avatar from '../../../KanbanBoard/MovableItem/avatar';
 const Task = ({
   date,
   title,
