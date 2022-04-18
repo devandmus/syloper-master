@@ -5,14 +5,8 @@ import Button from '../../UI/Button';
 import Modal from '../../UI/ModalForm';
 import AppContext from '../../../contexts/App';
 
-import {
-  Board,
-  TaskColumn,
-  TaskScroll,
-  SelectStatus,
-  StatusButton,
-  SectionTitle,
-} from './styles';
+import { SectionTitle } from '../../Common/styles';
+import { Board } from './styles';
 import MovableItem from './MovableItem';
 import ServicesTasks from '../../../services/ServicesTasks';
 
@@ -89,6 +83,7 @@ const KanbanBoard = ({ projectId }) => {
         <MovableItem
           projectId={task.project_id}
           description={task.task_description}
+          estimatedHours={task.estimated_hours}
           id={task.id}
           dueDate={task.task_due_date}
           responsableId={task.task_responsible_user_id}

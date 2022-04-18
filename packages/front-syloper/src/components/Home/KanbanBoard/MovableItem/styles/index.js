@@ -18,6 +18,24 @@ const TTitle = styled.h5`
   font-size: 1.1rem;
   margin-bottom: 15px;
 `;
+const TEstimatedHours = styled.div`
+  width: 100%;
+  display: block;
+
+  .estimated-hours {
+    font-size: .9rem;
+
+    p {
+        width: 100%:
+        font-weight: 400;
+
+        &:last-child {
+            font-weight: 300;
+            margin-top: 2px;
+        }
+    }
+}
+`;
 
 const TDescription = styled.p`
   width: 100%;
@@ -48,5 +66,4 @@ const TFooter = styled.div`
     }
 `;
 
-
-export { TaskCard, TTitle, TDescription, TFooter };
+export { TaskCard, TTitle, TDescription, TFooter, TEstimatedHours };

@@ -43,7 +43,7 @@ const Menu = () => {
           <i>
             <BiTask {...iconProps} />
           </i>
-          <p>My Tasks</p>
+          <p>Tasks</p>
         </MenuItem>
       </Link>
 
@@ -62,6 +62,15 @@ const Menu = () => {
             <IoPeopleOutline {...iconProps} />
           </i>
           <p>Responsibles</p>
+        </MenuItem>
+      </Link>
+
+      <Link to="/customers">
+        <MenuItem>
+          <i>
+            <IoPeopleOutline {...iconProps} />
+          </i>
+          <p>Customers</p>
         </MenuItem>
       </Link>
 

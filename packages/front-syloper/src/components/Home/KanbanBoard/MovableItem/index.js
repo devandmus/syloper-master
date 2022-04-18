@@ -1,16 +1,17 @@
 import React, {useRef, useState, useEffect} from 'react';
 import { useDrag, useDrop } from 'react-dnd';
 import { EditText, EditTextarea } from 'react-edit-text';
-import { TaskCard, TDescription, TFooter, TTitle } from './styles';
+import { TaskCard, TDescription, TFooter, TTitle, TEstimatedHours } from './styles';
 import BurgerIcon from '../../../UI/BurgerMenu/Icon';
 import BurgerMenu from '../../../UI/BurgerMenu/Menu';
 import { dateFormatter } from '../../../../utils/date';
 import ServicesUser from '../../../../services/ServicesUser';
 import Avatar from './avatar';
-
+import ServicesProjects from '../../../../services/ServicesProjects';
 import 'react-edit-text/dist/index.css';
 
 const MovableItem = ({
+  projectId,
   key,
   id,
   index,
@@ -19,6 +20,7 @@ const MovableItem = ({
   title,
   dueDate,
   description,
+  estimatedHours,
   responsableId,
   updateTask,
   deleteTask,
@@ -116,12 +118,18 @@ const MovableItem = ({
 
   const [taskTitle, setTaskTitle] = useState(title);
   const [taskDescription, setTaskDescription] = useState(description);
+  const [taskEstimatedHours, setTaskEstimatedHours] = useState(estimatedHours);
   const [taskDueDate, setTaskDueDate] = useState(dueDate);
   const [isOpenMenu, setIsOpenMenu] = useState(false);
   const [responsible, setResponsible] = useState({});
+  const [project, setProject] = useState({});
   useEffect(()=>{
     ServicesUser.getUserById(responsableId).then((data)=>{
       setResponsible(data)
+    })
+
+    ServicesProjects.getProjectDetail(projectId).then((data)=>{
+      setProject(data)
     })
   },[])
 
@@ -135,6 +143,12 @@ const MovableItem = ({
   const handleSaveDescription = ({ value, previousValue }) => {
     if (value !== previousValue) {
       updateTask(id, { task_description: value });
+    }
+  };
+
+  const handleSaveEstimatedHours = ({ value, previousValue }) => {
+    if (value !== previousValue) {
+      updateTask(id, { estimated_hours: value });
     }
   };
 
@@ -154,6 +168,7 @@ const MovableItem = ({
         handleClickMenu={handleClickMenu}
         setIsOpenMenu={setIsOpenMenu}
       />
+      <p>{project.project_title}</p>
       <TTitle>
         <EditText
           type="text"
@@ -184,6 +199,27 @@ const MovableItem = ({
 
         />
       </TDescription>
+      <TEstimatedHours>
+      <div className='estimated-hours'>
+
+        <p>Estimated hours:</p>
+          <EditText
+            type="number"
+            onChange={setTaskEstimatedHours}
+            onSave={handleSaveEstimatedHours}
+            value={taskEstimatedHours}
+            style={{
+                fontWeight: 300,
+                lineHeight: 1.3,
+            }}
+
+          />
+
+      </div>
+
+        </TEstimatedHours>
+
+
       <TFooter>
         <div className="due-date">
           <p>Due Date:</p>
