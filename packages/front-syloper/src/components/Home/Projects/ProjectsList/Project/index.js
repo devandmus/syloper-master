@@ -17,15 +17,10 @@ import ServicesCustomer from '../../../../../services/ServicesCustomer';
 const Project = (props) => {
   const users = ['user1', 'user2', 'user3', 'user4'];
   const {
-    index,
     customerId,
-    customerName,
     description,
-    cost,
-    responsable,
     statusId,
     statusName,
-    createdAt,
     dueDate,
     id,
     title,

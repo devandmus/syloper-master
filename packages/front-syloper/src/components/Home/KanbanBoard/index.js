@@ -4,13 +4,12 @@ import Column from './Column';
 import Button from '../../UI/Button';
 import Modal from '../../UI/ModalForm';
 import AppContext from '../../../contexts/App';
-
 import { SectionTitle } from '../../Common/styles';
 import { Board } from './styles';
 import MovableItem from './MovableItem';
 import ServicesTasks from '../../../services/ServicesTasks';
 
-const KanbanBoard = ({ projectId }) => {
+const KanbanBoard = ({ projectId, projectStatus, projectTitle }) => {
   const [tasksData, setTasksData] = useState([]);
 
   useEffect(() => {
@@ -81,10 +80,14 @@ const KanbanBoard = ({ projectId }) => {
       })
       .map((task, index) => (
         <MovableItem
+          key={task.id}
           projectId={task.project_id}
+          projectStatus={projectStatus}
+          projectTitle={projectTitle}
           description={task.task_description}
           estimatedHours={task.estimated_hours}
           id={task.id}
+          status={task.status}
           dueDate={task.task_due_date}
           responsableId={task.task_responsible_user_id}
           title={task.title}
@@ -109,10 +112,16 @@ const KanbanBoard = ({ projectId }) => {
         <Button onClick={() => setModalIsOpen(true)}>Add Task</Button>
       </SectionTitle>
       <Board>
-        <Column title={0}>{returnItemsForColumn(0)}</Column>
+        <Column title="To do" columnName={0}>
+          {returnItemsForColumn(0)}
+        </Column>
 
-        <Column title={1}>{returnItemsForColumn(1)}</Column>
-        <Column title={2}>{returnItemsForColumn(2)}</Column>
+        <Column title="Doing" columnName={1}>
+          {returnItemsForColumn(1)}
+        </Column>
+        <Column title="Done" columnName={2}>
+          {returnItemsForColumn(2)}
+        </Column>
         <Modal
           title="New Task"
           description="Add task details"

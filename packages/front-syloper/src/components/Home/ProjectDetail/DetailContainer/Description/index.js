@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { BsCardText } from 'react-icons/bs';
 import { EditTextarea } from 'react-edit-text';
 import { useTheme } from 'styled-components';
-import { SectionTitle } from '../styles';
+import { SectionTitle } from '../../../../Common/styles';
 import { DescriptionTxt } from './styles';
 import 'react-edit-text/dist/index.css';
 

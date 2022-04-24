@@ -14,6 +14,7 @@ const DetailContainer = (props) => {
   const theme = useTheme();
 
   const {
+    projectStatus,
     customerId,
     projectTitle,
     projectDescription,
@@ -71,7 +72,11 @@ const DetailContainer = (props) => {
           updateProject={updateProject}
         />
 
-        <KanbanBoard projectId={projectId} />
+        <KanbanBoard
+          projectId={projectId}
+          projectStatus={projectStatus}
+          projectTitle={projectTitle}
+        />
       </DetailMain>
     </>
   );

@@ -38,7 +38,6 @@ const DetailTitle = styled.section`
 const DetailMain = styled.section`
   width: 100%;
   height: calc(100% - 160px);
-  overflow-y: scroll;
 
   > div {
     &:nth-child(-n + 2) {

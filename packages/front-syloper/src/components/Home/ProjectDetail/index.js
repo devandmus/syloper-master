@@ -36,11 +36,10 @@ const ProjectDetail = () => {
             customerId={projectData.customer_id}
             projectTitle={projectData.project_title}
             projectDescription={projectData.project_description}
-            cost={projectData.project_cost}
             projectDate={projectData.project_date}
             projectDueDate={projectData.project_due_date}
             projectStatus={projectData.project_status}
-            projectId={projectIdUrl}
+            projectId={projectData.id}
             updateProject={updateProject}
           />
         </DndProvider>

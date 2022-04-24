@@ -7,11 +7,16 @@ import KanbanBoard from '../KanbanBoard';
 
 const Tasks = () => {
   const isMobile = window.innerWidth < 600;
+  const projectStatus = ['To do', 'Doing', 'Done'];
 
   return (
     <Home title="Tasks">
       <DndProvider backend={isMobile ? TouchBackend : HTML5Backend}>
-        <KanbanBoard projectId={null} />
+        <KanbanBoard
+          projectId={null}
+          projectStatus={projectStatus}
+          projectTitle={null}
+        />
       </DndProvider>
     </Home>
   );

@@ -35,7 +35,6 @@ const SectionTitle = styled.div`
 
 const Board = styled.div`
   width: 100%;
-  height: 460px;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
@@ -76,7 +75,6 @@ const TaskColumn = styled.div`
 const TaskScroll = styled.div`
   width: 100%;
   height: 100%;
-  overflow-y: scroll;
 
   div:first-child {
     margin-top: 0;

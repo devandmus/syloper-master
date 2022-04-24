@@ -7,11 +7,12 @@ import BurgerMenu from '../../../UI/BurgerMenu/Menu';
 import { dateFormatter } from '../../../../utils/date';
 import ServicesUser from '../../../../services/ServicesUser';
 import Avatar from './avatar';
-import ServicesProjects from '../../../../services/ServicesProjects';
 import 'react-edit-text/dist/index.css';
+import StatusButton from '../../../UI/StatusButton';
 
 const MovableItem = ({
-  projectId,
+  projectStatus,
+  projectTitle,
   key,
   id,
   index,
@@ -21,10 +22,30 @@ const MovableItem = ({
   dueDate,
   description,
   estimatedHours,
+  status,
   responsableId,
   updateTask,
   deleteTask,
 }) => {
+
+
+  const [taskTitle, setTaskTitle] = useState(title);
+  const [taskDescription, setTaskDescription] = useState(description);
+  const [taskEstimatedHours, setTaskEstimatedHours] = useState(estimatedHours);
+  const [taskDueDate, setTaskDueDate] = useState(dueDate);
+  const [isOpenMenu, setIsOpenMenu] = useState(false);
+  const [responsible, setResponsible] = useState([]);
+
+  
+  useEffect(()=>{
+    ServicesUser.getUserById(responsableId).then((data)=>{
+      setResponsible(data)
+    })
+
+  },[])
+
+
+  
   const changeItemColumn = (currentItem, columnName) => {
     
     updateTask(currentItem.id, {status: columnName })
@@ -90,7 +111,6 @@ const MovableItem = ({
 
       if(dropResult) {
         const { name } = dropResult;
-        console.log(name);
         switch (name) {
           case 0:
             changeItemColumn(item, 0);
@@ -116,22 +136,6 @@ const MovableItem = ({
 
   drag(drop(ref));
 
-  const [taskTitle, setTaskTitle] = useState(title);
-  const [taskDescription, setTaskDescription] = useState(description);
-  const [taskEstimatedHours, setTaskEstimatedHours] = useState(estimatedHours);
-  const [taskDueDate, setTaskDueDate] = useState(dueDate);
-  const [isOpenMenu, setIsOpenMenu] = useState(false);
-  const [responsible, setResponsible] = useState({});
-  const [project, setProject] = useState({});
-  useEffect(()=>{
-    ServicesUser.getUserById(responsableId).then((data)=>{
-      setResponsible(data)
-    })
-
-    ServicesProjects.getProjectDetail(projectId).then((data)=>{
-      setProject(data)
-    })
-  },[])
 
   
   const handleSaveTitle = ({ value, previousValue }) => {
@@ -162,13 +166,16 @@ const MovableItem = ({
     setIsOpenMenu(!isOpenMenu);
   };
 
+
   return (
-    <TaskCard ref={ref} style={{ opacity }}>
+    <TaskCard ref={ref} style={{ opacity }} key={key}>
       <BurgerIcon
         handleClickMenu={handleClickMenu}
         setIsOpenMenu={setIsOpenMenu}
       />
-      <p>{project.project_title}</p>
+
+
+      <p>{projectTitle}</p>
       <TTitle>
         <EditText
           type="text"
@@ -236,6 +243,8 @@ const MovableItem = ({
 
           />
         </div>
+
+        <StatusButton status={status} projectStatus={projectStatus[status]}/>
         <Avatar
           responsible={responsible}
                 
