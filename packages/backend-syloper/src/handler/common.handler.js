@@ -74,4 +74,5 @@ module.exports = {
   get,
   update,
   remove,
+  Models,
 }

@@ -23,7 +23,7 @@ const MovableItem = ({
   description,
   estimatedHours,
   status,
-  responsableId,
+  responsible,
   updateTask,
   deleteTask,
 }) => {
@@ -34,18 +34,7 @@ const MovableItem = ({
   const [taskEstimatedHours, setTaskEstimatedHours] = useState(estimatedHours);
   const [taskDueDate, setTaskDueDate] = useState(dueDate);
   const [isOpenMenu, setIsOpenMenu] = useState(false);
-  const [responsible, setResponsible] = useState([]);
 
-  
-  useEffect(()=>{
-    ServicesUser.getUserById(responsableId).then((data)=>{
-      setResponsible(data)
-    })
-
-  },[])
-
-
-  
   const changeItemColumn = (currentItem, columnName) => {
     
     updateTask(currentItem.id, {status: columnName })
@@ -247,7 +236,6 @@ const MovableItem = ({
         <StatusButton status={status} projectStatus={projectStatus[status]}/>
         <Avatar
           responsible={responsible}
-                
         />
       </TFooter>
       <BurgerMenu

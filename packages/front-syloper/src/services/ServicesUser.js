@@ -22,7 +22,6 @@ const deleteUser = (id) =>
     method: 'DELETE',
   }).then((response) => response.data);
 
-
 export default {
   getUsers,
   getUserById,

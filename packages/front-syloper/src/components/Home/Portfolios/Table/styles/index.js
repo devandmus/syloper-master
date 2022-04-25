@@ -21,7 +21,7 @@ const TableBody = styled.table`
     font-weight: 500;
     padding: 21px 10px;
 
-    @media only screen and (max-width: 1000) {
+    @media only screen and (max-width: 1000px) {
       font-size: 1.05rem;
     }
   }
@@ -29,8 +29,12 @@ const TableBody = styled.table`
   td {
     padding: 18px 8px;
     font-size: 1.02rem;
+    img {
+      height: 48px;
+      border-radius: 24px;
+    }
 
-    @media only screen and (max-width: 1000) {
+    @media only screen and (max-width: 1000px) {
       font-size: 1rem;
     }
   }

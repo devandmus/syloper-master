@@ -48,7 +48,7 @@ const ModalContainer = styled.div`
   }
 `;
 
-const ModalForm = styled.form`
+const ModalForm = styled.div`
   width: 65%;
   margin: 0 auto;
 

@@ -4,7 +4,8 @@
   "scripts": {
     "start": "docker-compose up -d && lerna run dev --stream",
     "only:backend": "lerna run back --stream",
-    "hydrate": "npm run hydrate --prefix=./packages/backend-syloper/"
+    "hydrate": "npm run hydrate --prefix=./packages/backend-syloper/",
+    "init": "npm i && npx lerna bootstrap --hoist"
   },
   "devDependencies": {
     "lerna": "^4.0.0"

@@ -14,13 +14,13 @@ const DetailContainer = (props) => {
   const theme = useTheme();
 
   const {
-    projectStatus,
     customerId,
     projectTitle,
     projectDescription,
     updateProject,
     projectDueDate,
     projectId,
+    projectContext,
   } = props;
 
   const [customerData, setCustomerData] = useState({});
@@ -60,12 +60,15 @@ const DetailContainer = (props) => {
       </DetailTitle>
       <DetailMain>
         <FirstInfoContainer>
-          <Participants />
+          <Participants responsibles={projectContext.responsibles} />
           <DueDate
             projectDueDate={projectDueDate}
             updateProject={updateProject}
           />
-          <Status />
+          <Status
+            status={projectContext.project_status}
+            progress={projectContext.progress}
+          />
         </FirstInfoContainer>
         <Description
           projectDescription={projectDescription}
@@ -74,8 +77,9 @@ const DetailContainer = (props) => {
 
         <KanbanBoard
           projectId={projectId}
-          projectStatus={projectStatus}
+          projectStatus={projectContext.project_status}
           projectTitle={projectTitle}
+          projectContext={projectContext}
         />
       </DetailMain>
     </>

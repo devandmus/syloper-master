@@ -22,6 +22,9 @@ const schema = new mongoose.Schema(
       required: true,
       match: PASSWORD_PATTERN
     },
+    avatar: {
+      type: String
+    },
     active: {
       type: Boolean,
       default: true

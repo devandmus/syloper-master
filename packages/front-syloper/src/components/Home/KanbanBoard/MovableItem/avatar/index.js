@@ -4,8 +4,8 @@ import { AssignImg, AvatarStyled, DisplayName } from './styles';
 const Avatar = ({ responsible }) => {
   return (
     <AvatarStyled>
-      <DisplayName>{responsible.name}</DisplayName>
-      <AssignImg />
+      <DisplayName>{responsible && responsible.name}</DisplayName>
+      <AssignImg src={responsible && responsible.avatar} />
     </AvatarStyled>
   );
 };

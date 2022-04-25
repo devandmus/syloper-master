@@ -9,7 +9,12 @@ import { Board } from './styles';
 import MovableItem from './MovableItem';
 import ServicesTasks from '../../../services/ServicesTasks';
 
-const KanbanBoard = ({ projectId, projectStatus, projectTitle }) => {
+const KanbanBoard = ({
+  projectId,
+  projectStatus,
+  projectContext,
+  projectTitle,
+}) => {
   const [tasksData, setTasksData] = useState([]);
 
   useEffect(() => {
@@ -89,7 +94,9 @@ const KanbanBoard = ({ projectId, projectStatus, projectTitle }) => {
           id={task.id}
           status={task.status}
           dueDate={task.task_due_date}
-          responsableId={task.task_responsible_user_id}
+          responsible={projectContext.responsibles.find(
+            (el) => el.id === task.task_responsible_user_id
+          )}
           title={task.title}
           setTasksData={setTasksData}
           index={index}

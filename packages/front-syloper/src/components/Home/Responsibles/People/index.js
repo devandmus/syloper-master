@@ -6,6 +6,8 @@ import Button from '../../../UI/Button';
 import ServicesUser from '../../../../services/ServicesUser';
 import AppContext from '../../../../contexts/App';
 import ModalPerson from '../../../UI/ModalFormPerson';
+import Avatar from '../../../../images/avatar.jpg';
+
 
 const People = () => {
   const [people, setPeople] = useState([]);
@@ -16,27 +18,6 @@ const People = () => {
       setPeople(data);
     });
   }, []);
-
-  const modalOnSubmit = (task) => {
-    const updatedValue = {
-      project_id: projectId,
-      title: task.title,
-      task_due_date: task.dueDate,
-      task_description: task.description,
-      task_responsible_user_id: task.responsibleId,
-      responsible_profile_id: task.responsibleProfileId,
-      estimated_hours: task.estimatedHours,
-      status: 0,
-    };
-    ServicesTasks.createTask(updatedValue).then(() => {
-      const withNewTask = [];
-      withNewTask.push(...tasksData, updatedValue);
-      setTasksData(withNewTask);
-      setModalIsOpen(false);
-
-      setModalIsOpen(false);
-    });
-  };
 
   return (
     <>
@@ -52,25 +33,24 @@ const People = () => {
       <TableBody>
         <thead>
           <tr>
+            <th>Avatar</th>
             <th>Name</th>
             <th>Email</th>
           </tr>
         </thead>
         <tbody>
           {people.map((person) => (
-            <tr>
+            <tr key={person.email}>
+              <td>
+                <img src={person.avatar || Avatar} alt="Avatar" />
+              </td>
               <td>{person.name}</td>
               <td>{person.email}</td>
             </tr>
           ))}
         </tbody>
       </TableBody>
-      <ModalPerson
-        title="New Person"
-        description="Add task details"
-        section="Responsible"
-        modalOnSubmit={modalOnSubmit}
-      />
+      <ModalPerson title="New Person" description="Add task details" />
     </>
   );
 };

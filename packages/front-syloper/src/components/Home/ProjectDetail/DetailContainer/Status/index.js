@@ -1,9 +1,9 @@
 import React from 'react';
-import { SectionTitle } from '../styles';
 import { MdAutoGraph } from 'react-icons/md';
+import { SectionTitle } from '../styles';
 import { ProgressBar, StatusContainer, StatusMain, StatusTxt } from './styles';
 
-const Status = () => (
+const Status = ({ status, progress }) => (
   <StatusContainer>
     <SectionTitle>
       <i>
@@ -12,12 +12,12 @@ const Status = () => (
       <h5>Status</h5>
     </SectionTitle>
     <StatusMain>
-      <StatusTxt>In Progress</StatusTxt>
-      <ProgressBar>
+      <StatusTxt>{status}</StatusTxt>
+      <ProgressBar progress={progress}>
         <div className="bar-container">
-          <span></span>
+          <span />
         </div>
-        <p className="progress-value">30%</p>
+        <p className="progress-value">{progress}%</p>
       </ProgressBar>
     </StatusMain>
   </StatusContainer>
