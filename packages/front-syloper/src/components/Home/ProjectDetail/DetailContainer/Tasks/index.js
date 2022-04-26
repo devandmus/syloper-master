@@ -20,7 +20,7 @@ const Tasks = ({ tasksData, projectId, updateTask, deleteTask, projectStatus }) 
   const [activeStatus, setActiveStatus] = useState('status1');
  
 
-  const acumulatedTasks = projectStatus.map( (_, idx) => { //[]
+  const acumulatedTasks = projectStatus?.map( (_, idx) => { //[]
     return tasksData.filter(task => task.status === idx && task.project_id === projectId) //[{}]
   })
 
@@ -45,7 +45,7 @@ const Tasks = ({ tasksData, projectId, updateTask, deleteTask, projectStatus }) 
   const ColumnsDesktop = () => (
     <>
 
-      {acumulatedTasks.map((statusTasks, idx) => {
+      {acumulatedTasks?.map((statusTasks, idx) => {
         return (
           <TaskColumn ref={drop}>
             <h5>{projectStatus[idx]}</h5>
