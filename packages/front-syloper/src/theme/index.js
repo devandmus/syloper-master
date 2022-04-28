@@ -15,6 +15,9 @@ const Theme = {
     primaryGreen: '#34AD66',
     darkGreen: '#327C51',
     lightGreen: '#34AD66',
+    chartGreen: '#34AD66',
+    chartYellow: '#FFB800',
+    chartOrange: '#FF7A1A',
     gray100: '#f8f9fa',
     gray200: '#e9ecef',
     gray300: '#dee2e6',
@@ -32,6 +35,8 @@ const Theme = {
   boxShadowLeft: '-10px 1px 20px -15px rgba(0,0,0,0.4)',
 
   boxShadowB: '0px 0px 7px 0px rgb(0 0 0 / 50%)',
+
+  boxShadowC: '0px 0px 20px 0px rgba(0,0,0,0.05)',
 };
 
 export { Theme as default, GlobalStyle };

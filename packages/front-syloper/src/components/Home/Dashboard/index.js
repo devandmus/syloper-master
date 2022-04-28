@@ -1,10 +1,19 @@
 import React from 'react';
-import { DashboardStyled } from './styles/DashboardStyled';
+import Home from '../Home';
+import Dcharts from './DCharts';
+import MyTasks from './MyTasks';
+import { DashboardContainer, DashboardMain } from './styles';
 
 const Dashboard = () => {
   return (
-    <DashboardStyled>
-    </DashboardStyled>
+    <Home title="Dashboard">
+      <DashboardMain>
+        <DashboardContainer>
+          <MyTasks />
+          <Dcharts />
+        </DashboardContainer>
+      </DashboardMain>
+    </Home>
   );
 };
 
