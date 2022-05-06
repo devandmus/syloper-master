@@ -94,7 +94,7 @@ const KanbanBoard = ({
           id={task.id}
           status={task.status}
           dueDate={task.task_due_date}
-          responsible={projectContext.responsibles.find(
+          responsible={projectContext?.responsibles.find(
             (el) => el.id === task.task_responsible_user_id
           )}
           title={task.title}

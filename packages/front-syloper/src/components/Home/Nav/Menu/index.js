@@ -22,12 +22,14 @@ const Menu = () => {
 
   return (
     <MenuContainer className="menu-container">
-      <MenuItem>
-        <i>
-          <GoDashboard {...iconProps} />
-        </i>
-        <p>Dashboard</p>
-      </MenuItem>
+      <Link to="/home">
+        <MenuItem>
+          <i>
+            <GoDashboard {...iconProps} />
+          </i>
+          <p>Dashboard</p>
+        </MenuItem>
+      </Link>
 
       <Link to="/projects">
         <MenuItem>
