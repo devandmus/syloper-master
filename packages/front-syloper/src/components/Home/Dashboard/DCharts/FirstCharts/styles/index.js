@@ -74,18 +74,17 @@ const FChartsData = styled.div`
         margin-right: 13px;
       }
 
-      &.status-a {
+      &.status-0 {
         color: ${(props) => props.theme.color.chartOrange};
       }
 
-      &.status-b {
+      &.status-1 {
         color: ${(props) => props.theme.color.chartYellow};
       }
 
-      &.status-c {
+      &.status-2 {
         color: ${(props) => props.theme.color.chartGreen};
       }
-
     }
   }
 `;

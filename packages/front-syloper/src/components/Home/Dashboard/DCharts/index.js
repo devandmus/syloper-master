@@ -1,4 +1,4 @@
-import React from 'react';
+import * as React from 'react';
 import BalanceChart from './BalanceChart';
 import FirstCharts from './FirstCharts';
 import { DChartsContainer } from './styles';

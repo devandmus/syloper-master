@@ -20,59 +20,49 @@ const Menu = () => {
     color: '#000',
   };
 
+  const items = [
+    {
+      name: 'Dashboard',
+      link: '/home',
+      icon: <GoDashboard {...iconProps} />,
+    },
+    {
+      name: 'Projects',
+      link: '/projects',
+      icon: <AiOutlineFolderOpen {...iconProps} />,
+    },
+    {
+      name: 'Tasks',
+      link: '/tasks',
+      icon: <BiTask {...iconProps} />,
+    },
+    {
+      name: 'Portfolio',
+      link: '/portfolios',
+      icon: <BsFiles {...iconProps} />,
+    },
+    {
+      name: 'Responsibles',
+      link: '/responsibles',
+      icon: <IoPeopleOutline {...iconProps} />,
+    },
+    {
+      name: 'Customers',
+      link: '/customers',
+      icon: <IoPeopleOutline {...iconProps} />,
+    },
+  ];
+
   return (
     <MenuContainer className="menu-container">
-      <MenuItem>
-        <i>
-          <GoDashboard {...iconProps} />
-        </i>
-        <p>Dashboard</p>
-      </MenuItem>
-
-      <Link to="/projects">
-        <MenuItem>
-          <i>
-            <AiOutlineFolderOpen {...iconProps} />
-          </i>
-          <p>Projects</p>
-        </MenuItem>
-      </Link>
-
-      <Link to="/tasks">
-        <MenuItem>
-          <i>
-            <BiTask {...iconProps} />
-          </i>
-          <p>Tasks</p>
-        </MenuItem>
-      </Link>
-
-      <Link to="/portfolios">
-        <MenuItem>
-          <i>
-            <BsFiles {...iconProps} />
-          </i>
-          <p>Portfolios</p>
-        </MenuItem>
-      </Link>
-
-      <Link to="/responsibles">
-        <MenuItem>
-          <i>
-            <IoPeopleOutline {...iconProps} />
-          </i>
-          <p>Responsibles</p>
-        </MenuItem>
-      </Link>
-
-      <Link to="/customers">
-        <MenuItem>
-          <i>
-            <IoPeopleOutline {...iconProps} />
-          </i>
-          <p>Customers</p>
-        </MenuItem>
-      </Link>
+      {items.map((item) => (
+        <Link to={item.link}>
+          <MenuItem>
+            <i>{item.icon}</i>
+            <p>{item.name}</p>
+          </MenuItem>
+        </Link>
+      ))}
 
       <MenuItem onClick={Auth.logout}>
         <i>

@@ -104,11 +104,11 @@ const ModalPerson = ({ title, section }) => {
         ) : (
           <ModalForm>
             <div>
-              <label>{`${section} Name`}</label>
+              <label>{`${title} Name`}</label>
               <InputStyled
                 value={data.name}
                 onChange={(e) => onChangeName(e)}
-                placeholder={`Enter ${section} Name`}
+                placeholder={`Enter ${title} Name`}
               />
             </div>
             <div>

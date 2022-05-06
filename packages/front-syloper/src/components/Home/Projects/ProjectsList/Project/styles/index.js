@@ -1,5 +1,12 @@
 import styled from 'styled-components';
 
+const Footer = styled.div`
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+`;
+
 const ProjectCard = styled.div`
   width: 100%;
   background-color: #fff;
@@ -57,7 +64,7 @@ const Progress = styled.div`
 
     span {
       display: block;
-      width: 30%;
+      width: ${({ progress }) => progress}%;
       height: 5px;
       border-radius: 10px;
       background-color: ${({ theme }) => theme.color.lightGreen};
@@ -97,4 +104,13 @@ const UserImg = styled.span`
   border-radius: 50%;
 `;
 
-export { ProjectCard, Title, DueDate, Progress, TasksTxt, Users, UserImg };
+export {
+  ProjectCard,
+  Title,
+  DueDate,
+  Progress,
+  TasksTxt,
+  Users,
+  UserImg,
+  Footer,
+};

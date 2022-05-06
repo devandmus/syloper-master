@@ -8,10 +8,11 @@ import AppContext from '../../../../contexts/App';
 import ModalPerson from '../../../UI/ModalFormPerson';
 import Avatar from '../../../../images/avatar.jpg';
 
-
 const People = () => {
   const [people, setPeople] = useState([]);
   const { setModalIsOpen } = useContext(AppContext);
+
+  console.log(people);
 
   useEffect(() => {
     ServicesUser.getUsers().then((data) => {

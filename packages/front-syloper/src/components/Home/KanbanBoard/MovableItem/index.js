@@ -6,13 +6,13 @@ import BurgerIcon from '../../../UI/BurgerMenu/Icon';
 import BurgerMenu from '../../../UI/BurgerMenu/Menu';
 import { dateFormatter } from '../../../../utils/date';
 import ServicesUser from '../../../../services/ServicesUser';
-import Avatar from './avatar';
+import Avatar from '../../../UI/avatar';
 import 'react-edit-text/dist/index.css';
 import StatusButton from '../../../UI/StatusButton';
 
 const MovableItem = ({
-  projectStatus,
   projectTitle,
+  projectStatus,
   key,
   id,
   index,
@@ -36,6 +36,7 @@ const MovableItem = ({
   const [isOpenMenu, setIsOpenMenu] = useState(false);
 
   const changeItemColumn = (currentItem, columnName) => {
+
     
     updateTask(currentItem.id, {status: columnName })
 
@@ -155,6 +156,7 @@ const MovableItem = ({
     setIsOpenMenu(!isOpenMenu);
   };
 
+  console.log(projectStatus);
 
   return (
     <TaskCard ref={ref} style={{ opacity }} key={key}>
@@ -233,7 +235,7 @@ const MovableItem = ({
           />
         </div>
 
-        <StatusButton status={status} projectStatus={projectStatus[status]}/>
+        <StatusButton status={status}/>
         <Avatar
           responsible={responsible}
         />

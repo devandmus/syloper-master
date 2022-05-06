@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-const MyTasksContainer = styled.section`
+const EmployeeContainer = styled.section`
   flex-basis: 32%;
   border-radius: 20px;
   background-color: #fff;
@@ -8,7 +8,7 @@ const MyTasksContainer = styled.section`
   box-sizing: border-box;
 `;
 
-const MyTasksTitle = styled.div`
+const EmployeeTitle = styled.div`
   width: 100%;
   display: flex;
   justify-content: space-between;
@@ -33,7 +33,7 @@ const MyTasksTitle = styled.div`
   }
 `;
 
-const MyTask = styled.div`
+const Employee = styled.div`
   width: 100%;
   padding: 18px 25px;
   box-sizing: border-box;
@@ -60,4 +60,4 @@ const MyTask = styled.div`
   }
 `;
 
-export { MyTasksContainer, MyTasksTitle, MyTask };
+export { EmployeeContainer, EmployeeTitle, Employee };

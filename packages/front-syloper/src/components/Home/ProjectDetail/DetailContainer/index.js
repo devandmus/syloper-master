@@ -77,9 +77,8 @@ const DetailContainer = (props) => {
 
         <KanbanBoard
           projectId={projectId}
-          projectStatus={projectContext.project_status}
           projectTitle={projectTitle}
-          projectContext={projectContext}
+          projectStatus={projectContext.project_status}
         />
       </DetailMain>
     </>

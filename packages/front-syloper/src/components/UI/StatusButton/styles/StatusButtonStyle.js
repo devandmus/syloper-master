@@ -9,6 +9,7 @@ const StatusButtonStyle = styled.div`
   padding: 10px;
   font-size: 1rem;
   font-weight: 600;
+  margin: 0.5rem;
 
   @media only screen and (max-width: 768px) {
     font-size: 1.2rem;
