@@ -26,7 +26,8 @@ const Projects = () => {
   };
   const modalOnSubmit = (project) => {
     const updatedProject = {
-      project_date: project.dueDate,
+      project_date: Date.now(),
+      project_due_date: project.dueDate,
       project_title: project.title,
       project_description: project.description,
       customer_id: project.customerId,
@@ -35,6 +36,7 @@ const Projects = () => {
 
     ServicesProjects.createProject(updatedProject).then(() => {
       const withNewProject = [];
+
       withNewProject.push(...projectsData, updatedProject);
       setProjectsData(withNewProject);
       setModalIsOpen(false);

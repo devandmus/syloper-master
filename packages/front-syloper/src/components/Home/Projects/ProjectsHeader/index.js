@@ -7,7 +7,7 @@ import AppContext from '../../../../contexts/App';
 import ServiceBFF from '../../../../services/BFF';
 
 const ProjectsHeader = () => {
-  const [globalStatus, setGlobalStatus] = useState();
+  const [globalStatus, setGlobalStatus] = useState({});
   const { width } = useViewport();
   const breakpoint = 769;
 
@@ -19,11 +19,9 @@ const ProjectsHeader = () => {
     );
   }, []);
 
-  console.log(globalStatus);
-
   return (
     <ProjectsHeaderContainer>
-      {/*       <Count>
+      <Count>
         <CountItem>
           <p>{globalStatus.ready_to_start}</p>
           <p>Ready to Start</p>
@@ -40,7 +38,7 @@ const ProjectsHeader = () => {
           <p>{globalStatus.total_projects}</p>
           <p>Total Projects</p>
         </CountItem>
-      </Count> */}
+      </Count>
       <Button onClick={() => setModalIsOpen(true)}>
         {width < breakpoint ? <FaPlus color="#fff" size="19" /> : 'Add Project'}
       </Button>

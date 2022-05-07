@@ -89,6 +89,7 @@ const KanbanBoard = ({ projectId, projectTitle, projectStatus }) => {
           status={task.status}
           projectStatus={projectStatus}
           dueDate={task.task_due_date}
+          profile={task.responsible_profile_id}
           responsible={task.task_responsible_user_id}
           title={task.title}
           setTasksData={setTasksData}
@@ -127,6 +128,7 @@ const KanbanBoard = ({ projectId, projectTitle, projectStatus }) => {
           description="Add task details"
           section="Task"
           modalOnSubmit={modalOnSubmit}
+          projectId={projectId}
         />
       </Board>
     </>

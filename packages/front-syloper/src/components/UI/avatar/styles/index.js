@@ -12,8 +12,13 @@ const AssignImg = styled.span`
 `;
 
 const AvatarStyled = styled.div`
-  justify-content: center;
-  display: block;
+  width: 45px;
+  height: 45px;
+  display: inline-block;
+  transform: ${(props) => `translateX(${props.translatex}px)`};
+  background-color: gray;
+  border: 1px solid #fff;
+  border-radius: 50%;
 `;
 
 const DisplayName = styled.span`
@@ -23,4 +28,11 @@ const DisplayName = styled.span`
   line-height: 1.35;
 `;
 
-export { AssignImg, AvatarStyled, DisplayName };
+const AvatarGroup = styled.div`
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: center;
+`;
+
+export { AssignImg, AvatarStyled, DisplayName, AvatarGroup };

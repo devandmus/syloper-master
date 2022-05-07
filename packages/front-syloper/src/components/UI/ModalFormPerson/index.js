@@ -7,8 +7,8 @@ import { ModalContainer, ModalForm, Veil } from '../ModalForm/styles';
 import AppContext from '../../../contexts/App';
 import ServicesUser from '../../../services/ServicesUser';
 
-const ModalPerson = ({ title, section }) => {
-  const { setModalIsOpen, modalIsOpen } = useContext(AppContext);
+const ModalPerson = ({ title, modalOnSubmit }) => {
+  const { setModalPeopleIsOpen, modalPeopleIsOpen } = useContext(AppContext);
   const [loading, setLoading] = useState(false);
   const [errorMsg, setErrorMsg] = useState('');
   const [data, setData] = useState({
@@ -54,7 +54,8 @@ const ModalPerson = ({ title, section }) => {
     setLoading(true);
     ServicesUser.createUser(data)
       .then(() => {
-        setModalIsOpen(false);
+        setModalPeopleIsOpen(false);
+        modalOnSubmit(data);
         window.location.reload();
       })
       .catch((err) => {
@@ -66,7 +67,7 @@ const ModalPerson = ({ title, section }) => {
   };
 
   const handleCloseClick = () => {
-    setModalIsOpen(false);
+    setModalPeopleIsOpen(false);
   };
 
   const onChangeAvatar = (e) => {
@@ -94,7 +95,7 @@ const ModalPerson = ({ title, section }) => {
 
   return (
     <>
-      <ModalContainer className={classNames({ show: modalIsOpen })}>
+      <ModalContainer className={classNames({ show: modalPeopleIsOpen })}>
         <i onClick={handleCloseClick}>
           <IoCloseSharp color="#000" size="35px" />
         </i>
@@ -143,14 +144,13 @@ const ModalPerson = ({ title, section }) => {
               </AvatarInputContainerStyled>
             </div>
 
-            <Button
-              type="button"
-              onClick={handleSubmit}
-            >{`Create ${section}`}</Button>
+            <Button type="button" onClick={handleSubmit}>
+              Create Person
+            </Button>
           </ModalForm>
         )}
       </ModalContainer>
-      <Veil className={classNames({ show: modalIsOpen })} />
+      <Veil className={classNames({ show: modalPeopleIsOpen })} />
     </>
   );
 };

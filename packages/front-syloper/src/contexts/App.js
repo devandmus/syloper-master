@@ -11,6 +11,12 @@ const AppContext = createContext({ ...values });
 const AppProvider = ({ children }) => {
   const [user, setUser] = useState(values.user);
   const [modalIsOpen, setModalIsOpen] = useState(values.modalIsOpen);
+  const [modalPeopleIsOpen, setModalPeopleIsOpen] = useState(
+    values.modalPeopleIsOpen
+  );
+  const [modalRoleIsOpen, setModalRoleIsOpen] = useState(
+    values.modalPeopleIsOpen
+  );
 
   return (
     <AppContext.Provider
@@ -19,6 +25,10 @@ const AppProvider = ({ children }) => {
         setUser,
         modalIsOpen,
         setModalIsOpen,
+        modalPeopleIsOpen,
+        setModalPeopleIsOpen,
+        modalRoleIsOpen,
+        setModalRoleIsOpen,
       }}
     >
       {children}

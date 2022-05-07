@@ -11,8 +11,6 @@ const EmployeeRanking = () => {
     });
   }, []);
 
-  console.log(EmployeeRanking);
-
   return (
     <EmployeeContainer>
       <EmployeeTitle>

@@ -46,8 +46,6 @@ const Project = ({
     setIsOpenMenu(!isOpenMenu);
   };
 
-  console.log(projectContext.project_status);
-
   return (
     <ProjectCard>
       <BurgerIcon
@@ -60,7 +58,7 @@ const Project = ({
           <p>Customer: {customerData.customer_full_name}</p>
         </Title>
         <DueDate>Due Date: {dateFormatter(dueDate)}</DueDate>
-        <Progress progress={projectContext.progress}>
+        <Progress progress={projectContext.progress || 0}>
           <div className="bar-container">
             <span />
           </div>
@@ -70,9 +68,21 @@ const Project = ({
           </div>
         </Progress>
         <Footer>
-          <TasksTxt>{projectContext.tasks_left} Tasks left</TasksTxt>
-          <StatusButton status={projectContext.project_status} />
-          <Avatar responsibles={projectContext.responsibles} />
+          <TasksTxt>{projectContext.tasks_left || 0} Tasks left</TasksTxt>
+          <StatusButton
+            status={projectContext.project_status || 'Ready to Start'}
+          />
+          <Users>
+            {projectContext.responsibles &&
+              projectContext.responsibles.map((responsible, i) => (
+                <Avatar
+                  key={i}
+                  translatex={calcTranslate(i)}
+                  responsible={responsible}
+                  name={false}
+                />
+              ))}
+          </Users>
         </Footer>
       </Link>
       <BurgerMenu

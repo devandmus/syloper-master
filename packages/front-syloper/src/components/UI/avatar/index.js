@@ -1,10 +1,9 @@
 import React from 'react';
-import { AssignImg, AvatarStyled, DisplayName } from './styles';
+import { AssignImg, AvatarStyled } from './styles';
 
-const Avatar = ({ responsible }) => {
+const Avatar = ({ responsible, name, i, translatex }) => {
   return (
-    <AvatarStyled>
-      <DisplayName>{responsible && responsible.name}</DisplayName>
+    <AvatarStyled translatex={translatex} key={i}>
       <AssignImg src={responsible && responsible.avatar} />
     </AvatarStyled>
   );

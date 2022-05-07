@@ -84,15 +84,12 @@ const Progress = styled.div`
 `;
 
 const TasksTxt = styled.p`
-  width: 100%;
   color: orange;
   font-size: 1rem;
   margin-bottom: 20px;
 `;
 
-const Users = styled.div`
-  width: 100%;
-`;
+const Users = styled.div``;
 
 const UserImg = styled.span`
   width: 45px;

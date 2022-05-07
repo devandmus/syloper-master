@@ -12,7 +12,7 @@ import ServicesUser from '../../../services/ServicesUser';
 import ServicesResponsible from '../../../services/ServicesResponsible';
 import ServicesProjects from '../../../services/ServicesProjects';
 
-const Modal = ({ title, description, section, modalOnSubmit }) => {
+const Modal = ({ title, description, section, modalOnSubmit, projectId }) => {
   const { setModalIsOpen, modalIsOpen } = useContext(AppContext);
 
   const [clients, setClients] = useState([]);
@@ -28,36 +28,36 @@ const Modal = ({ title, description, section, modalOnSubmit }) => {
     responsibleId: '',
     responsibleProfileId: '',
     estimatedHours: 0,
-    projectId: '',
+    projectId,
   });
 
   useEffect(() => {
-    ServicesCustomer.getCustomers().then((data) => {
-      setClients(data);
+    ServicesCustomer.getCustomers().then((customerData) => {
+      setClients(customerData);
     });
-    ServicesUser.getUsers().then((data) => {
-      setResponsibles(data);
+    ServicesUser.getUsers().then((userData) => {
+      setResponsibles(userData);
     });
     if (section === 'Task') {
-      ServicesResponsible.getResponsibles().then((data) => {
-        setResProfile(data);
+      ServicesResponsible.getResponsibles().then((resData) => {
+        setResProfile(resData);
       });
 
-      ServicesProjects.getProjects().then((data) => {
-        setProjects(data);
+      ServicesProjects.getProjects().then((projData) => {
+        setProjects(projData);
       });
     }
   }, []);
 
   const clienteOptions = [];
 
-  clients.map((client) => {
+  clients.forEach((client) => {
     clienteOptions.push({ value: client.id, label: client.customer_full_name });
   });
 
   const responsiblesOptions = [];
 
-  responsibles.map((responsible) => {
+  responsibles.forEach((responsible) => {
     responsiblesOptions.push({
       value: responsible.id,
       label: responsible.name,
@@ -66,15 +66,16 @@ const Modal = ({ title, description, section, modalOnSubmit }) => {
 
   const projectsOptions = [];
 
-  projects.map((project) => {
+  projects.forEach((project) => {
     projectsOptions.push({
       value: project.id,
       label: project.project_title,
+      isOptionSelected: project.id === projectId,
     });
   });
   const resProfileOptions = [];
 
-  resProfile.map((responsible) => {
+  resProfile.forEach((responsible) => {
     resProfileOptions.push({
       value: responsible.id,
       label: `${responsible.type} $${responsible.hourly_cost}`,
