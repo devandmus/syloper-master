@@ -10,6 +10,7 @@ import Avatar from '../../../UI/avatar';
 import 'react-edit-text/dist/index.css';
 import StatusButton from '../../../UI/StatusButton';
 import ServicesResponsible from '../../../../services/ServicesResponsible';
+import ServicesProjects from '../../../../services/ServicesProjects';
 const MovableItem = ({
   projectTitle,
   projectStatus,
@@ -25,12 +26,14 @@ const MovableItem = ({
   status,
   responsible,
   profile,
+  projectId,
   updateTask,
   deleteTask,
 }) => {
 
 
   const [taskTitle, setTaskTitle] = useState(title);
+  const [projectTitleu, setProjectTitleu] = useState(projectTitle);
   const [taskDescription, setTaskDescription] = useState(description);
   const [taskEstimatedHours, setTaskEstimatedHours] = useState(estimatedHours);
   const [taskEstimatedCost, setTaskEstimatedCost] = useState()
@@ -48,6 +51,10 @@ const MovableItem = ({
       setResponsibleProfile(data)
     }
     )
+
+    if (projectTitle === null) {
+      ServicesProjects.getProjectDetail(projectId).then((data) => setProjectTitleu(data.project_title))
+    }
   }, [])
 
   const updateHourlyCost = ({hourly_cost: value}) => {
@@ -194,7 +201,7 @@ const MovableItem = ({
       />
 
 
-      <p>{projectTitle}</p>
+      <p>{projectTitleu}</p>
       <TTitle>
         <EditText
           type="text"

@@ -70,9 +70,15 @@ const Modal = ({ title, description, section, modalOnSubmit, projectId }) => {
     projectsOptions.push({
       value: project.id,
       label: project.project_title,
-      isOptionSelected: project.id === projectId,
     });
   });
+
+  const defaultV = projectsOptions
+    .map((project) => project.value)
+    .indexOf(projectId);
+
+  console.log(defaultV);
+
   const resProfileOptions = [];
 
   resProfile.forEach((responsible) => {
@@ -241,6 +247,7 @@ const Modal = ({ title, description, section, modalOnSubmit, projectId }) => {
             <div>
               <label> Project </label>
               <Select
+                defaultValue={projectsOptions[defaultV]}
                 options={projectsOptions}
                 className="modal-select"
                 onChange={(value) => onChangeProject(value)}

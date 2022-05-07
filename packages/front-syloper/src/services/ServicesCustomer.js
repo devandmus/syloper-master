@@ -6,19 +6,19 @@ const getCustomerById = (id) =>
   Request(`/api/customers/detail/${id}`).then((res) => res.data);
 
 const createCustomer = (data) =>
-  Request('/api/tasks/create', {
+  Request('/api/customers/create', {
     method: 'POST',
     data,
   }).then((response) => response.data);
 
 const updateCustomer = (id, data) =>
-  Request(`/api/tasks/update/${id}`, {
+  Request(`/api/customers/update/${id}`, {
     data,
     method: 'PUT',
   }).then((response) => response.data);
 
 const deleteCustomer = (id) =>
-  Request(`/api/tasks/delete/${id}`, {
+  Request(`/api/customers/delete/${id}`, {
     method: 'DELETE',
   }).then((response) => response.data);
 

@@ -66,7 +66,7 @@ const KanbanBoard = ({ projectId, projectTitle, projectStatus }) => {
       setTasksData(withNewTask);
       setModalIsOpen(false);
 
-      setModalIsOpen(false);
+      window.location.reload();
     });
   };
 

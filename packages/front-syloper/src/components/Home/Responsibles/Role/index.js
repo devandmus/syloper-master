@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useContext } from 'react';
 import { BiTask } from 'react-icons/bi';
-import { FaTrashAlt } from 'react-icons/fa';
+import { FaTrashAlt, FaPen } from 'react-icons/fa';
 import TableBody from '../../Portfolios/Table/styles';
 import { SectionTitle } from '../../../Common/styles';
 import Button from '../../../UI/Button';
@@ -56,7 +56,12 @@ const Role = () => {
               <td>{role.type}</td>
               <td>$ {role.hourly_cost}</td>
               <td>
-                <FaTrashAlt onClick={() => deleteRole(role.id)} />
+                <FaPen size={25} style={{ cursor: 'pointer' }} />
+                <FaTrashAlt
+                  onClick={() => deleteRole(role.id)}
+                  size={25}
+                  style={{ cursor: 'pointer' }}
+                />
               </td>
             </tr>
           ))}

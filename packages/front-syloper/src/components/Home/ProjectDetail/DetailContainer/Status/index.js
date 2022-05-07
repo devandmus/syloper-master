@@ -1,5 +1,6 @@
 import React from 'react';
 import { MdAutoGraph } from 'react-icons/md';
+import StatusButton from '../../../../UI/StatusButton';
 import { SectionTitle } from '../styles';
 import { ProgressBar, StatusContainer, StatusMain, StatusTxt } from './styles';
 
@@ -12,7 +13,8 @@ const Status = ({ status, progress }) => (
       <h5>Status</h5>
     </SectionTitle>
     <StatusMain>
-      <StatusTxt>{status}</StatusTxt>
+      <StatusTxt />
+      <StatusButton status={status} />
       <ProgressBar progress={progress}>
         <div className="bar-container">
           <span />

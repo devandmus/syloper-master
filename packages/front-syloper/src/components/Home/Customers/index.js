@@ -1,36 +1,27 @@
 import React, { useState, useEffect, useContext } from 'react';
 import { BiTask } from 'react-icons/bi';
+import { FaTrashAlt, FaPen } from 'react-icons/fa';
 import Home from '../Home';
 import TableBody from '../Portfolios/Table/styles';
 import { CustomersMain } from './styles';
 import ServicesCustomer from '../../../services/ServicesCustomer';
 import { SectionTitle } from '../../Common/styles';
-import ModalPerson from '../../UI/ModalFormPerson';
+import ModalCustomer from '../../UI/ModalFormCustomer';
 import Button from '../../UI/Button';
 import AppContext from '../../../contexts/App';
 
 const Customers = () => {
   const [customers, setCustomers] = useState([]);
-  const { setModalIsOpen } = useContext(AppContext);
+  const { setmodalCustomerIsOpen } = useContext(AppContext);
 
   useEffect(() => {
     ServicesCustomer.getCustomers().then((data) => setCustomers(data));
   }, []);
 
   const modalOnSubmit = (customer) => {
-    const updatedValue = {
-      customer_full_name: customer.name,
-      customer_email: customer.email,
-      customer_phone: customer.phone,
-    };
-    ServicesCustomer.createCustomer(updatedValue).then(() => {
-      const withNewCustomer = [];
-      withNewCustomer.push(...customers, updatedValue);
-      setCustomers(withNewCustomer);
-      setModalIsOpen(false);
-
-      setModalIsOpen(false);
-    });
+    const withNewCustomer = [];
+    withNewCustomer.push(...customers, customer);
+    setCustomers(withNewCustomer);
   };
 
   return (
@@ -42,7 +33,9 @@ const Customers = () => {
           </i>
           <h5>People</h5>
         </div>
-        <Button onClick={() => setModalIsOpen(true)}>Add Customer</Button>
+        <Button onClick={() => setmodalCustomerIsOpen(true)}>
+          Add Customer
+        </Button>
       </SectionTitle>
       <CustomersMain>
         <TableBody>
@@ -51,6 +44,7 @@ const Customers = () => {
               <th>Name</th>
               <th>Email</th>
               <th>Contact Number</th>
+              <th />
             </tr>
           </thead>
           <tbody>
@@ -59,11 +53,24 @@ const Customers = () => {
                 <td>{customer.customer_full_name}</td>
                 <td>{customer.customer_email}</td>
                 <td>{customer.customer_phone}</td>
+                <td>
+                  {' '}
+                  <FaPen
+                    size={25}
+                    style={{ cursor: 'pointer' }}
+                    onClick={() => setModalEditPerson(true)}
+                  />
+                  <FaTrashAlt
+                    size={25}
+                    onClick={() => deletePerson(person.id)}
+                    style={{ cursor: 'pointer' }}
+                  />
+                </td>
               </tr>
             ))}
           </tbody>
         </TableBody>
-        <ModalPerson
+        <ModalCustomer
           title="New Customer"
           description="Add task details"
           section="Customer"
