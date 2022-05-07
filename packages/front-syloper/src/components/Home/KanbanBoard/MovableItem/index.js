@@ -1,18 +1,18 @@
 import React, {useRef, useState, useEffect} from 'react';
 import { useDrag, useDrop } from 'react-dnd';
 import { EditText, EditTextarea } from 'react-edit-text';
-import { TaskCard, TDescription, TFooter, TTitle, TEstimatedHours } from './styles';
+import { TaskCard, TDescription, TFooter, TTitle, InputStyle } from './styles';
 import BurgerIcon from '../../../UI/BurgerMenu/Icon';
 import BurgerMenu from '../../../UI/BurgerMenu/Menu';
 import { dateFormatter } from '../../../../utils/date';
 import ServicesUser from '../../../../services/ServicesUser';
-import Avatar from './avatar';
+import Avatar from '../../../UI/avatar';
 import 'react-edit-text/dist/index.css';
 import StatusButton from '../../../UI/StatusButton';
-
+import ServicesResponsible from '../../../../services/ServicesResponsible';
 const MovableItem = ({
-  projectStatus,
   projectTitle,
+  projectStatus,
   key,
   id,
   index,
@@ -24,6 +24,7 @@ const MovableItem = ({
   estimatedHours,
   status,
   responsible,
+  profile,
   updateTask,
   deleteTask,
 }) => {
@@ -32,12 +33,36 @@ const MovableItem = ({
   const [taskTitle, setTaskTitle] = useState(title);
   const [taskDescription, setTaskDescription] = useState(description);
   const [taskEstimatedHours, setTaskEstimatedHours] = useState(estimatedHours);
+  const [taskEstimatedCost, setTaskEstimatedCost] = useState()
   const [taskDueDate, setTaskDueDate] = useState(dueDate);
   const [isOpenMenu, setIsOpenMenu] = useState(false);
+  const [responsibleData, setResponsible] = useState({})
+  const [responsibleProfile, setResponsibleProfile] = useState({})
 
+  useEffect(() => {
+
+    ServicesUser.getUserById(responsible).then((data) => setResponsible(data))
+    ServicesResponsible.getResponsibleTypesById(profile).then((data) => {
+
+      setTaskEstimatedCost(data.hourly_cost)
+      setResponsibleProfile(data)
+    }
+    )
+  }, [])
+
+  const updateHourlyCost = ({hourly_cost: value}) => {
+    const updatedProfile = {
+      ...responsibleProfile,
+      ...{hourly_cost: value}
+    }
+
+    ServicesResponsible.updateResponsibleTypes(responsibleProfile.id, updatedProfile)
+  }
   const changeItemColumn = (currentItem, columnName) => {
+
     
     updateTask(currentItem.id, {status: columnName })
+
 
     setTasksData((prevState) => {
       return prevState.map((e) => {
@@ -144,6 +169,11 @@ const MovableItem = ({
       updateTask(id, { estimated_hours: value });
     }
   };
+  const handleSaveEstimatedCost = ({ value, previousValue }) => {
+    if (value !== previousValue) {
+      updateHourlyCost({ hourly_cost: value });
+    }
+  };
 
   const handleSaveDuedate = ({ value, previousValue }) => {
     if (value !== previousValue) {
@@ -174,7 +204,7 @@ const MovableItem = ({
           style={{
               width: '100%',
               fontWeight: 500,
-              fontSize: '1.1rem',
+              fontSize: '1.4rem',
               marginBottom: '15px',
           }}
 
@@ -187,16 +217,27 @@ const MovableItem = ({
           value={taskDescription}
           style={{
               width: '100%',
-              fontSize: '0.9rem',
-              fontWeight: 300,
+              fontSize: '1.1rem',
               lineHeight: 1.3,
               marginBottom: '20px',
           }}
 
         />
       </TDescription>
-      <TEstimatedHours>
-      <div className='estimated-hours'>
+
+      <InputStyle>
+        <div className='input-div'>
+
+        <p>Profile</p>
+
+        <div className='estimated-cost'>{responsibleProfile.type}</div>
+
+
+        </div>
+      </InputStyle>
+
+      <InputStyle>
+      <div className='input-div'>
 
         <p>Estimated hours:</p>
           <EditText
@@ -205,19 +246,38 @@ const MovableItem = ({
             onSave={handleSaveEstimatedHours}
             value={taskEstimatedHours}
             style={{
-                fontWeight: 300,
                 lineHeight: 1.3,
-            }}
+              }}
 
           />
 
       </div>
 
-        </TEstimatedHours>
+      </InputStyle>
+
+
+      <InputStyle>
+        <div className='input-div'>
+        <p>Hourly Cost: </p>
+
+        <div className='estimated-cost'>{'$ '+taskEstimatedCost}</div>
+
+        </div>
+      </InputStyle>
+
+      <InputStyle>
+        <div className='input-div'>
+        <p>Total Estimated Cost: </p>
+
+        <div className='estimated-cost'>{'$ '+taskEstimatedCost * taskEstimatedHours}</div>
+
+        </div>
+      </InputStyle>
+
 
 
       <TFooter>
-        <div className="due-date">
+        <div className="input-div">
           <p>Due Date:</p>
           <EditText
             onSave={handleSaveDuedate}
@@ -226,16 +286,15 @@ const MovableItem = ({
             value={taskDueDate}
             formatDisplayText={dateFormatter}
             style={{
-            fontSize: '.92rem',
-            fontWeight: 500,
+            fontSize: '1.1rem',
             }}
 
           />
         </div>
 
-        <StatusButton status={status} projectStatus={projectStatus[status]}/>
+        <StatusButton status={status}/>
         <Avatar
-          responsible={responsible}
+          responsible={responsibleData} name={true}
         />
       </TFooter>
       <BurgerMenu

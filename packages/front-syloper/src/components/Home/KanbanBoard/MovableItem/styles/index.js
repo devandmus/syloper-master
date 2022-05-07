@@ -15,17 +15,18 @@ const TaskCard = styled.div`
 const TTitle = styled.h5`
   width: 100%;
   font-weight: 500;
-  font-size: 1.1rem;
+  font-size: 1.4rem;
   margin-bottom: 15px;
 `;
-const TEstimatedHours = styled.div`
+const InputStyle = styled.div`
   width: 100%;
   display: block;
 
-  .estimated-hours {
-    font-size: .9rem;
+  .input-div {
+    font-size: 1.1rem;
 
     p {
+        color: grey;
         width: 100%:
         font-weight: 400;
 
@@ -33,6 +34,11 @@ const TEstimatedHours = styled.div`
             font-weight: 300;
             margin-top: 2px;
         }
+    }
+
+    .estimated-cost {
+      margin-top: 20px;
+      margin-bottom: 20px;
     }
 }
 `;
@@ -52,9 +58,10 @@ const TFooter = styled.div`
     align-items: center;
 
     .due-date {
-        font-size: .9rem;
+        font-size: 1.1rem;
 
         p {
+            color: grey;
             width: 100%:
             font-weight: 400;
 
@@ -66,4 +73,4 @@ const TFooter = styled.div`
     }
 `;
 
-export { TaskCard, TTitle, TDescription, TFooter, TEstimatedHours };
+export { TaskCard, TTitle, TDescription, TFooter, InputStyle };

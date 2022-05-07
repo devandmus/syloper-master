@@ -2,6 +2,7 @@ import React from 'react';
 import { FiUsers } from 'react-icons/fi';
 import { SectionTitle } from '../styles';
 import { ParticipantsList, ParticipantsImg } from './styles';
+import Avatar from '../../../../UI/avatar';
 
 const Participants = ({ responsibles }) => {
   const calcTranslate = (index) => {
@@ -18,9 +19,9 @@ const Participants = ({ responsibles }) => {
       </SectionTitle>
       <ParticipantsList>
         {responsibles.map((user, i) => (
-          <ParticipantsImg
+          <Avatar
             key={user.email}
-            src={user.avatar}
+            responsible={user}
             translatex={calcTranslate(i)}
           />
         ))}

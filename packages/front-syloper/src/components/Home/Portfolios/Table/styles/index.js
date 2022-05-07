@@ -9,6 +9,7 @@ const TableBody = styled.table`
   overflow-x: scroll;
 
   tr {
+    text-align: center;
     border-bottom: 1px solid;
     border-color: ${({ theme }) => theme.color.border};
     &:last-child {

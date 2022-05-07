@@ -13,6 +13,11 @@ const MenuContainer = styled.nav`
     margin-bottom: 0;
   }
 
+  a {
+    width: 100%;
+    display: flex;
+  }
+
   @media only screen and (max-width: 1000px) {
     flex-direction: row;
     height: auto;
@@ -20,7 +25,6 @@ const MenuContainer = styled.nav`
 
     > div:last-child {
       margin-top: initial;
-      opacity: ;
       margin-bottom: 0;
     }
   }

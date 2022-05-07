@@ -46,6 +46,7 @@ const ProjectDetail = () => {
         project_date,
         project_due_date,
         id,
+        project_status,
       });
 
       setProjectContext({
@@ -59,6 +60,7 @@ const ProjectDetail = () => {
       setIsLoading(false);
     });
   }, [projectIdUrl]);
+
   return (
     <Home title="Project Detail">
       {isLoading ? (

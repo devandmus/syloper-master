@@ -4,11 +4,12 @@ import { useDrag } from 'react-dnd';
 import { EditText, EditTextarea } from 'react-edit-text';
 import { dateFormatter } from '../../../../../utils/date';
 import { TaskCard, TDescription, TFooter, TTitle } from './styles';
-import BurgerIcon from '.././../../../UI/BurgerMenu/Icon';
-import BurgerMenu from '.././../../../UI/BurgerMenu/Menu';
+import BurgerIcon from '../../../../UI/BurgerMenu/Icon';
+import BurgerMenu from '../../../../UI/BurgerMenu/Menu';
 import 'react-edit-text/dist/index.css';
 import ServicesUser from '../../../../../services/ServicesUser';
 import Avatar from '../../../KanbanBoard/MovableItem/avatar';
+
 const Task = ({
   date,
   title,
@@ -24,12 +25,11 @@ const Task = ({
   const [isOpenMenu, setIsOpenMenu] = useState(false);
   const [responsible, setResponsible] = useState({});
 
-  useEffect(()=>{
-    ServicesUser.getUserById(responsableId).then((data)=>{
-      console.log(data);
-      setResponsible(data)
-    })
-  },[])
+  useEffect(() => {
+    ServicesUser.getUserById(responsableId).then((data) => {
+      setResponsible(data);
+    });
+  }, []);
 
   const handleClickMenu = () => {
     setIsOpenMenu(!isOpenMenu);
@@ -114,10 +114,7 @@ const Task = ({
             }}
           />
         </div>
-        <Avatar
-        responsible={responsible}
-        
-        />
+        <Avatar responsible={responsible} />
       </TFooter>
       <BurgerMenu
         handleClickMenu={handleClickMenu}

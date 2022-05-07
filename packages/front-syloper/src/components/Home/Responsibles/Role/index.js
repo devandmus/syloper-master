@@ -1,15 +1,16 @@
 import React, { useState, useEffect, useContext } from 'react';
 import { BiTask } from 'react-icons/bi';
+import { FaTrashAlt } from 'react-icons/fa';
 import TableBody from '../../Portfolios/Table/styles';
 import { SectionTitle } from '../../../Common/styles';
 import Button from '../../../UI/Button';
 import ServicesResponsible from '../../../../services/ServicesResponsible';
-import ModalPerson from '../../../UI/ModalFormPerson';
+import ModalRole from '../../../UI/ModalFormRole';
 import AppContext from '../../../../contexts/App';
 
 const Role = () => {
   const [roles, setRoles] = useState([]);
-  const { setModalIsOpen } = useContext(AppContext);
+  const { setModalRoleIsOpen } = useContext(AppContext);
 
   useEffect(() => {
     ServicesResponsible.getResponsibles().then((data) => {
@@ -17,21 +18,17 @@ const Role = () => {
     });
   }, []);
 
-  const modalOnSubmit = (customer) => {
-    const updatedValue = {
-      customer_full_name: customer.name,
-      customer_email: customer.email,
-      customer_phone: customer.phone,
-    };
+  const modalOnSubmit = (role) => {
+    const withNewRole = [];
+    withNewRole.push(...roles, role);
+    setRoles(withNewRole);
+    setModalRoleIsOpen(false);
+  };
 
-    ServicesResponsible.createResponsibleTypes(updatedValue).then(() => {
-      const withNewRole = [];
-      withNewRole.push(...roles, updatedValue);
-      setRoles(withNewRole);
-      setModalIsOpen(false);
-
-      setModalIsOpen(false);
-    });
+  const deleteRole = (id) => {
+    ServicesResponsible.deleteResponsibleTypes(id).then(
+      setRoles(roles.filter((role) => role.id !== id))
+    );
   };
 
   return (
@@ -43,13 +40,14 @@ const Role = () => {
           </i>
           <h5>Role & Cost</h5>
         </div>
-        <Button onClick={() => setModalIsOpen(true)}>Add Role</Button>
+        <Button onClick={() => setModalRoleIsOpen(true)}>Add Role</Button>
       </SectionTitle>
       <TableBody>
         <thead>
           <tr>
             <th>Role</th>
             <th>Hourly Cost</th>
+            <th />
           </tr>
         </thead>
         <tbody>
@@ -57,16 +55,14 @@ const Role = () => {
             <tr>
               <td>{role.type}</td>
               <td>$ {role.hourly_cost}</td>
+              <td>
+                <FaTrashAlt onClick={() => deleteRole(role.id)} />
+              </td>
             </tr>
           ))}
         </tbody>
       </TableBody>
-      <ModalPerson
-        title="New Role"
-        description="Add role details"
-        section="Role"
-        modalOnSubmit={modalOnSubmit}
-      />
+      <ModalRole title="New Role" modalOnSubmit={modalOnSubmit} />
     </>
   );
 };

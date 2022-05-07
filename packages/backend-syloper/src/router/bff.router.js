@@ -7,6 +7,6 @@ bffRouter.get('/user-dashboard', handler.userDashboard);
 
 bffRouter.get('/project-detail/:id', handler.projectDetail);
 
-bffRouter.get('/ranking/', handler.employeesRanking);
+bffRouter.get('/ranking', handler.employeesRanking);
 
 module.exports = bffRouter;
