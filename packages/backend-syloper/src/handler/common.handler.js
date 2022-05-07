@@ -62,6 +62,41 @@ const update = async (ctx) => {
 
 const remove = async (ctx) => {
   const { id, model } = ctx.params;
+
+  const protectedModel = {
+    projects: {
+      bounded: 'tasks',
+      filter: { project_id: id },
+    },
+    'responsible-profile': {
+      bounded: 'tasks',
+      filter: { responsible_profile_id: id },
+    },
+    customers: {
+      bounded: 'projects',
+      filter: { customer_id: id },
+    },
+  }[model] || null;
+
+  if (protectedModel) {
+    const { body } = await commonController.getAll(
+      Models[protectedModel.bounded],
+      protectedModel.filter,
+    );
+
+    if (body.length > 0) {
+      ctx.status = 423;
+      ctx.body = {
+        message: `You can't remove this entry because other models depend on it`,
+        dependencies: {
+          bounded: protectedModel.bounded,
+          entries: body,
+        },
+      };
+      return false;
+    }
+  }
+
   const { status, body } = await commonController.deleteById(Models[model], id);
   ctx.status = status;
   ctx.body = body;
