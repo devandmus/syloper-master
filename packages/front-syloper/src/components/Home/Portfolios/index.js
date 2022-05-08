@@ -4,13 +4,15 @@ import Charts from './Charts';
 import { PortfoliosMain } from './styles';
 import Table from './Table';
 
-const Portfolios = () => (
-  <Home title="Portfolios">
-    <PortfoliosMain>
-      <Charts />
-      <Table />
-    </PortfoliosMain>
-  </Home>
-);
+const Portfolios = () => {
+  return (
+    <Home title="Portfolios">
+      <PortfoliosMain>
+        <Charts />
+        <Table />
+      </PortfoliosMain>
+    </Home>
+  );
+};
 
 export default Portfolios;

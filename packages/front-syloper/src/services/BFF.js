@@ -9,8 +9,12 @@ const getUserDashboard = () =>
 const getEmployeesRanking = () =>
   Request(`/api/bff/ranking`).then((res) => res.data);
 
+const getPortfolio = () =>
+  Request(`/api/bff/portfolio`).then((res) => res.data);
+
 export default {
   getProject,
   getUserDashboard,
   getEmployeesRanking,
+  getPortfolio,
 };

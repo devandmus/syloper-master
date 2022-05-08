@@ -9,10 +9,14 @@ import {
   FirstContainer,
 } from './styles';
 import ServicesBff from '../../../../../services/BFF';
+import ServicesTasks from '../../../../../services/ServicesTasks';
 
 const FirstCharts = () => {
   const theme = useTheme();
   const [userDashboard, setUserDashboard] = React.useState([]);
+  const [tasks, setTasks] = React.useState([]);
+  ChartJS.register(ArcElement, Tooltip, Legend);
+
   const backgroundColorChart = [
     `${theme.color.chartOrange}`,
     `${theme.color.chartYellow}`,
@@ -23,26 +27,23 @@ const FirstCharts = () => {
     // ServicesBff.getProject().then((data) => setProject(data));
     ServicesBff.getUserDashboard().then((data) => {
       const array = [];
-      Object.keys(data.globalStatus).map((key, i) => {
+      Object.keys(data.globalStatus).map((key) => {
         if (key !== 'total_projects') {
           array.push(data.globalStatus[key]);
         }
       });
       setUserDashboard(array);
     });
+
+    ServicesTasks.getTasks().then((data) => {
+      const totalTasks = data.reduce((acc, task) => ({
+        ...acc,
+        [setTaskStatusName(task.status.toString())]: (acc[task.status] || 0) + 1,
+      }), {})
+
+      setTasks(totalTasks);
+    });
   }, []);
-
-  ChartJS.register(ArcElement, Tooltip, Legend);
-
-  const data = {
-    datasets: [
-      {
-        label: '',
-        data: userDashboard,
-        backgroundColor: backgroundColorChart,
-      },
-    ],
-  };
 
   const Labels = () => {
     const name = ['Ready to Start', 'In Progress', 'Completed'];
@@ -59,13 +60,48 @@ const FirstCharts = () => {
     );
   };
 
+  const setTaskStatusName = (name) => {
+    switch (name) {
+      case '0':
+        return 'ready';
+      case '1':
+        return 'inProgress';
+      case '2':
+        return 'completed';
+      default:
+        break;
+    }
+  };
+
+  const tasksDataValues = Object.values(tasks);
+
+  const dataProjects = {
+    datasets: [
+      {
+        label: '',
+        data: userDashboard,
+        backgroundColor: backgroundColorChart,
+      },
+    ],
+  };
+
+  const dataTasks = {
+    datasets: [
+      {
+        label: '',
+        data: tasksDataValues,
+        backgroundColor: backgroundColorChart,
+      },
+    ],
+  };
+
   return (
     <FirstContainer>
       <FChartsContainer>
         <h3>Projects</h3>
         <FChartsInfo>
           <section className="chart">
-            <Doughnut data={data} />
+            <Doughnut data={dataProjects} />
           </section>
           <FChartsData>
             <section className="data-container">
@@ -79,21 +115,21 @@ const FirstCharts = () => {
         <h3>Total Tasks</h3>
         <FChartsInfo>
           <section className="chart">
-            <Doughnut data={data} />
+            <Doughnut data={dataTasks} />
           </section>
           <FChartsData>
             <section className="data-container">
               <div>
                 <span>Ready to Start</span>
-                <span className="status-a">10</span>
+                <span className="status-a">{tasks?.ready}</span>
               </div>
               <div>
                 <span>In Progress</span>
-                <span className="status-b">10</span>
+                <span className="status-b">{tasks?.inProgress}</span>
               </div>
               <div>
                 <span>Completed</span>
-                <span className="status-c">10</span>
+                <span className="status-c">{tasks?.completed}</span>
               </div>
             </section>
           </FChartsData>
