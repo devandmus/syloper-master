@@ -9,4 +9,6 @@ bffRouter.get('/project-detail/:id', handler.projectDetail);
 
 bffRouter.get('/ranking', handler.employeesRanking);
 
+bffRouter.get('/portfolio', handler.portfolio);
+
 module.exports = bffRouter;
