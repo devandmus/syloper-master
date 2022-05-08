@@ -20,7 +20,7 @@ const updateCustomer = (id, data) =>
 const deleteCustomer = (id) =>
   Request(`/api/customers/delete/${id}`, {
     method: 'DELETE',
-  }).then((response) => response.data);
+  }).then((response) => response);
 
 export default {
   getCustomers,

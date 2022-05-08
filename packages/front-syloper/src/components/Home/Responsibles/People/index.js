@@ -1,6 +1,8 @@
 import React, { useState, useEffect, useContext } from 'react';
 import { BiTask } from 'react-icons/bi';
 import { FaTrashAlt, FaPen } from 'react-icons/fa';
+import { EditText } from 'react-edit-text';
+import { useTheme } from 'styled-components';
 import TableBody from '../../Portfolios/Table/styles';
 import { SectionTitle } from '../../../Common/styles';
 import Button from '../../../UI/Button';
@@ -9,10 +11,13 @@ import AppContext from '../../../../contexts/App';
 import ModalPerson from '../../../UI/ModalFormPerson';
 import Avatar from '../../../../images/avatar.jpg';
 import { AssignImg } from '../../../UI/avatar/styles';
+import ModalAvatar from '../../../UI/ModalFormAvatar';
 
 const People = () => {
+  const theme = useTheme();
   const [people, setPeople] = useState([]);
   const { setModalPeopleIsOpen } = useContext(AppContext);
+  const { setModalAvatarIsOpen } = useContext(AppContext);
 
   useEffect(() => {
     ServicesUser.getUsers().then((data) => {
@@ -25,6 +30,26 @@ const People = () => {
     withNewPerson.push(...people, person);
     setPeople(withNewPerson);
     setModalPeopleIsOpen(false);
+  };
+
+  const updatePerson = (id, data) => {
+    const updatedValue = {
+      ...people.find((person) => person.id === id),
+      ...data,
+    };
+    ServicesUser.updateUser(id, updatedValue);
+  };
+
+  const handleSaveEmail = ({ name, value, previousValue }) => {
+    if (value !== previousValue) {
+      updatePerson(name, { email: value });
+    }
+  };
+
+  const handleSaveName = ({ name, value, previousValue }) => {
+    if (value !== previousValue) {
+      updatePerson(name, { name: value });
+    }
   };
 
   const deletePerson = (id) => {
@@ -56,25 +81,51 @@ const People = () => {
         <tbody>
           {people.map((person) => (
             <tr key={person.email}>
-              <td>
-                <AssignImg src={person.avatar} />
-              </td>
-              <td>{person.name}</td>
-              <td>{person.email}</td>
-              <td>
-                <FaPen
-                  size={25}
+              <td style={{ textAlign: 'center', width: '200px' }}>
+                <AssignImg
+                  src={person.avatar}
+                  onClick={setModalAvatarIsOpen(true)}
                   style={{ cursor: 'pointer' }}
-                  onClick={() => setModalEditPerson(true)}
                 />
-                {person.id === '624f601783d6ec1bd221a83c' ||
-                person.id === '624f601783d6ec1bd221a83d' ? null : (
-                  <FaTrashAlt
-                    size={25}
-                    onClick={() => deletePerson(person.id)}
-                    style={{ cursor: 'pointer' }}
-                  />
-                )}
+              </td>
+              <td style={{ textAlign: 'center', width: '200px' }}>
+                <EditText
+                  name={person.id}
+                  onChange={setPeople}
+                  onSave={handleSaveName}
+                  defaultValue={person.name}
+                  style={{
+                    textAlign: 'center',
+                    width: '100%',
+                    fontWeight: 500,
+                    fontSize: '1.08rem',
+                    lineHeight: 1.35,
+                    fontFamily: theme.font.family,
+                  }}
+                />
+              </td>
+              <td style={{ textAlign: 'center', width: '200px' }}>
+                <EditText
+                  name={person.id}
+                  onChange={setPeople}
+                  onSave={handleSaveEmail}
+                  defaultValue={person.email}
+                  style={{
+                    textAlign: 'center',
+                    width: '100%',
+                    fontWeight: 500,
+                    fontSize: '1.08rem',
+                    lineHeight: 1.35,
+                    fontFamily: theme.font.family,
+                  }}
+                />
+              </td>
+              <td>
+                <FaTrashAlt
+                  size={25}
+                  onClick={() => deletePerson(person.id)}
+                  style={{ cursor: 'pointer' }}
+                />
               </td>
             </tr>
           ))}

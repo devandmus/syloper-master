@@ -77,8 +77,6 @@ const Modal = ({ title, description, section, modalOnSubmit, projectId }) => {
     .map((project) => project.value)
     .indexOf(projectId);
 
-  console.log(defaultV);
-
   const resProfileOptions = [];
 
   resProfile.forEach((responsible) => {

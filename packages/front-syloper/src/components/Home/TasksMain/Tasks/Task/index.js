@@ -93,7 +93,7 @@ const Task = ({
           style={{
             width: '100%',
             fontSize: '0.9rem',
-            fontWeight: 300,
+            fontWeight: 500,
             lineHeight: 1.3,
             marginBottom: '20px',
           }}

@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import TableBody from './styles';
 import ServiceBFF from '../../../../services/BFF';
-
+import { numberFormatter, currencyFormatter } from '../../../../utils/number';
 const Table = () => {
   const [tableData, setTableDta] = useState();
 
@@ -25,10 +25,10 @@ const Table = () => {
           <td>{row.project_title}</td>
           <td>{row.client}</td>
           <td>{row.price_per_hour}</td>
-          <td>{row.estimated_hours}</td>
-          <td>{row.worked_hours}</td>
-          <td>{row.estimated_incomes}</td>
-          <td>{row.real_incomes}</td>
+          <td>{numberFormatter(row.estimated_hours)}</td>
+          <td>{numberFormatter(row.worked_hours)}</td>
+          <td>{currencyFormatter(row.estimated_incomes)}</td>
+          <td>{currencyFormatter(row.real_incomes)}</td>
         </tr>
       ))}
     </TableBody>

@@ -4,6 +4,11 @@ const values = {
   user: null,
   setUser: () => {},
   modalIsOpen: false,
+  modalPeopleIsOpen: false,
+  modalRoleIsOpen: false,
+  modalCustomerIsOpen: false,
+  modalAvatarIsOpen: false,
+  modalMessageIsOpen: false,
 };
 
 const AppContext = createContext({ ...values });
@@ -17,8 +22,14 @@ const AppProvider = ({ children }) => {
   const [modalRoleIsOpen, setModalRoleIsOpen] = useState(
     values.modalPeopleIsOpen
   );
-  const [modalCustomerIsOpen, setmodalCustomerIsOpen] = useState(
+  const [modalCustomerIsOpen, setModalCustomerIsOpen] = useState(
     values.modalCustomerIsOpen
+  );
+  const [modalAvatarIsOpen, setModalAvatarIsOpen] = useState(
+    values.modalAvatarIsOpen
+  );
+  const [modalMessageIsOpen, setModalMessageIsOpen] = useState(
+    values.modalMessageIsOpen
   );
 
   return (
@@ -33,7 +44,11 @@ const AppProvider = ({ children }) => {
         modalRoleIsOpen,
         setModalRoleIsOpen,
         modalCustomerIsOpen,
-        setmodalCustomerIsOpen,
+        setModalCustomerIsOpen,
+        modalAvatarIsOpen,
+        setModalAvatarIsOpen,
+        modalMessageIsOpen,
+        setModalMessageIsOpen,
       }}
     >
       {children}

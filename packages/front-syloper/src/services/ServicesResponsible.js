@@ -23,7 +23,7 @@ const updateResponsibleTypes = (id, data) =>
 const deleteResponsibleTypes = (id) =>
   Request(`/api/responsible-profile/delete/${id}`, {
     method: 'DELETE',
-  }).then((response) => response.data);
+  }).then((response) => response);
 
 export default {
   getResponsibles,

@@ -20,7 +20,14 @@ const updateProject = (id, data) =>
 const deleteProject = (id) =>
   Request(`/api/projects/delete/${id}`, {
     method: 'DELETE',
-  }).then((response) => response.data);
+  }).then(
+    (response) => {
+      return response;
+    },
+    (error) => {
+      return error;
+    }
+  );
 
 export default {
   getProjects,

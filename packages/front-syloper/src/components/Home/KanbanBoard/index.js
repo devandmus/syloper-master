@@ -41,6 +41,7 @@ const KanbanBoard = ({ projectId, projectTitle, projectStatus }) => {
       ...task,
     };
     ServicesTasks.updateTask(id, updatedTask);
+    // window.location.reload();
   };
 
   const deleteTask = (id) => {

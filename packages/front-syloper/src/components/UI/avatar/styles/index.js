@@ -3,6 +3,7 @@ import styled from 'styled-components';
 const AssignImg = styled.span`
   width: 45px;
   height: 45px;
+  alt: ${(props) => props.alt}};
   ${({ src }) =>
     src ? `background-image: url(${src});` : 'background-color: gray;'}
   background-size: cover;

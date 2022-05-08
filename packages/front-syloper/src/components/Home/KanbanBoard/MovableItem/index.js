@@ -11,6 +11,8 @@ import 'react-edit-text/dist/index.css';
 import StatusButton from '../../../UI/StatusButton';
 import ServicesResponsible from '../../../../services/ServicesResponsible';
 import ServicesProjects from '../../../../services/ServicesProjects';
+import ProfileSelector from './ProfileSelector';
+import AvatarSelector from './AvatarSelector';
 const MovableItem = ({
   projectTitle,
   projectStatus,
@@ -192,6 +194,18 @@ const MovableItem = ({
     setIsOpenMenu(!isOpenMenu);
   };
 
+  const handleSaveAvatar = (responsible) => {
+    updateTask(id, { task_responsible_user_id: responsible.id });
+    setResponsible(responsible)
+
+  }
+
+  const handleSaveProfile = (profile) => {
+    updateTask(id, { responsible_profile_id: profile.id });
+    setResponsibleProfile(profile)
+
+  }
+
 
   return (
     <TaskCard ref={ref} style={{ opacity }} key={key}>
@@ -237,7 +251,7 @@ const MovableItem = ({
 
         <p>Profile</p>
 
-        <div className='estimated-cost'>{responsibleProfile.type}</div>
+        <ProfileSelector selected={responsibleProfile} handleSaveProfile={handleSaveProfile}/>
 
 
         </div>
@@ -300,9 +314,8 @@ const MovableItem = ({
         </div>
 
         <StatusButton status={status}/>
-        <Avatar
-          responsible={responsibleData} name={true}
-        />
+
+        <AvatarSelector responsible={responsibleData} handleSaveAvatar={handleSaveAvatar}/>
       </TFooter>
       <BurgerMenu
         handleClickMenu={handleClickMenu}

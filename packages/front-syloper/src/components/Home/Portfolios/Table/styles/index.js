@@ -28,6 +28,8 @@ const TableBody = styled.table`
   }
 
   td {
+    text-align: center;
+    width: 200px;
     padding: 18px 8px;
     font-size: 1.02rem;
     img {

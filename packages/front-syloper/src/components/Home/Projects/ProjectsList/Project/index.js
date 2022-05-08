@@ -47,7 +47,7 @@ const Project = ({
   };
 
   return (
-    <ProjectCard>
+    <ProjectCard key={id}>
       <BurgerIcon
         handleClickMenu={handleClickMenu}
         setIsOpenMenu={setIsOpenMenu}

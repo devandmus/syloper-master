@@ -1,5 +1,53 @@
 import styled from 'styled-components';
 
+const ModalMessageContainer = styled.div`
+  width: 600px;
+  padding: 30px;
+  border-radius: 20px;
+  background-color: #f8f9fa;
+  position: fixed;
+  top: 100%;
+  transform: translateY(200%);
+  left: 0;
+  right: 0;
+  margin: 0 auto;
+  z-index: 20;
+  transition: all ease 0.4s;
+
+  &.show {
+    transform: translateY(-250%);
+  }
+
+  @media only screen and (max-width: 768px) {
+    width: 85%;
+  }
+
+  h3 {
+    width: 100%;
+    text-align: center;
+    font-size: 2.3rem;
+    font-weight: 600;
+    margin-bottom: 10px;
+  }
+
+  > p {
+    width: 100%;
+    text-align: center;
+    font-size: 1.3rem;
+    margin-bottom: 40px;
+    color: ${({ theme }) => theme.color.gray600};
+  }
+
+  i {
+    position: absolute;
+    width: 30px;
+    height: 30px;
+    top: 15px;
+    right: 15px;
+    cursor: pointer;
+  }
+`;
+
 const ModalContainer = styled.div`
   width: 600px;
   padding: 30px;
@@ -135,4 +183,4 @@ const Veil = styled.div`
   }
 `;
 
-export { ModalContainer, ModalForm, Veil };
+export { ModalContainer, ModalForm, Veil, ModalMessageContainer };

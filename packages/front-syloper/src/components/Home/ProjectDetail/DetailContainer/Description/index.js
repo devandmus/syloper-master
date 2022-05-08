@@ -33,7 +33,6 @@ const Description = ({ projectDescription, updateProject }) => {
           value={description}
           style={{
             width: '100%',
-            fontWeight: 300,
             fontSize: '1.08rem',
             lineHeight: 1.35,
             fontFamily: theme.font.family,

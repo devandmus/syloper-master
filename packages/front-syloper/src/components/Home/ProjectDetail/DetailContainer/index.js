@@ -50,7 +50,7 @@ const DetailContainer = (props) => {
           style={{
             width: '100%',
             marginBottom: '10px',
-            fontWeight: 600,
+            fontWeight: 500,
             fontSize: '1.5rem',
             lineHeight: 1.35,
             fontFamily: theme.font.family,
