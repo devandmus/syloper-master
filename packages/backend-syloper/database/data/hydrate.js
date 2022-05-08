@@ -1,4 +1,5 @@
 require('../connection');
+const updateController = require('../../src/controller/common.controller').putById;
 
 // MODELS
 const UserModel = require('../models/User.model');
@@ -21,6 +22,7 @@ const hydrateFromData = async (model, data) => {
     const query = collection === 'users' ? { email: entry.email } : entry;
     const exist = Boolean(await model.findOne(query));
     if (!exist) await new model({ ...entry }).save();
+    else updateController(model, exist.id, { ...entry });
   });
   await Promise.all(promises).then(() => {
     console.log('Done', model)
