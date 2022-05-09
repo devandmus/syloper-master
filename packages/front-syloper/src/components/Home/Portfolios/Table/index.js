@@ -27,11 +27,7 @@ const Table = () => {
           <td>{row.client}</td>
           <td>{row.price_per_hour}</td>
           <td>{numberFormatter(row.estimated_hours)}</td>
-          <td>
-            <EditText 
-              type="number"
-            />
-          </td>
+          <td>{row.worked_hours}</td>
           <td>{currencyFormatter(row.estimated_incomes)}</td>
           <td>{currencyFormatter(row.real_incomes)}</td>
         </tr>
