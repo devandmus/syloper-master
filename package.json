@@ -4,9 +4,9 @@
   "scripts": {
     "start": "docker-compose up -d && lerna run dev --stream",
     "only:backend": "lerna run back --stream",
+    "deploy": "npm run deploy --prefix=./packages/backend-syloper/",
     "hydrate": "npm run hydrate --prefix=./packages/backend-syloper/",
     "init": "npm i && npx lerna bootstrap --hoist",
-    "publish": "npm run build --prefix=./packages/front-syloper/ && rm -r ./docs/* && mv ./packages/front-syloper/public/* ./docs && git add . && git commit -m 'build' && git push"
   },
   "devDependencies": {
     "lerna": "^4.0.0"

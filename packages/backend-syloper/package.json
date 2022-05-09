@@ -6,7 +6,8 @@
     "start": "node server.js",
     "hydrate": "node ./database/data/hydrate.js",
     "dev": "nodemon --watch src --watch database --exec npm run start",
-    "back": "npm run dev"
+    "back": "npm run dev",
+    "deploy": "npm run build --prefix=../front-syloper/ && rm -r ./public && mv ../front-syloper/public . && git add . && git commit -m 'build' && git push heroku master"
   },
   "author": "A. Maldonado - J. López - J. Sánchez - Y. Bao",
   "dependencies": {
@@ -19,6 +20,7 @@
     "koa-body": "^4.2.0",
     "koa-logger": "^3.2.1",
     "koa-router": "^10.1.1",
+    "koa-static": "^5.0.0",
     "mongoose": "^6.1.2",
     "nconf": "^0.11.3",
     "nodemailer": "^6.7.3"
