@@ -36,9 +36,12 @@ const Role = () => {
       if (response.status === 200) {
         setRoles(roles.filter((role) => role.id !== id));
       } else if (response.status === 423) {
+        const dependencies = response.data.dependencies.entries.map(
+          (task) => task.title
+        );
         setModalMessageIsOpen(true);
         setMessage(
-          `Can't remove it. There are tasks depending on it. Before remove it, you have to unassign them from the tasks.`
+          `Can't remove, ${dependencies.toString()}, tasks depend on it. Before remove it, you have to unassign them from the tasks.`
         );
       }
     });

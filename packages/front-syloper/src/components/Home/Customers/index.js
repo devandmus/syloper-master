@@ -28,7 +28,12 @@ const Customers = () => {
     ServicesCustomer.deleteCustomer(id).then((response) => {
       setModalMessageIsOpen(true);
       if (response.status === 423) {
-        setMessage(`Can't remove it. There are projects depending on it.`);
+        const dependencies = response.data.dependencies.entries.map(
+          (project) => project.project_title
+        );
+        setMessage(
+          `Can't remove it. ${dependencies.toString()}, projects depend on it.`
+        );
       } else if (response.status === 200) {
         setMessage(`Successfully removed`);
       }

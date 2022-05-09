@@ -61,6 +61,8 @@ const ModalContainer = styled.div`
   margin: 0 auto;
   z-index: 20;
   transition: all ease 0.4s;
+  max-height: 100%;
+  box-sizing: border-box;
 
   &.show {
     transform: translateY(-50%);
@@ -99,6 +101,11 @@ const ModalContainer = styled.div`
 const ModalForm = styled.div`
   width: 65%;
   margin: 0 auto;
+
+  h4 {
+    font-size: 1.2rem;
+    text-align: center;
+  }
 
   @media only screen and (max-width: 768px) {
     width: 100%;
