@@ -38,6 +38,7 @@ const DueDate = ({ projectDueDate, updateProject }) => {
           fontSize: '1rem',
           borderRadius: '5px',
           marginBottom: '25px',
+          fontFamily: theme.font.family,
         }}
       />
     </div>

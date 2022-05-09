@@ -24,6 +24,7 @@ const Task = ({
 }) => {
   const [isOpenMenu, setIsOpenMenu] = useState(false);
   const [responsible, setResponsible] = useState({});
+  const theme = useTheme();
 
   useEffect(() => {
     ServicesUser.getUserById(responsableId).then((data) => {
@@ -82,6 +83,7 @@ const Task = ({
             fontWeight: 500,
             fontSize: '1.1rem',
             marginBottom: '15px',
+            fontFamily: theme.font.family,
           }}
         />
       </TTitle>
@@ -96,6 +98,7 @@ const Task = ({
             fontWeight: 500,
             lineHeight: 1.3,
             marginBottom: '20px',
+            fontFamily: theme.font.family,
           }}
         />
       </TDescription>
@@ -111,6 +114,7 @@ const Task = ({
             style={{
               fontSize: '.92rem',
               fontWeight: 500,
+              fontFamily: theme.font.family,
             }}
           />
         </div>

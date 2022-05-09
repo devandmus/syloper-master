@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useContext } from 'react';
-import { BiTask } from 'react-icons/bi';
-import { FaTrashAlt, FaPen } from 'react-icons/fa';
+import { IoPeopleOutline } from 'react-icons/io5';
+import { FaTrashAlt } from 'react-icons/fa';
 import { EditText } from 'react-edit-text';
 import { useTheme } from 'styled-components';
 import Home from '../Home';
@@ -19,6 +19,7 @@ const Customers = () => {
   const { setModalCustomerIsOpen } = useContext(AppContext);
   const [message, setMessage] = useState('');
   const { setModalMessageIsOpen } = useContext(AppContext);
+  const [entries, setEntries] = useState([]);
 
   useEffect(() => {
     ServicesCustomer.getCustomers().then((data) => setCustomers(data));
@@ -28,7 +29,13 @@ const Customers = () => {
     ServicesCustomer.deleteCustomer(id).then((response) => {
       setModalMessageIsOpen(true);
       if (response.status === 423) {
-        setMessage(`Can't remove it. There are projects depending on it.`);
+        setEntries(
+          response.data.dependencies.entries.map((entry) => entry.project_title)
+        );
+
+        setMessage(
+          `Can't remove it. There are ${response.data.dependencies.bounded} depending on it.`
+        );
       } else if (response.status === 200) {
         setMessage(`Successfully removed`);
       }
@@ -72,7 +79,7 @@ const Customers = () => {
       <SectionTitle className="task-title">
         <div>
           <i>
-            <BiTask />
+            <IoPeopleOutline />
           </i>
           <h5>People</h5>
         </div>
@@ -159,7 +166,7 @@ const Customers = () => {
           modalOnSubmit={modalOnSubmit}
         />
       </CustomersMain>
-      <ModalMessage title="message" message={message} />
+      <ModalMessage title="message" message={message} entries={entries} />
     </Home>
   );
 };

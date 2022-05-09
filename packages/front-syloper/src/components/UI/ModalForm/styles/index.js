@@ -15,7 +15,8 @@ const ModalMessageContainer = styled.div`
   transition: all ease 0.4s;
 
   &.show {
-    transform: translateY(-250%);
+    transform: translateY(-150%);
+    position: sticky;
   }
 
   @media only screen and (max-width: 768px) {
