@@ -1,0 +1,1 @@
+{"version":3,"file":"component---src-pages-404-js-af6bc25254980d1c6851.js","mappings":"yIAIA,UAFqB,kBAAM","sources":["webpack://syloper-front/./src/pages/404.js"],"sourcesContent":["import * as React from 'react';\n\nconst NotFoundPage = () => <h1>404</h1>;\n\nexport default NotFoundPage;\n"],"names":[],"sourceRoot":""}
