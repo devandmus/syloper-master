@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useContext } from 'react';
-import { BiTask } from 'react-icons/bi';
+import { IoPeopleOutline } from 'react-icons/io5';
+
 import { FaTrashAlt } from 'react-icons/fa';
 import { EditText } from 'react-edit-text';
 import { useTheme } from 'styled-components';
@@ -17,6 +18,7 @@ const Role = () => {
   const { setModalRoleIsOpen } = useContext(AppContext);
   const [message, setMessage] = useState('');
   const { setModalMessageIsOpen } = useContext(AppContext);
+  const [entries, setEntries] = useState([]);
 
   useEffect(() => {
     ServicesResponsible.getResponsibles().then((data) => {
@@ -37,8 +39,13 @@ const Role = () => {
         setRoles(roles.filter((role) => role.id !== id));
       } else if (response.status === 423) {
         setModalMessageIsOpen(true);
+
+        setEntries(
+          response.data.dependencies.entries.map((entry) => entry.title)
+        );
+
         setMessage(
-          `Can't remove it. There are tasks depending on it. Before remove it, you have to unassign them from the tasks.`
+          `Can't remove it. There are ${response.data.dependencies.bounded} depending on it.`
         );
       }
     });
@@ -71,7 +78,7 @@ const Role = () => {
       <SectionTitle className="task-title">
         <div>
           <i>
-            <BiTask />
+            <IoPeopleOutline />
           </i>
           <h5>Role & Cost</h5>
         </div>
@@ -132,7 +139,7 @@ const Role = () => {
         </tbody>
       </TableBody>
       <ModalRole title="New Role" modalOnSubmit={modalOnSubmit} />
-      <ModalMessage title="Message" message={message} />
+      <ModalMessage title="Message" message={message} entries={entries} />
     </>
   );
 };

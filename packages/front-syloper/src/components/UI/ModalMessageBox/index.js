@@ -5,7 +5,7 @@ import Button from '../Button';
 import { ModalMessageContainer, ModalForm, Veil } from '../ModalForm/styles';
 import AppContext from '../../../contexts/App';
 
-const ModalMessage = ({ title, message }) => {
+const ModalMessage = ({ title, message, entries }) => {
   const { setModalMessageIsOpen, modalMessageIsOpen } = useContext(AppContext);
 
   const handleCloseClick = () => {
@@ -22,7 +22,19 @@ const ModalMessage = ({ title, message }) => {
         </i>
         <h3>{title}</h3>
         <ModalForm>
-          <h4>{message}</h4>
+          <p>{message}</p>
+
+          {entries ? (
+            <>
+              <p> Before remove it, you have to unassign them from</p>
+
+              {entries.map((entry) => (
+                <ol>
+                  <li>{entry}</li>
+                </ol>
+              ))}
+            </>
+          ) : null}
           <Button type="button" onClick={handleCloseClick}>
             Close
           </Button>

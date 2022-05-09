@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useContext } from 'react';
-import { BiTask } from 'react-icons/bi';
+import { IoPeopleOutline } from 'react-icons/io5';
 import { FaTrashAlt, FaPen } from 'react-icons/fa';
 import { EditText } from 'react-edit-text';
 import { useTheme } from 'styled-components';
@@ -63,7 +63,7 @@ const People = () => {
       <SectionTitle className="task-title">
         <div>
           <i>
-            <BiTask />
+            <IoPeopleOutline />
           </i>
           <h5>People</h5>
         </div>

@@ -12,6 +12,7 @@ const Projects = () => {
   const { setModalMessageIsOpen } = useContext(AppContext);
   const [isLoading, setIsLoading] = useState(true);
   const [errorMsg, setErrorMsg] = useState('');
+  const [entries, setEntries] = useState([]);
 
   const [projectsData, setProjectsData] = useState([]);
 
@@ -29,7 +30,13 @@ const Projects = () => {
         setModalMessageIsOpen(true);
         setProjectsData(projectsData.filter((project) => project.id !== id));
       } else if (response.status === 423) {
-        setErrorMsg(`Can't remove it. There are tasks depending on it.`);
+        setEntries(
+          response.data.dependencies.entries.map((entry) => entry.title)
+        );
+
+        setErrorMsg(
+          `Can't remove it. There are ${response.data.dependencies.bounded} depending on it.`
+        );
         setModalMessageIsOpen(true);
       }
     });
@@ -63,7 +70,7 @@ const Projects = () => {
         projectsData={projectsData}
         deleteProject={deleteProject}
       />
-      <ModalMessage title="Message" message={errorMsg} />
+      <ModalMessage title="Message" message={errorMsg} entries={entries} />
       <ModalForm
         title="New Project"
         description="Add project details"

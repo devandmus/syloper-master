@@ -8,7 +8,7 @@ import AppContext from '../../../contexts/App';
 import ServicesCustomer from '../../../services/ServicesCustomer';
 
 const ModalCustomer = ({ title, modalOnSubmit }) => {
-  const { setmodalCustomerIsOpen, modalCustomerIsOpen } =
+  const { setModalCustomerIsOpen, modalCustomerIsOpen } =
     useContext(AppContext);
   const [loading, setLoading] = useState(false);
   const [errorMsg, setErrorMsg] = useState('');
@@ -61,7 +61,7 @@ const ModalCustomer = ({ title, modalOnSubmit }) => {
 
     ServicesCustomer.createCustomer(updatedValue)
       .then(() => {
-        setmodalCustomerIsOpen(false);
+        setModalCustomerIsOpen(false);
         modalOnSubmit(updatedValue);
         // window.location.reload();
       })
@@ -74,7 +74,7 @@ const ModalCustomer = ({ title, modalOnSubmit }) => {
   };
 
   const handleCloseClick = () => {
-    setmodalCustomerIsOpen(false);
+    setModalCustomerIsOpen(false);
   };
 
   return (

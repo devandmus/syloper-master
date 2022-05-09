@@ -1,10 +1,12 @@
 import * as React from 'react';
+import { useTheme } from 'styled-components';
 import ServicesResponsible from '../../../../../services/ServicesResponsible';
 import Dropdown from '../AvatarSelector/styles';
 
 const ProfileSelector = ({ selected, handleSaveProfile }) => {
   const [dropdown, setDropdown] = React.useState(false);
 
+  const theme = useTheme();
   const [responsibles, setResponsibles] = React.useState([]);
 
   React.useEffect(() => {
@@ -35,7 +37,7 @@ const ProfileSelector = ({ selected, handleSaveProfile }) => {
     >
       <button className="dropbtn">
         {' '}
-        <div>{selected.type}</div>
+        <div style={{ fontFamily: theme.font.family }}>{selected.type}</div>
       </button>
 
       <div
@@ -49,7 +51,11 @@ const ProfileSelector = ({ selected, handleSaveProfile }) => {
         {responsibles
           .filter((responsible) => responsible.id !== selected.id)
           .map((responsible) => (
-            <a href="#" onClick={() => handleCompOnSave(responsible)}>
+            <a
+              href="#"
+              style={{ fontFamily: theme.font.family }}
+              onClick={() => handleCompOnSave(responsible)}
+            >
               {' '}
               {responsible.type}
             </a>
