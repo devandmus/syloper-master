@@ -2,10 +2,11 @@ import styled from 'styled-components';
 
 const Dropdown = styled.div`
   .dropbtn {
-    padding: 16px;
+    padding: 10px;
     font-size: 16px;
     border: none;
     background-color: #fff;
+    font-weight: 400;
   }
   /* The container <div> - needed to position the dropdown content */
   .dropdown {
@@ -22,11 +23,17 @@ const Dropdown = styled.div`
     z-index: 1;
     border-radius: 13px;
     min-width: 68px;
+    right: 10px;
+    height: 200px;
+    overflow-y: scroll;
+
+    @media screen and (max-width: 1600px) {
+      left: 10px;
+    }
   }
 
   /* Links inside the dropdown */
   .dropdown-content a {
-    color: black;
     padding: 12px 16px;
     text-decoration: none;
     display: block;

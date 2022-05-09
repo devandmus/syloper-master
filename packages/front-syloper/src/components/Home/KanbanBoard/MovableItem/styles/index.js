@@ -24,23 +24,23 @@ const InputStyle = styled.div`
 
   .input-div {
     font-size: 1.1rem;
+    position: relative;
 
     p {
-        color: grey;
-        width: 100%:
-        font-weight: 400;
+      width: 100%;
+      font-weight: 500;
 
-        &:last-child {
-            font-weight: 300;
-            margin-top: 2px;
-        }
+      &:last-child {
+        font-weight: 300;
+        margin-top: 2px;
+      }
     }
 
     .estimated-cost {
-      margin-top: 20px;
+      margin-top: 10px;
       margin-bottom: 20px;
     }
-}
+  }
 `;
 
 const TDescription = styled.p`
@@ -51,26 +51,46 @@ const TDescription = styled.p`
   margin-bottom: 20px;
 `;
 
-const TFooter = styled.div`
-    width: 100%;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+const DataColumns = styled.section`
+  display: flex;
+  gap: 5%;
+  flex-wrap: wrap;
 
-    .due-date {
-        font-size: 1.1rem;
-
-        p {
-            color: grey;
-            width: 100%:
-            font-weight: 400;
-
-            &:last-child {
-                font-weight: 300;
-                margin-top: 2px;
-            }
-        }
-    }
+  ${InputStyle} {
+    width: 45%;
+  }
 `;
 
-export { TaskCard, TTitle, TDescription, TFooter, InputStyle };
+const TFooter = styled.div`
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  @media screen and (max-width: 1600px) {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .due-date {
+    font-size: 1.1rem;
+
+    p {
+      color: grey;
+      width: 100%;
+      font-weight: 400;
+
+      &:last-child {
+        font-weight: 300;
+        margin-top: 2px;
+      }
+    }
+  }
+
+  .input-div > p {
+    font-weight: 500;
+    font-size: 16.5px;
+  }
+`;
+
+export { TaskCard, TTitle, TDescription, TFooter, InputStyle, DataColumns };

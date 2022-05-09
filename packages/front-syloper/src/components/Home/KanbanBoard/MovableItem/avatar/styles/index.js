@@ -1,8 +1,8 @@
 import styled from 'styled-components';
 
 const AssignImg = styled.span`
-  width: 45px;
-  height: 45px;
+  width: 34px;
+  height: 34px;
   ${({ src }) =>
     src ? `background-image: url(${src});` : 'background-color: gray;'}
   background-size: cover;
@@ -12,15 +12,16 @@ const AssignImg = styled.span`
 `;
 
 const AvatarStyled = styled.div`
-  justify-content: center;
-  display: block;
+  align-items: center;
+  display: flex;
+  gap: 10px;
 `;
 
 const DisplayName = styled.span`
-  width: 100%;
   font-weight: 300;
   font-size: 1.08rem;
   line-height: 1.35;
+  text-align: left;
 `;
 
 export { AssignImg, AvatarStyled, DisplayName };

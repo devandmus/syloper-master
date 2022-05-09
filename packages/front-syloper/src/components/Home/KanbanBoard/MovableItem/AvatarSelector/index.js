@@ -35,7 +35,7 @@ const AvatarSelector = ({ responsible, handleSaveAvatar }) => {
       </button>
       <div
         className="dropdown-content"
-        style={{ display: dropdown ? 'block' : 'none', bottom: '20%' }}
+        style={{ display: dropdown ? 'block' : 'none', bottom: '75px' }}
       >
         {responsibles
           .filter((item) => item.id !== responsible.id)

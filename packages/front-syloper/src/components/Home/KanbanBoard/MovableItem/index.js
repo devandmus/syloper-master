@@ -1,7 +1,7 @@
 import React, {useRef, useState, useEffect} from 'react';
 import { useDrag, useDrop } from 'react-dnd';
 import { EditText, EditTextarea } from 'react-edit-text';
-import { TaskCard, TDescription, TFooter, TTitle, InputStyle } from './styles';
+import { TaskCard, TDescription, TFooter, TTitle, InputStyle, DataColumns } from './styles';
 import BurgerIcon from '../../../UI/BurgerMenu/Icon';
 import BurgerMenu from '../../../UI/BurgerMenu/Menu';
 import { dateFormatter } from '../../../../utils/date';
@@ -242,60 +242,47 @@ const MovableItem = ({
               lineHeight: 1.3,
               marginBottom: '20px',
           }}
-
         />
       </TDescription>
 
-      <InputStyle>
-        <div className='input-div'>
 
-        <p>Profile</p>
+      <DataColumns>
+        <InputStyle>
+          <div className='input-div'>
+          <p>Profile</p>
+            <ProfileSelector selected={responsibleProfile} handleSaveProfile={handleSaveProfile}/>
+          </div>
+        </InputStyle>
 
-        <ProfileSelector selected={responsibleProfile} handleSaveProfile={handleSaveProfile}/>
+        <InputStyle>
+          <div className='input-div'>
+            <p>Estimated hours:</p>
+              <EditText
+                type="number"
+                onChange={setTaskEstimatedHours}
+                onSave={handleSaveEstimatedHours}
+                value={taskEstimatedHours}
+                style={{
+                    lineHeight: 1.3,
+                  }}
+              />
+          </div>
+        </InputStyle>
 
+        <InputStyle>
+          <div className='input-div'>
+            <p>Hourly Cost: </p>
+            <div className='estimated-cost'>{'$ '+taskEstimatedCost}</div>
+          </div>
+        </InputStyle>
 
-        </div>
-      </InputStyle>
-
-      <InputStyle>
-      <div className='input-div'>
-
-        <p>Estimated hours:</p>
-          <EditText
-            type="number"
-            onChange={setTaskEstimatedHours}
-            onSave={handleSaveEstimatedHours}
-            value={taskEstimatedHours}
-            style={{
-                lineHeight: 1.3,
-              }}
-
-          />
-
-      </div>
-
-      </InputStyle>
-
-
-      <InputStyle>
-        <div className='input-div'>
-        <p>Hourly Cost: </p>
-
-        <div className='estimated-cost'>{'$ '+taskEstimatedCost}</div>
-
-        </div>
-      </InputStyle>
-
-      <InputStyle>
-        <div className='input-div'>
-        <p>Total Estimated Cost: </p>
-
-        <div className='estimated-cost'>{'$ '+taskEstimatedCost * taskEstimatedHours}</div>
-
-        </div>
-      </InputStyle>
-
-
+        <InputStyle>
+          <div className='input-div'>
+            <p>Total Estimated Cost: </p>
+            <div className='estimated-cost'>{'$ '+taskEstimatedCost * taskEstimatedHours}</div>
+          </div>
+        </InputStyle>
+      </DataColumns>
 
       <TFooter>
         <div className="input-div">

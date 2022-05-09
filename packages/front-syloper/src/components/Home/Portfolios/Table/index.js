@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import TableBody from './styles';
 import ServiceBFF from '../../../../services/BFF';
 import { numberFormatter, currencyFormatter } from '../../../../utils/number';
+import { EditText } from 'react-edit-text';
 const Table = () => {
   const [tableData, setTableDta] = useState();
 
@@ -26,7 +27,11 @@ const Table = () => {
           <td>{row.client}</td>
           <td>{row.price_per_hour}</td>
           <td>{numberFormatter(row.estimated_hours)}</td>
-          <td>{numberFormatter(row.worked_hours)}</td>
+          <td>
+            <EditText 
+              type="number"
+            />
+          </td>
           <td>{currencyFormatter(row.estimated_incomes)}</td>
           <td>{currencyFormatter(row.real_incomes)}</td>
         </tr>
