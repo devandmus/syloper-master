@@ -13,6 +13,7 @@ import ServicesResponsible from '../../../../services/ServicesResponsible';
 import ServicesProjects from '../../../../services/ServicesProjects';
 import ProfileSelector from './ProfileSelector';
 import AvatarSelector from './AvatarSelector';
+import { useTheme } from 'styled-components';
 const MovableItem = ({
   projectTitle,
   projectStatus,
@@ -43,8 +44,10 @@ const MovableItem = ({
   const [isOpenMenu, setIsOpenMenu] = useState(false);
   const [responsibleData, setResponsible] = useState({})
   const [responsibleProfile, setResponsibleProfile] = useState({})
+  const theme = useTheme()
 
   useEffect(() => {
+
 
     ServicesUser.getUserById(responsible).then((data) => setResponsible(data))
     ServicesResponsible.getResponsibleTypesById(profile).then((data) => {
@@ -227,6 +230,8 @@ const MovableItem = ({
               fontWeight: 500,
               fontSize: '1.4rem',
               marginBottom: '15px',
+              fontFamily: theme.font.family,
+
           }}
 
         />
@@ -241,6 +246,8 @@ const MovableItem = ({
               fontSize: '1.1rem',
               lineHeight: 1.3,
               marginBottom: '20px',
+              fontFamily: theme.font.family,
+
           }}
         />
       </TDescription>
@@ -264,6 +271,8 @@ const MovableItem = ({
                 value={taskEstimatedHours}
                 style={{
                     lineHeight: 1.3,
+                    fontFamily: theme.font.family,
+
                   }}
               />
           </div>
@@ -295,6 +304,8 @@ const MovableItem = ({
             formatDisplayText={dateFormatter}
             style={{
             fontSize: '1.1rem',
+            fontFamily: theme.font.family,
+
             }}
 
           />
