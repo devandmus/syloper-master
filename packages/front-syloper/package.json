@@ -9,7 +9,8 @@
   ],
   "scripts": {
     "dev": "gatsby develop",
-    "build": "rm -r ./.cache && rm -r ./public && gatsby build",
+    "build": "npm run clear && gatsby build",
+    "clear": "rm -r ./.cache",
     "serve": "gatsby serve",
     "clean": "gatsby clean"
   },
