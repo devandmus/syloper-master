@@ -6,7 +6,8 @@ import Home from '../Home';
 import KanbanBoard from '../KanbanBoard';
 
 const Tasks = () => {
-  const isMobile = window.innerWidth < 600;
+  const isMobile =
+    typeof window !== 'undefined' ? window.innerWidth < 600 : false;
   const projectStatus = ['To do', 'Doing', 'Done'];
 
   return (

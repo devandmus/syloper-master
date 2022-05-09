@@ -25,7 +25,7 @@ const ModalAvatar = ({ title, id }) => {
     ServicesUser.createUser(data)
       .then(() => {
         setModalAvatarIsOpen(false);
-        window.location.reload();
+        if (typeof window !== 'undefined') window.location.reload();
       })
       .catch((err) => {
         setErrorMsg(err.message);

@@ -2,19 +2,28 @@ const USER_KEY = 'user';
 const TOKEN_KEY = 'token';
 
 const getStorageUser = () => {
-  const user = window.localStorage.getItem(USER_KEY);
-  return user ? JSON.parse(user) : null;
+  if (typeof window !== 'undefined') {
+    const user = window.localStorage.getItem(USER_KEY);
+    return user ? JSON.parse(user) : null;
+  }
+  return null;
 };
 
 const setStorageUser = (user) => {
-  window.localStorage.setItem(USER_KEY, JSON.stringify(user));
+  if (typeof window !== 'undefined')
+    window.localStorage.setItem(USER_KEY, JSON.stringify(user));
   return user;
 };
 
-const getStorageToken = () => window.localStorage.getItem(TOKEN_KEY);
+const getStorageToken = () => {
+  if (typeof window !== 'undefined')
+    return window.localStorage.getItem(TOKEN_KEY);
+  return '';
+};
 
 const setStorageToken = (token) => {
-  window.localStorage.setItem(TOKEN_KEY, token);
+  if (typeof window !== 'undefined')
+    window.localStorage.setItem(TOKEN_KEY, token);
 };
 
 export {

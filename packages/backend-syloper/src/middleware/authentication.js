@@ -1,7 +1,6 @@
 const jwt = require('jsonwebtoken');
 const config = require('../../config');
 
-// acá pueden listar los urls de acceso sin token
 const publicPaths = [
   '/',
   '/health',

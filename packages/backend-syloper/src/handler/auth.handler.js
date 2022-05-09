@@ -34,7 +34,7 @@ const setPassword = async ctx => {
   try{
     const token = await passwordTokenValidator(ctx.params.token);
     const isValid = token.exp > Date.now();
-    if (!isValid) throw new Error('');
+    if (!isValid) throw new Error('Invalid Token');
     if (method === 'POST') {
       const password = ctx.request.body["password"];
       await setNewPassword({

@@ -1,6 +1,7 @@
 const config = require('../config');
 const nodemailer = require('nodemailer');
 
+// TODO: clean up here
 const email = config.EMAIL_ACCOUNT;
 const password = config.EMAIL_PASSWORD;
 

@@ -13,9 +13,11 @@ const loginUser = ({ email, password }) =>
   });
 
 const logout = () => {
-  window.localStorage.removeItem(USER_KEY);
-  window.localStorage.removeItem(TOKEN_KEY);
-  window.location.replace('/');
+  if (typeof window !== 'undefined') {
+    window.localStorage.removeItem(USER_KEY);
+    window.localStorage.removeItem(TOKEN_KEY);
+    window.location.replace('/');
+  };
 };
 
 export default {

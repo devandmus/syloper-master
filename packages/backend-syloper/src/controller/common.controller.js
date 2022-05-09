@@ -1,17 +1,3 @@
-const getOrFind = async promise => await promise
-  .then(body => {
-    if (body === null) throw new Error('Not found');
-    return ({
-      body,
-      status: 200,
-    })
-  })
-  .catch((err) => ({
-    body: {
-      error: err.message
-    },
-    status: 404,
-  }));
 
 
 const create = async (model, data) =>
@@ -34,6 +20,22 @@ const getAll = async (model, filter) => {
   const body = await JSON.parse(await JSON.stringify(list));
   return { status: 200, body };
 }
+
+
+const getOrFind = async promise => await promise
+  .then(body => {
+    if (body === null) throw new Error('Not found');
+    return ({
+      body,
+      status: 200,
+    })
+  })
+  .catch((err) => ({
+    body: {
+      error: err.message
+    },
+    status: 404,
+  }));
 
 
 const getById = async (model, id) =>

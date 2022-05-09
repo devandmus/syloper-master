@@ -1,7 +1,8 @@
 import axios from 'axios';
 import { getStorageToken } from './helpers';
 
-const API = 'http://localhost:8080';
+const API = 'https://syloper.herokuapp.com';
+// 'http://localhost:8080';
 
 const Request = (url, { method = 'GET', data = {} } = {}) => {
   const token = getStorageToken();

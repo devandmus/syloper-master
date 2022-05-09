@@ -1,0 +1,1 @@
+{"version":3,"file":"component---src-pages-index-js-cad486f24f4f52df2ede.js","mappings":"qJAKA,UAFkB,kBAAM,gBAAC,IAAD","sources":["webpack://syloper-front/./src/pages/index.js"],"sourcesContent":["import React from 'react';\nimport Login from '../components/Login';\n\nconst IndexPage = () => <Login />;\n\nexport default IndexPage;\n"],"names":[],"sourceRoot":""}
