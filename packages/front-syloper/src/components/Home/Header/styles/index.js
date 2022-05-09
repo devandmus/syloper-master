@@ -4,8 +4,8 @@ const HeaderContainer = styled.header`
   width: 100%;
   display: flex;
   align-items: center;
-  justify-content: space-between;
   margin-bottom: 2rem;
+  gap: 20px;
 
   @media only screen and (max-width: 650px) {
     margin-bottom: 35px;

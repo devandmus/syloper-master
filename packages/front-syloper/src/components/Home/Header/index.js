@@ -16,10 +16,6 @@ const Header = ({ title }) => {
     <HeaderContainer>
       <BackButtonComp />
       <Title>{title}</Title>
-      <HeaderMenu>
-        <FiUser {...iconProps} />
-        <IoSettingsOutline {...iconProps} />
-      </HeaderMenu>
     </HeaderContainer>
   );
 };
