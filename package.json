@@ -6,7 +6,7 @@
     "only:backend": "lerna run back --stream",
     "hydrate": "npm run hydrate --prefix=./packages/backend-syloper/",
     "init": "npm i && npx lerna bootstrap --hoist",
-    "build": "npm run build --prefix=./packages/front-syloper/ && rm -r ./docs && mkdir ./docs && mv ./packages/front-syloper/public/* ./docs"
+    "build": "npm run build --prefix=./packages/front-syloper/ && rm -r ./docs/* && mv ./packages/front-syloper/public/* ./docs"
   },
   "devDependencies": {
     "lerna": "^4.0.0"
