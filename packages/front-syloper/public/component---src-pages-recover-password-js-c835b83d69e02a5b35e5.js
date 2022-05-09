@@ -1,2 +1,0 @@
-"use strict";(self.webpackChunksyloper_front=self.webpackChunksyloper_front||[]).push([[625],{80151:function(e,n,r){r.r(n);var t=r(2784),u=r(25843);n.default=function(){return t.createElement(u.C,null)}}}]);
-//# sourceMappingURL=component---src-pages-recover-password-js-c835b83d69e02a5b35e5.js.map
