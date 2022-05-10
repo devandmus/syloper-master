@@ -261,11 +261,12 @@ const Modal = ({ title, description, section, modalOnSubmit, projectId }) => {
               placeholder="Enter Project's Description"
             />
           </div>
-
+          <div>
           <Button
             type="button"
             onClick={handleSubmit}
           >{`Create ${section}`}</Button>
+          </div>
         </ModalForm>
       </ModalContainer>
       <Veil className={classNames({ show: modalIsOpen })} />
