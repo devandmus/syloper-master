@@ -76,6 +76,10 @@ const remove = async (ctx) => {
       bounded: 'projects',
       filter: { customer_id: id },
     },
+    users: {
+      bounded: 'tasks',
+      filter: { task_responsible_user_id: id },
+    }
   }[model] || null;
 
   if (protectedModel) {
@@ -84,12 +88,14 @@ const remove = async (ctx) => {
       protectedModel.filter,
     );
 
+    const { bounded } = protectedModel;
+
     if (body.length > 0) {
       ctx.status = 423;
       ctx.body = {
-        message: `You can't remove this entry because other models depend on it`,
+        message: `You can't remove this entry because some "${bounded}" instances depend on it`,
         dependencies: {
-          bounded: protectedModel.bounded,
+          bounded,
           entries: body,
         },
       };
