@@ -92,7 +92,8 @@ const portfolio = async (ctx) => {
         project_status,
       } = project;
       const steps = project_status.length;
-      const { customer_full_name: client } = customers.find(el => el.id === customer_id);
+      const { customer_full_name: client } =
+        customers.find(el => el.id === customer_id);
       const projectTasks = tasks.filter(el => el.project_id === project_id);
 
       const estimated_hours = projectTasks

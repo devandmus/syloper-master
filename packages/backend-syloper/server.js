@@ -1,5 +1,6 @@
 require('dotenv').config();
 require('./database/connection');
+require('./email/jobs');
 const config = require('./config');
 const logger = require('./config/logger');
 const app = require('./src/app');

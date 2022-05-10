@@ -3,10 +3,12 @@ const nconf = require('nconf');
 const yaml = require('js-yaml');
 
 const ENV = process.env.NODE_ENV || 'development';
+
 const format = {
   parse: yaml.load,
   stringify: yaml.dump,
 };
+
 const getFile = file => path.join(__dirname, file);
 
 const baseFile = {

@@ -1,20 +1,21 @@
 const config = require('../config');
 const nodemailer = require('nodemailer');
 
-// TODO: clean up here
 const email = config.EMAIL_ACCOUNT;
 const password = config.EMAIL_PASSWORD;
 
 const transporter = nodemailer.createTransport({
   service: 'gmail',
   auth: {
-    user: 'arquitecturadeservidores@gmail.com',
-    pass: 'mzmmzmzzmzmmzmzzm1!',
+    user: email,
+    pass: password,
   },
 });
 
 
-module.exports.sendEmail = ({ to, subject, template }) => {
+const sendEmail = ({ to, subject, template }) => {
+  if (to === 'subadmin@syloper.com' || to === 'admin@syloper.com')
+    return false;
   transporter
     .sendMail({
       to,
@@ -29,3 +30,13 @@ module.exports.sendEmail = ({ to, subject, template }) => {
       console.error('error sending mail', err);
     });
 };
+
+
+module.exports = {
+  sendEmail,
+}
+
+
+
+
+
